@@ -1,0 +1,12 @@
+node_modules/**/*
+.expo/*
+npm-debug.*
+*.jks
+*.p12
+*.key
+*.mobileprovision
+.expo
+node_modules/
+
+# macOS
+.DS_Store
