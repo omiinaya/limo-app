@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '0px',
     justifyContent: "center"
   },
-  title: {
+  left: {
     flexGrow: 1,
     fontSize: '17px',
     fontFamily: 'MyFont4'
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '17px',
     fontFamily: 'MyFont4'
   },
-  edge: {
+  right: {
     fontSize: '17px',
     fontFamily: 'MyFont4'
   },
