@@ -4,10 +4,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: "black",
-    opacity: "0.80",
+    background: "rgba(0, 0, 0, .75)",
     position: "fixed",
-    height: '80px',
+    height: '90px',
     margin: '0px',
     justifyContent: "center"
   },

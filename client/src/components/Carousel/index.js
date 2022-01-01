@@ -8,7 +8,8 @@ const rows = [
     Items: [
       {
         Name: "LIMO",
-        Image: "https://images.unsplash.com/photo-1605329674253-c7680c5e44cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        Image:
+          "https://images.unsplash.com/photo-1605329674253-c7680c5e44cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
       },
     ],
   },
@@ -16,7 +17,8 @@ const rows = [
     Items: [
       {
         Name: "SUV",
-        Image: "https://images.unsplash.com/photo-1574729418856-5a0804729a8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+        Image:
+          "https://images.unsplash.com/photo-1574729418856-5a0804729a8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
       },
     ],
   },
@@ -24,7 +26,8 @@ const rows = [
     Items: [
       {
         Name: "CAR",
-        Image: "https://images.unsplash.com/photo-1618277841432-02359de77eb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1333&q=80",
+        Image:
+          "https://images.unsplash.com/photo-1618277841432-02359de77eb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1333&q=80",
       },
     ],
   },
@@ -34,16 +37,33 @@ function main() {
   const classes = styles();
 
   return (
-    <div style={{ color: "#494949" }}>
+    <div>
       <Carousel
-        className={classes.Root}
+        className={classes.root}
         autoPlay={true}
         animation="fade"
-        indicators={false}
+        indicators={true}
         timeout={100}
         cycleNavigation={true}
         navButtonsAlwaysVisible={true}
         navButtonsAlwaysInvisible={false}
+        navButtonsProps={{
+          style: {
+            backgroundColor: "rgba(0, 0, 0, .60)",
+            //borderRadius: 0,
+          },
+        }}
+        indicatorIconButtonProps={{
+          style: {
+            padding: "5px", // 1
+          },
+        }}
+        indicatorContainerProps={{
+          style: {
+            marginTop: "10px", // 5
+            
+          },
+        }}
       >
         {rows.map((item, index) => {
           return (

@@ -6,10 +6,11 @@ const useStyles = makeStyles((theme) => ({
     Banner: {
         width: '100%',
         position: 'relative',
+        borderRadius: 0
     },
     Media: {
         backgroundColor: 'white',
-        height: '500px',
+        height: '550px',
         width: '100%',
         overflow: 'hidden',
         position: 'relative'
