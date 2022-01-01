@@ -1,15 +1,13 @@
 import React from "react";
-import MenuIcon from '@material-ui/icons/Menu';
 import { 
     AppBar,
     Toolbar,
-    IconButton,
     Button,
     Typography
 } from '@material-ui/core';
 import styles from './styles'
 
-function Home() {
+function NavBar() {
     const classes = styles();
     return (
         <div>
@@ -25,4 +23,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default NavBar;

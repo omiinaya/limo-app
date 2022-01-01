@@ -1,12 +1,13 @@
 import React from "react";
-import AppBar from '../AppBar'
 import styles from './styles'
+import Carousel from '../Carousel'
 
 function Home() {
     const classes = styles();
     return (
         <div className={classes.root}>
-            Hello World
+            <div>Hello World</div>
+            
         </div>
     )
 }
