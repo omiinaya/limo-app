@@ -6,8 +6,7 @@ function Home() {
     const classes = styles();
     return (
         <div className={classes.root}>
-            <div>Hello World</div>
-            
+            <Carousel />
         </div>
     )
 }

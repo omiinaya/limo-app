@@ -1,4 +1,5 @@
 import React from "react";
+import Carousel from "react-material-ui-carousel"
 import Banner from '../Banner'
 import styles from './styles'
 
@@ -29,7 +30,7 @@ const rows = [
     }
 ]
 
-function Carousel() {
+function main() {
     const classes = styles();
     
     return (
@@ -44,6 +45,7 @@ function Carousel() {
             navButtonsAlwaysVisible={false}
             navButtonsAlwaysInvisible={true}
         >
+            
             {
                 rows.map((item, index) => {
                     return <Banner item={item} key={index} contentPosition={item.contentPosition} />
@@ -54,4 +56,4 @@ function Carousel() {
     )
 }
 
-export default Carousel;
+export default main;

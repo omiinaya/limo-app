@@ -3,15 +3,6 @@ import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
 const breakpoints = createBreakpoints({})
 
 const useStyles = makeStyles((theme) => ({
-    RootDesktop: {
-        height: '335px',
-    },
-    RootMobile: {
-        height: '275px'
-    },
-    Test: {
-        height: '300px'
-    },
     Banner: {
         width: '100%',
         position: 'relative',

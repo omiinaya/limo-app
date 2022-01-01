@@ -4,7 +4,7 @@ const breakpoints = createBreakpoints({})
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
+        flexGrow: 1
     }
 }))
 

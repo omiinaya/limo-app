@@ -4,7 +4,8 @@ const breakpoints = createBreakpoints({})
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%'
+        width: '100%',
+        position: 'absolute'
         /*
         [breakpoints.down('xs')]: {
             display: 'none'

@@ -4,7 +4,9 @@ const breakpoints = createBreakpoints({})
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
+        background: 'black',
+        opacity: '0.30',
+        position: 'relative'
     },
     title: {
         flexGrow: 1,
