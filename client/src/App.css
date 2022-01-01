@@ -1,22 +1,29 @@
 @font-face {
-  font-family: 'MyFont';
+  font-family: "MyFont";
   font-style: normal;
   font-weight: 400;
-  src: local('MyFont'), url(./assets/fonts/MyFont.woff) format('woff');
+  src: local("MyFont"), url(./assets/fonts/MyFont.woff) format("woff");
 }
 
 @font-face {
-  font-family: 'MyFont2';
+  font-family: "MyFont2";
   font-style: normal;
   font-weight: 400;
-  src: local('MyFont2'), url(./assets/fonts/MyFont2.woff) format('woff');
+  src: local("MyFont2"), url(./assets/fonts/MyFont2.woff) format("woff");
 }
 
 @font-face {
-  font-family: 'MyFont3';
+  font-family: "MyFont3";
   font-style: normal;
   font-weight: 400;
-  src: local('MyFont3'), url(./assets/fonts/MyFont3.woff) format('woff');
+  src: local("MyFont3"), url(./assets/fonts/MyFont3.woff) format("woff");
+}
+
+@font-face {
+  font-family: "MyFont4";
+  font-style: normal;
+  font-weight: 400;
+  src: local("MyFont4"), url(./assets/fonts/MyFont4.otf) format("opentype");
 }
 
 .App {
@@ -64,8 +71,11 @@
   box-shadow: none !important;
 }
 
-::-webkit-scrollbar {display:none;}
+::-webkit-scrollbar {
+  display: none;
+}
 
-html,body{
+html,
+body {
   overflow-x: hidden;
 }

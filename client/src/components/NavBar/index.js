@@ -13,14 +13,23 @@ function NavBar(props) {
           </div>
           <div className={classes.menu}>
             <Typography variant="h6" className={classes.item}>
-              2
+              SERVICE
             </Typography>
             <Typography variant="h6" className={classes.item}>
-              3
+              FLEET
+            </Typography>
+            <Typography variant="h6" className={classes.item}>
+              ABOUT US
+            </Typography>
+            <Typography variant="h6" className={classes.item}>
+              CONTACT US
+            </Typography>
+            <Typography variant="h6" className={classes.item}>
+              QUOTE
             </Typography>
           </div>
           <div className={classes.edge}>
-            <Typography variant="h6">4</Typography>
+            <Typography variant="h6">7</Typography>
           </div>
         </Toolbar>
       </AppBar>
