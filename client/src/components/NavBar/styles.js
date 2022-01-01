@@ -12,6 +12,8 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    fontSize: '17px',
+    fontFamily: 'MyFont4'
   },
   menu: {
     flexGrow: 1,
@@ -20,9 +22,12 @@ const useStyles = makeStyles((theme) => ({
   item: {
     marginLeft: "10px",
     marginRight: "10px",
+    fontSize: '17px',
+    fontFamily: 'MyFont4'
   },
   edge: {
-    //
+    fontSize: '17px',
+    fontFamily: 'MyFont4'
   },
 }));
 
