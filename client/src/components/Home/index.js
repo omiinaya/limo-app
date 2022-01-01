@@ -1,4 +1,5 @@
 import React from "react";
+import AppBar from '../AppBar'
 import styles from './styles'
 
 function Home() {
