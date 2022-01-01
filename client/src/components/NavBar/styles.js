@@ -9,8 +9,12 @@ const useStyles = makeStyles((theme) => ({
         position: 'fixed'
     },
     title: {
-        flexGrow: 1,
+        flexGrow: 1
     },
+    item: {
+        flexGrow: 1,
+        display: 'flex',
+    }
 }))
 
 export default useStyles
