@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     },
     Media: {
         backgroundColor: 'white',
-        height: '345px',
+        height: '500px',
         width: '100%',
         overflow: 'hidden',
         position: 'relative'
