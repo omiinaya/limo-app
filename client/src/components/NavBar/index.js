@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Button, Typography } from "@material-ui/core";
+import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import styles from "./styles";
 
 function NavBar(props) {
@@ -11,9 +11,13 @@ function NavBar(props) {
           <div className={classes.title}>
             <Typography variant="h6">1</Typography>
           </div>
-          <div className={classes.item}>
-            <Typography variant="h6">2</Typography>
-            <Typography variant="h6">3</Typography>
+          <div className={classes.menu}>
+            <Typography variant="h6" className={classes.item}>
+              2
+            </Typography>
+            <Typography variant="h6" className={classes.item}>
+              3
+            </Typography>
           </div>
           <div className={classes.edge}>
             <Typography variant="h6">4</Typography>
