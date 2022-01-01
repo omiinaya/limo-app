@@ -1,5 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import PhoneIcon from '@mui/icons-material/Phone';
 import styles from "./styles";
 
 function NavBar(props) {
@@ -8,32 +9,35 @@ function NavBar(props) {
         <div>
             <AppBar position="relative" className={classes.root}>
                 <Toolbar>
-                    <div className={classes.left}>
-                        <Typography variant="h6">
-                            Logo
+                    <div className={classes.leftContainer}>
+                        <Typography variant="h6" className={classes.leftItems}>
+                            LOGO
                         </Typography>
                     </div>
                     <div className={classes.menu}>
-                        <Typography variant="h6" className={classes.item}>
+                        <Typography variant="h6" className={classes.middleItems}>
                             SERVICE
                         </Typography>
-                        <Typography variant="h6" className={classes.item}>
+                        <Typography variant="h6" className={classes.middleItems}>
                             FLEET
                         </Typography>
-                        <Typography variant="h6" className={classes.item}>
+                        <Typography variant="h6" className={classes.middleItems}>
                             ABOUT US
                         </Typography>
-                        <Typography variant="h6" className={classes.item}>
+                        <Typography variant="h6" className={classes.middleItems}>
                             CONTACT US
                         </Typography>
-                        <Typography variant="h6" className={classes.item}>
+                        <Typography variant="h6" className={classes.middleItems}>
                             QUOTE
                         </Typography>
                     </div>
-                    <div className={classes.right}>
+                    <div className={classes.rightContainer}>
+                        <div className={classes.rightItems}>
                         <Typography variant="h6">
-                            Number
+                           <PhoneIcon /> (731)-420-6969
                         </Typography>
+                        exampleemail@limolux.com
+                        </div>
                     </div>
                 </Toolbar>
             </AppBar>

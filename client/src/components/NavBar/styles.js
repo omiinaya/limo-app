@@ -10,8 +10,10 @@ const useStyles = makeStyles((theme) => ({
     margin: '0px',
     justifyContent: "center"
   },
-  left: {
+  leftContainer: {
     flexGrow: 1,
+  },
+  leftItems: {
     fontSize: '17px',
     fontFamily: 'MyFont4'
   },
@@ -19,16 +21,19 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     display: "flex",
   },
-  item: {
+  middleItems: {
     marginLeft: "10px",
     marginRight: "10px",
     fontSize: '17px',
     fontFamily: 'MyFont4'
   },
-  right: {
+  rightContainer: {
+    //
+  },
+  rightItems: {
     fontSize: '17px',
     fontFamily: 'MyFont4'
-  },
+  }
 }));
 
 export default useStyles;
