@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles";
 import Carousel from "../Carousel";
 import BannerMenu from "../BannerMenu";
-import HomeMenu from "../HomeMenu";
+import Service from "../Service";
 
 function Home() {
   const classes = styles();
@@ -16,8 +16,8 @@ function Home() {
           <BannerMenu />
         </div>
       </div>
-      <div className={classes.homeMenu}>
-        <HomeMenu />
+      <div className={classes.service}>
+        <Service />
       </div>
     </div>
   );

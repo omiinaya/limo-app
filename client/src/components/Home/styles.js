@@ -7,7 +7,7 @@ var bannerEdge = window.screen.height/2 + 30
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        position: 'absolute',
+        
         zIndex: '1',
     },
     carousel: {
@@ -23,9 +23,8 @@ const useStyles = makeStyles((theme) => ({
         top: '475px',
         left: 'calc(50% - 205px)',
     },
-    homeMenu: {
-        width: '500px',
-        height: '200px',
+    service: {
+        width: '100%',
         position: 'absolute',
         top: bannerEdge + 30
     }
