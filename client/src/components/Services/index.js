@@ -2,14 +2,14 @@ import React from "react";
 import styles from './styles'
 import Navigator from '../Navigator'
 
-function Service() {
+function Services() {
     const classes = styles();
     return (
         <div className={classes.root}>
-            <Navigator data={'path'} />
+            <Navigator data={'Services'} />
             <div>Hello World</div>
         </div>
     )
 }
 
-export default Service;
+export default Services;

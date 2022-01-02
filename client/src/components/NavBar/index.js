@@ -16,7 +16,7 @@ function NavBar(props) {
                     </div>
                     <div className={classes.middleContainer}>
                         <Typography variant="h6" className={classes.middleItems}>
-                            SERVICE
+                            SERVICES
                         </Typography>
                         <Typography variant="h6" className={classes.middleItems}>
                             FLEET

@@ -6,6 +6,9 @@ var bannerEdge = window.screen.height/2 + 30
 
 const useStyles = makeStyles((theme) => ({
     root: {
+
+    },
+    mainContainer: {
         width: '100%',
         
         zIndex: '1',
@@ -23,10 +26,11 @@ const useStyles = makeStyles((theme) => ({
         top: '475px',
         left: 'calc(50% - 205px)',
     },
-    service: {
+    services: {
         width: '100%',
         position: 'absolute',
-        top: bannerEdge + 30
+        top: bannerEdge,
+        margin: '25px'
     }
 }))
 

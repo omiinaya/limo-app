@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./styles";
 import Carousel from "../Carousel";
 import BannerMenu from "../BannerMenu";
-import Service from "../Service";
+import Services from "../Services";
 
 function Home() {
   const classes = styles();
   return (
-    <div>
-      <div className={classes.root}>
+    <div className={classes.root}>
+      <div className={classes.mainContainer}>
         <div className={classes.carousel}>
           <Carousel />
         </div>
@@ -16,8 +16,10 @@ function Home() {
           <BannerMenu />
         </div>
       </div>
-      <div className={classes.service}>
-        <Service />
+      <div className={classes.serviceCotnainer}>
+        <div className={classes.services}>
+          <Services />
+        </div>
       </div>
     </div>
   );
