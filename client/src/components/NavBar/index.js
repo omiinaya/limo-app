@@ -11,10 +11,10 @@ function NavBar(props) {
                 <Toolbar>
                     <div className={classes.leftContainer}>
                         <Typography variant="h6" className={classes.leftItems}>
-                            LOGO
+                            LOGO/TITLE
                         </Typography>
                     </div>
-                    <div className={classes.menu}>
+                    <div className={classes.middleContainer}>
                         <Typography variant="h6" className={classes.middleItems}>
                             SERVICE
                         </Typography>

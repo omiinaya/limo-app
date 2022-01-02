@@ -11,13 +11,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center"
   },
   leftContainer: {
+    marginLeft: theme.spacing(10),
     flexGrow: 1,
   },
   leftItems: {
     fontSize: '17px',
     fontFamily: 'MyFont4'
   },
-  menu: {
+  middleContainer: {
     flexGrow: 1,
     display: "flex",
   },

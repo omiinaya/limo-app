@@ -4,16 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        margin: '0 auto',
-        alignItems: 'center',
-        justifyContent: 'center'
+        width: '100%',
+        position: 'absolute',
     },
-    button: {
-        backgroundColor: "#8A9A5B !important",
-        borderRadius: '0px !important',
-        height: '60px',
-        width: '200px'
-    }
 }))
 
 export default useStyles
