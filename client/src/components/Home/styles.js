@@ -9,7 +9,7 @@ var tripleSpace = singleSpace * 3
 var bannerEdge  = window.screen.height/2 + singleSpace
 var bannerMenu  = bannerEdge - tripleSpace + halfSpace
 var homeMenu    = bannerEdge + singleSpace
-var moreInfo    = homeMenu + doubleSpace
+var moreInfo    = homeMenu + tripleSpace
 var services    = moreInfo + tripleSpace
 
 const useStyles = makeStyles((theme) => ({
@@ -45,8 +45,7 @@ const useStyles = makeStyles((theme) => ({
     moreInfo: {
         width: '100%',
         position: 'absolute',
-        top: moreInfo,
-        margin: '25px'
+        top: moreInfo
     },
     services: {
         width: '100%',

@@ -6,6 +6,12 @@ const useStyles = makeStyles((theme) => ({
     root: {
         //
     },
+    icons: {
+        //
+    },
+    text: {
+        //
+    }
 }))
 
 export default useStyles
