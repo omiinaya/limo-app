@@ -2,8 +2,6 @@ import React from "react";
 import styles from './styles'
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import SendIcon from '@mui/icons-material/Send';
-import DeleteIcon from '@mui/icons-material/Delete';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 

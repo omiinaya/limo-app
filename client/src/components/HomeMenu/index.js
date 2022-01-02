@@ -9,7 +9,6 @@ import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import AttractionsIcon from '@mui/icons-material/Attractions';
 import Link from '@material-ui/core/Link';
-import HomeIcon from '@material-ui/icons/Home';
 import styles from './styles'
 
 function HomeMenu() {
