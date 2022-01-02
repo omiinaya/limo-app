@@ -60,7 +60,7 @@ function main() {
         }}
         indicatorContainerProps={{
           style: {
-            marginTop: "10px", // 5
+            marginTop: "20px", // 5
             
           },
         }}
