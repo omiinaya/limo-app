@@ -2,9 +2,13 @@ import { makeStyles } from '@material-ui/core/styles';
 //import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
 //const breakpoints = createBreakpoints({})
 
-var bannerEdge = window.screen.height/2 + 30
-var homeMenu = bannerEdge + 35
-var services = homeMenu + 40
+var singleSpace = 30
+var doubleSpace = singleSpace * 2
+var tripleSpace = singleSpace * 3
+var bannerEdge  = window.screen.height/2 + singleSpace
+var homeMenu    = bannerEdge + singleSpace
+var moreInfo    = homeMenu + doubleSpace
+var services    = moreInfo + tripleSpace
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,6 +39,12 @@ const useStyles = makeStyles((theme) => ({
         top: homeMenu,
         margin: '25px',
         left: 'calc(50% - 600px)',
+    },
+    moreInfo: {
+        width: '100%',
+        position: 'absolute',
+        top: moreInfo,
+        margin: '25px'
     },
     services: {
         width: '100%',

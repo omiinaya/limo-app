@@ -4,6 +4,7 @@ import Carousel from "../Carousel";
 import BannerMenu from "../BannerMenu";
 import Services from "../Services";
 import HomeMenu from "../HomeMenu";
+import MoreInfo from "../MoreInfo";
 
 function Home() {
   const classes = styles();
@@ -19,6 +20,9 @@ function Home() {
       </div>
       <div className={classes.homeMenu}>
         <HomeMenu />
+      </div>
+      <div className={classes.moreInfo}>
+        <MoreInfo />
       </div>
       <div className={classes.serviceCotnainer}>
         <div className={classes.services}>
