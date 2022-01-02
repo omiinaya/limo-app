@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         top: homeMenu,
         margin: '25px',
+        zIndex: '2',
         left: 'calc(50% - 600px)',
     },
     moreInfo: {
