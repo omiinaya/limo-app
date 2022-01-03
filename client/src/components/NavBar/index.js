@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Link } from "@material-ui/core";
+import { AppBar, Toolbar, Link, Typography } from "@material-ui/core";
 import PhoneIcon from '@mui/icons-material/Phone';
 import { scrollToTop } from "../../scripts"
 import { scrollTo } from "../../scripts"
@@ -7,14 +7,14 @@ import styles from "./styles";
 
 function NavBar(props) {
     const classes = styles();
-    
+
     return (
         <div>
             <AppBar position="relative" className={classes.root}>
                 <Toolbar>
                     <div className={classes.leftContainer}>
                         <Link
-                            color="inherit" 
+                            color="inherit"
                             href="#"
                             className={classes.middleItems}
                             onClick={() => {
@@ -26,7 +26,7 @@ function NavBar(props) {
                     </div>
                     <div className={classes.middleContainer}>
                         <Link
-                            color="inherit" 
+                            color="inherit"
                             href="#"
                             className={classes.middleItems}
                             onClick={() => {
@@ -36,7 +36,7 @@ function NavBar(props) {
                             SERVICES
                         </Link>
                         <Link
-                            color="inherit" 
+                            color="inherit"
                             href="#"
                             className={classes.middleItems}
                             onClick={() => {
@@ -46,7 +46,7 @@ function NavBar(props) {
                             FLEET
                         </Link>
                         <Link
-                            color="inherit" 
+                            color="inherit"
                             href="#"
                             className={classes.middleItems}
                             onClick={() => {
@@ -56,7 +56,7 @@ function NavBar(props) {
                             RESERVATIONS
                         </Link>
                         <Link
-                            color="inherit" 
+                            color="inherit"
                             href="#"
                             className={classes.middleItems}
                             onClick={() => {
@@ -66,7 +66,7 @@ function NavBar(props) {
                             ABOUT US
                         </Link>
                         <Link
-                            color="inherit" 
+                            color="inherit"
                             href="#"
                             className={classes.middleItems}
                             onClick={() => {
@@ -78,10 +78,9 @@ function NavBar(props) {
                     </div>
                     <div className={classes.rightContainer}>
                         <div className={classes.rightItems}>
-                            <Link color="inherit" 
-                            href="#">
-                                <PhoneIcon /> (731)-420-6969
-                            </Link>
+                            <Typography variant="h6">
+                                <PhoneIcon />(731)-420-6969
+                            </Typography>
                             exampleemail@limolux.com
                         </div>
                     </div>
