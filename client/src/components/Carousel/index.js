@@ -40,7 +40,7 @@ function main() {
   const doubleSpace = singleSpace * 2
   const tripleSpace = singleSpace + doubleSpace
   const bannerEdge = window.screen.height / 2 + singleSpace
-  const indicHeight = bannerEdge - tripleSpace - singleSpace
+  const indicHeight = bannerEdge - tripleSpace
 
   return (
     <Carousel

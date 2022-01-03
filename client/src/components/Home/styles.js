@@ -1,13 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { constants } from "../../scripts"
 //import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
 //const breakpoints = createBreakpoints({})
 
-var halfSpace = 15
-var singleSpace = halfSpace * 2
-var doubleSpace = singleSpace * 2
-var tripleSpace = singleSpace + doubleSpace
-var bannerEdge = window.screen.height / 2 + doubleSpace
-var bannerMenu = bannerEdge - tripleSpace + halfSpace
+console.log(constants.bannerEdge())
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,15 +14,12 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         zIndex: 1,
     },
-    mid: {
+    sub: {
         backgroundColor: 'white',
-        border: 'red 2px solid',
         width: '100%',
         position: 'relative',
         zIndex: 2,
-    },
-    sub: {
-        //
+        //borderBottom: '2px black solid'
     },
     carousel: {
         width: '100%',
@@ -37,17 +30,15 @@ const useStyles = makeStyles((theme) => ({
     bannerMenu: {
         width: '100%',
         position: 'absolute',
-        top: bannerMenu,
+        top: constants.bannerMenu(),
         zIndex: 2,
         left: 'calc(50% - 208px)',
     },
     homeMenu: {
-        zIndex: '2',
         width: '1100px',
-        height: 'auto',
+        height: '50px',
         margin: '0 auto',
-        marginTop: doubleSpace,
-        position: 'relative'
+        paddingTop: constants.singleSpace()
     },
     moreInfo: {
         width: '100%',
