@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative'
     },
     BannerGrid: {
-        height: '100%',
         height: bannerHeight,
         position: 'relative'
     },

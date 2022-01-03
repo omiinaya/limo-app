@@ -4,15 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-       //
+        //
     },
-    button: {
-        backgroundColor: "#8A9A5B !important",
-        borderRadius: '0px !important',
-        height: '60px',
-        width: '200px',
-        border: '2px white solid !important'
-    }
 }))
 
 export default useStyles

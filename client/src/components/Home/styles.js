@@ -2,57 +2,52 @@ import { makeStyles } from '@material-ui/core/styles';
 //import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
 //const breakpoints = createBreakpoints({})
 
-var halfSpace   = 15
+var halfSpace = 15
 var singleSpace = halfSpace * 2
 var doubleSpace = singleSpace * 2
-var tripleSpace = singleSpace * 3
-var bannerEdge  = window.screen.height/2 + singleSpace
-var bannerMenu  = bannerEdge - tripleSpace + halfSpace
-var homeMenu    = bannerEdge + singleSpace
-var moreInfo    = homeMenu + tripleSpace
-var services    = moreInfo + tripleSpace
+var tripleSpace = singleSpace + doubleSpace
+var bannerEdge = window.screen.height / 2 + singleSpace
+var bannerMenu = bannerEdge - tripleSpace + halfSpace
 
 const useStyles = makeStyles((theme) => ({
     root: {
 
     },
-    mainContainer: {
+    main: {
         width: '100%',
-        
         zIndex: '1',
     },
     carousel: {
         width: '100%',
         height: '550px',
-        position: 'absolute',
         zIndex: '1',
     },
     bannerMenu: {
         width: '100%',
         position: 'absolute',
-        zIndex: '2',
         top: bannerMenu,
-        left: 'calc(50% - 205px)',
+        zIndex: '2',
+        left: 'calc(50% - 208px)',
     },
     homeMenu: {
-        width: '100%',
-        height: '30px',
-        position: 'absolute',
-        top: homeMenu,
-        margin: '25px',
         zIndex: '2',
-        left: 'calc(50% - 600px)',
+        width: '1100px',
+        height: 'auto',
+        margin: '0 auto',
+        position: 'relative'
     },
     moreInfo: {
         width: '100%',
-        position: 'absolute',
-        top: moreInfo
+        margin: '25px'
+
     },
     services: {
-        width: '100%',
-        position: 'absolute',
-        top: services,
-        margin: '25px'
+        width: 'calc(100% - 100px)', //width - margin
+        margin: '50px'
+    },
+    fleet: {
+        width: 'calc(100% - 100px)',
+        margin: '50px'
     }
 }))
 

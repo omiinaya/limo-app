@@ -5,12 +5,13 @@ import BannerMenu from "../BannerMenu";
 import Services from "../Services";
 import HomeMenu from "../HomeMenu";
 import MoreInfo from "../MoreInfo";
+import Fleet from "../Fleet";
 
 function Home() {
   const classes = styles();
   return (
     <div className={classes.root}>
-      <div className={classes.mainContainer}>
+      <div className={classes.main}>
         <div className={classes.carousel}>
           <Carousel />
         </div>
@@ -24,10 +25,11 @@ function Home() {
       <div className={classes.moreInfo}>
         <MoreInfo />
       </div>
-      <div className={classes.serviceCotnainer}>
-        <div className={classes.services}>
-          <Services />
-        </div>
+      <div className={classes.services}>
+        <Services />
+      </div>
+      <div className={classes.fleet}>
+        <Fleet />
       </div>
     </div>
   );
