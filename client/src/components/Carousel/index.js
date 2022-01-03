@@ -37,7 +37,6 @@ function main() {
   const classes = styles();
 
   return (
-    <div>
       <Carousel
         className={classes.root}
         autoPlay={true}
@@ -60,7 +59,6 @@ function main() {
         }}
         indicatorContainerProps={{
           style: {
-            marginTop: "20px", // 5
             
           },
         }}
@@ -75,7 +73,6 @@ function main() {
           );
         })}
       </Carousel>
-    </div>
   );
 }
 

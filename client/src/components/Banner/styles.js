@@ -8,19 +8,16 @@ const useStyles = makeStyles((theme) => ({
     Banner: {
         width: '100%',
         height: bannerHeight,
-        position: 'relative',
-        borderRadius: 0
+        borderRadius: 0,
     },
     Media: {
         backgroundColor: 'white',
         height: bannerHeight,
         width: '100%',
         overflow: 'hidden',
-        position: 'relative'
     },
     BannerGrid: {
         height: bannerHeight,
-        position: 'relative'
     },
 }))
 

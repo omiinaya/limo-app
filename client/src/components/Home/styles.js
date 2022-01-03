@@ -15,18 +15,25 @@ const useStyles = makeStyles((theme) => ({
     },
     main: {
         width: '100%',
-        zIndex: '1',
+        position: 'relative',
+        zIndex: -1,
+    },
+    sub: {
+        backgroundColor: 'white',
+        border: 'red 2px solid',
+        width: '100%',
+        zIndex: 5,
     },
     carousel: {
         width: '100%',
         height: bannerEdge,
-        zIndex: '1',
+        zIndex: -1,
     },
     bannerMenu: {
         width: '100%',
         position: 'absolute',
         top: bannerMenu,
-        zIndex: '2',
+        zIndex: '1',
         left: 'calc(50% - 208px)',
     },
     homeMenu: {
@@ -40,11 +47,13 @@ const useStyles = makeStyles((theme) => ({
     moreInfo: {
         width: '100%',
         marginTop: '50px',
-        marginBottom: '5p0x'
+        marginBottom: '5p0x',
+        zIndex: 5,
     },
     sections: {
         width: 'calc(100% - 100px)', //width - margin
-        margin: '50px'
+        margin: '50px',
+        zIndex: '2',
     }
 }))
 
