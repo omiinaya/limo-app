@@ -6,7 +6,7 @@ var halfSpace = 15
 var singleSpace = halfSpace * 2
 var doubleSpace = singleSpace * 2
 var tripleSpace = singleSpace + doubleSpace
-var bannerEdge = window.screen.height / 2 + singleSpace
+var bannerEdge = window.screen.height / 2 + doubleSpace
 var bannerMenu = bannerEdge - tripleSpace + halfSpace
 
 const useStyles = makeStyles((theme) => ({
@@ -16,24 +16,29 @@ const useStyles = makeStyles((theme) => ({
     main: {
         width: '100%',
         position: 'relative',
-        zIndex: -1,
+        zIndex: 1,
     },
-    sub: {
+    mid: {
         backgroundColor: 'white',
         border: 'red 2px solid',
         width: '100%',
-        zIndex: 5,
+        position: 'relative',
+        zIndex: 2,
+    },
+    sub: {
+        //
     },
     carousel: {
         width: '100%',
-        height: bannerEdge,
-        zIndex: -1,
+        height: 'auto',
+        position: 'relative',
+        zIndex: 1,
     },
     bannerMenu: {
         width: '100%',
         position: 'absolute',
         top: bannerMenu,
-        zIndex: '1',
+        zIndex: 2,
         left: 'calc(50% - 208px)',
     },
     homeMenu: {
@@ -48,12 +53,14 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         marginTop: '50px',
         marginBottom: '5p0x',
-        zIndex: 5,
+        position: 'relative',
+        zIndex: 2,
     },
     sections: {
         width: 'calc(100% - 100px)', //width - margin
         margin: '50px',
-        zIndex: '2',
+        position: 'relative',
+        zIndex: 2,
     }
 }))
 

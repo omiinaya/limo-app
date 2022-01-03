@@ -25,35 +25,37 @@ function Home() {
 
   return (
     <div className={classes.root} name='Main'>
-      <div className={classes.main} style={{ transform: `translateY(${offsetY * 0.3}px)` }}>
+      <div className={classes.main} style={{ transform: `translateY(${offsetY * 0.5}px)` }}>
         <div className={classes.carousel}>
           <Carousel />
         </div>
-        <div className={classes.bannerMenu}>
+        <div className={classes.bannerMenu} >
           <BannerMenu />
         </div>
       </div>
-      <div className={classes.sub}>
+      <div className={classes.mid}>
         <div className={classes.homeMenu}>
           <HomeMenu />
         </div>
         <div className={classes.moreInfo}>
           <MoreInfo />
         </div>
-        <div className={classes.sections} name='Services'>
-          <Services />
-        </div>
-        <div className={classes.sections} name='Fleet'>
-          <Fleet />
-        </div>
-        <div className={classes.sections} name='Reservations'>
-          <Reservations />
-        </div>
-        <div className={classes.sections} name='AboutUs'>
-          <AboutUs />
-        </div>
-        <div className={classes.sections} name='ContactUs'>
-          <ContactUs />
+        <div className={classes.sub} id='sub'>
+          <div className={classes.sections} name='Services'>
+            <Services />
+          </div>
+          <div className={classes.sections} name='Fleet'>
+            <Fleet />
+          </div>
+          <div className={classes.sections} name='Reservations'>
+            <Reservations />
+          </div>
+          <div className={classes.sections} name='AboutUs'>
+            <AboutUs />
+          </div>
+          <div className={classes.sections} name='ContactUs'>
+            <ContactUs />
+          </div>
         </div>
         <div>
           <Test />

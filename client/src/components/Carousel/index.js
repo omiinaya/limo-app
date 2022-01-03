@@ -35,44 +35,56 @@ const rows = [
 
 function main() {
   const classes = styles();
+  const halfSpace = 15
+  const singleSpace = halfSpace * 2
+  const doubleSpace = singleSpace * 2
+  const tripleSpace = singleSpace + doubleSpace
+  const bannerEdge = window.screen.height / 2 + singleSpace
+  const indicHeight = bannerEdge - tripleSpace - singleSpace
 
   return (
-      <Carousel
-        className={classes.root}
-        autoPlay={true}
-        animation="fade"
-        indicators={true}
-        timeout={100}
-        cycleNavigation={true}
-        navButtonsAlwaysVisible={true}
-        navButtonsAlwaysInvisible={false}
-        navButtonsProps={{
-          style: {
-            backgroundColor: "rgba(0, 0, 0, .60)",
-            //borderRadius: 0,
-          },
-        }}
-        indicatorIconButtonProps={{
-          style: {
-            padding: "5px", // 1
-          },
-        }}
-        indicatorContainerProps={{
-          style: {
-            
-          },
-        }}
-      >
-        {rows.map((item, index) => {
-          return (
-            <Banner
-              item={item}
-              key={index}
-              contentPosition={item.contentPosition}
-            />
-          );
-        })}
-      </Carousel>
+    <Carousel
+      className={classes.root}
+      autoPlay={true}
+      animation="fade"
+      indicators={true}
+      timeout={100}
+      cycleNavigation={true}
+      navButtonsAlwaysVisible={true}
+      navButtonsAlwaysInvisible={false}
+      navButtonsProps={{
+        style: {
+          backgroundColor: "rgba(0, 0, 0, .60)",
+          //borderRadius: 0,
+        },
+      }}
+      indicatorIconButtonProps={{
+        style: {
+          padding: "5px", // 1
+        },
+      }}
+      indicatorContainerProps={{
+        style: {
+          //
+        },
+      }}
+      indicatorContainerProps={{
+        style: {
+            position: 'absolute',
+            top: indicHeight
+        }
+    }}
+    >
+      {rows.map((item, index) => {
+        return (
+          <Banner
+            item={item}
+            key={index}
+            contentPosition={item.contentPosition}
+          />
+        );
+      })}
+    </Carousel>
   );
 }
 
