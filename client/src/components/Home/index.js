@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styles from "./styles";
 import Carousel from "../Carousel";
 import BannerMenu from "../BannerMenu";
@@ -9,16 +9,9 @@ import Fleet from "../Fleet";
 
 function Home() {
   const classes = styles();
-  const myRef = useRef(null)
-  const executeScroll = () => {
-    const el = myRef.current
-    const yOffset = -130; 
-    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo({top: y, behavior: 'smooth'});
-  }
-  
+ 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} name='Main'>
       <div className={classes.main}>
         <div className={classes.carousel}>
           <Carousel />
@@ -30,16 +23,13 @@ function Home() {
       <div className={classes.homeMenu}>
         <HomeMenu />
       </div>
-      <div className={classes.moreInfo} onClick={()=> {
-          console.log('test')
-          executeScroll()
-        }}>
+      <div className={classes.moreInfo}>
         <MoreInfo />
       </div>
-      <div ref={myRef} className={classes.services}>
+      <div className={classes.services} name='Services'>
         <Services />
       </div>
-      <div className={classes.fleet}>
+      <div className={classes.fleet} name='Fleet'>
         <Fleet />
       </div>
       <div>
