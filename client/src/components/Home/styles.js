@@ -3,7 +3,7 @@ import { constants } from "../../scripts"
 //import createBreakpoints from '@material-ui/core/styles/createBreakpoints'
 //const breakpoints = createBreakpoints({})
 
-console.log(constants.bannerEdge())
+console.log(constants.indicHeight())
 
 const useStyles = makeStyles((theme) => ({
     root: {

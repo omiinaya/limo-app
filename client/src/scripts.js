@@ -51,6 +51,7 @@ export var constants = {
     singleSpace: function() { return this.halfSpace * 2 }, //30
     doubleSpace: function() { return this.halfSpace * 4 }, //60
     tripleSpace: function() { return this.halfSpace * 6 }, //90
-    bannerMenu: function() { return this.halfScreen - this.halfSpace }, //510
-    bannerEdge: function() { return this.halfScreen + this.halfSpace * 4 } //585
+    indicHeight: function() { return this.halfScreen - this.halfSpace * 2 }, //495
+    bannerMenu: function() { return this.halfScreen + this.halfSpace }, //510
+    bannerEdge: function() { return this.halfScreen + this.halfSpace * 6 }, //585
 }

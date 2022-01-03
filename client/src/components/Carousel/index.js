@@ -1,5 +1,6 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
+import { constants } from "../../scripts"
 import Banner from "../Banner";
 import styles from "./styles";
 
@@ -35,12 +36,6 @@ const rows = [
 
 function main() {
   const classes = styles();
-  const halfSpace = 15
-  const singleSpace = halfSpace * 2
-  const doubleSpace = singleSpace * 2
-  const tripleSpace = singleSpace + doubleSpace
-  const bannerEdge = window.screen.height / 2 + singleSpace
-  const indicHeight = bannerEdge - tripleSpace
 
   return (
     <Carousel
@@ -65,13 +60,8 @@ function main() {
       }}
       indicatorContainerProps={{
         style: {
-          //
-        },
-      }}
-      indicatorContainerProps={{
-        style: {
             position: 'absolute',
-            top: indicHeight
+            top: constants.indicHeight()
         }
     }}
     >
