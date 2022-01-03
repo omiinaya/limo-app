@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
     },
     moreInfo: {
         width: '100%',
-        margin: '25px'
-
+        marginTop: '50px',
+        marginBottom: '5p0x'
     },
     services: {
         width: 'calc(100% - 100px)', //width - margin
