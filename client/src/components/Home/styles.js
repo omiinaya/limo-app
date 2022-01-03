@@ -42,12 +42,8 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '50px',
         marginBottom: '5p0x'
     },
-    services: {
+    sections: {
         width: 'calc(100% - 100px)', //width - margin
-        margin: '50px'
-    },
-    fleet: {
-        width: 'calc(100% - 100px)',
         margin: '50px'
     }
 }))

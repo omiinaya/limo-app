@@ -6,10 +6,13 @@ import Services from "../Services";
 import HomeMenu from "../HomeMenu";
 import MoreInfo from "../MoreInfo";
 import Fleet from "../Fleet";
+import Reservations from "../Reservations";
+import AboutUs from "../AboutUs";
+import ContactUs from "../ContactUs";
 
 function Home() {
   const classes = styles();
- 
+
   return (
     <div className={classes.root} name='Main'>
       <div className={classes.main}>
@@ -26,14 +29,20 @@ function Home() {
       <div className={classes.moreInfo}>
         <MoreInfo />
       </div>
-      <div className={classes.services} name='Services'>
+      <div className={classes.sections} name='Services'>
         <Services />
       </div>
-      <div className={classes.fleet} name='Fleet'>
+      <div className={classes.sections} name='Fleet'>
         <Fleet />
       </div>
-      <div>
-
+      <div className={classes.sections} name='Reservations'>
+        <Reservations />
+      </div>
+      <div className={classes.sections} name='AboutUs'>
+        <AboutUs />
+      </div>
+      <div className={classes.sections} name='ContactUs'>
+        <ContactUs />
       </div>
     </div>
   );

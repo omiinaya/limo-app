@@ -1,71 +1,87 @@
 import React from "react";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Toolbar, Link } from "@material-ui/core";
 import PhoneIcon from '@mui/icons-material/Phone';
+import { scrollToTop } from "../../scripts"
+import { scrollTo } from "../../scripts"
 import styles from "./styles";
-import Scroll from 'react-scroll';
 
 function NavBar(props) {
     const classes = styles();
-    const scroll = Scroll.animateScroll;
-    const scroller = Scroll.scroller;
-
-    function scrollToTop(options) {
-        scroll.scrollToTop({
-            smooth: true,
-            duration: 450
-        })
-    }
-
-    function scrollTo(name) {
-        scroller.scrollTo(name, {
-            smooth: true,
-            duration: 450,
-            offset: -130
-        })
-    }
+    
     return (
         <div>
             <AppBar position="relative" className={classes.root}>
                 <Toolbar>
                     <div className={classes.leftContainer}>
-                        <Typography
-                            variant="h6"
+                        <Link
+                            color="inherit" 
+                            href="#"
                             className={classes.middleItems}
                             onClick={() => {
                                 scrollToTop()
                             }}
                         >
                             LOGO/TITLE
-                        </Typography>
+                        </Link>
                     </div>
                     <div className={classes.middleContainer}>
-                        <Typography
-                            variant="h6"
+                        <Link
+                            color="inherit" 
+                            href="#"
                             className={classes.middleItems}
                             onClick={() => {
                                 scrollTo('Services')
                             }}
                         >
                             SERVICES
-                        </Typography>
-                        <Typography variant="h6" className={classes.middleItems}>
+                        </Link>
+                        <Link
+                            color="inherit" 
+                            href="#"
+                            className={classes.middleItems}
+                            onClick={() => {
+                                scrollTo('Fleet')
+                            }}
+                        >
                             FLEET
-                        </Typography>
-                        <Typography variant="h6" className={classes.middleItems}>
+                        </Link>
+                        <Link
+                            color="inherit" 
+                            href="#"
+                            className={classes.middleItems}
+                            onClick={() => {
+                                scrollTo('Reservations')
+                            }}
+                        >
+                            RESERVATIONS
+                        </Link>
+                        <Link
+                            color="inherit" 
+                            href="#"
+                            className={classes.middleItems}
+                            onClick={() => {
+                                scrollTo('AboutUs')
+                            }}
+                        >
                             ABOUT US
-                        </Typography>
-                        <Typography variant="h6" className={classes.middleItems}>
+                        </Link>
+                        <Link
+                            color="inherit" 
+                            href="#"
+                            className={classes.middleItems}
+                            onClick={() => {
+                                scrollTo('ContactUs')
+                            }}
+                        >
                             CONTACT US
-                        </Typography>
-                        <Typography variant="h6" className={classes.middleItems}>
-                            QUOTE
-                        </Typography>
+                        </Link>
                     </div>
                     <div className={classes.rightContainer}>
                         <div className={classes.rightItems}>
-                            <Typography variant="h6">
+                            <Link color="inherit" 
+                            href="#">
                                 <PhoneIcon /> (731)-420-6969
-                            </Typography>
+                            </Link>
                             exampleemail@limolux.com
                         </div>
                     </div>
