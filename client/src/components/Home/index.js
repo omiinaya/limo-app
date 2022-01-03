@@ -31,6 +31,9 @@ function Home() {
       <div className={classes.fleet}>
         <Fleet />
       </div>
+      <div> 
+
+      </div>
     </div>
   );
 }
