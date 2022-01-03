@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
     carousel: {
         width: '100%',
-        height: '550px',
+        height: bannerEdge,
         zIndex: '1',
     },
     bannerMenu: {
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
         width: '1100px',
         height: 'auto',
         margin: '0 auto',
+        marginTop: doubleSpace,
         position: 'relative'
     },
     moreInfo: {
