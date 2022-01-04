@@ -31,6 +31,7 @@ function LoginModal() {
             <Modal
                 open={open}
                 onClose={toggle}
+                disableEnforceFocus
             >
                 {body}
             </Modal>
