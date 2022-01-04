@@ -9,6 +9,7 @@ import Fleet from "../Fleet";
 import Reservations from "../Reservations";
 import AboutUs from "../AboutUs";
 import ContactUs from "../ContactUs";
+import Footer from "../Footer"
 
 function Home() {
   const classes = styles();
@@ -23,7 +24,7 @@ function Home() {
   }, []);
 
   return (
-    <div className={classes.root} name='Main'>
+    <div name='Main'>
       <div className={classes.main} style={{ transform: `translateY(${offsetY * 0.3}px)` }}>
         <div className={classes.carousel}>
           <Carousel />
@@ -54,6 +55,9 @@ function Home() {
         <div className={classes.sections} name='ContactUs'>
           <ContactUs />
         </div>
+      </div>
+      <div className={classes.footer} >
+        <Footer />
       </div>
     </div>
   );

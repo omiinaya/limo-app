@@ -5,12 +5,11 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     background: "rgba(0, 0, 0, .75)",
-    height: '90px',
     margin: '0px',
-    justifyContent: "center"
+    justifyContent: "center",
   },
   leftContainer: {
-    marginLeft: theme.spacing(10),
+    marginLeft: theme.spacing(3),
     flexGrow: 1,
   },
   leftItems: {

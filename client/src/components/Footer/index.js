@@ -6,7 +6,7 @@ function Footer() {
     const classes = styles();
     return (
         <div>
-            <AppBar position="fixed" sx={{ top: 'auto', bottom: 0 }}>
+           <AppBar position="sticky">
                 <Toolbar>
                     <div className={classes.leftContainer}>
                         <Typography variant="h6" className={classes.leftItems}>

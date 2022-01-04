@@ -7,7 +7,7 @@ console.log(constants.indicHeight())
 
 const useStyles = makeStyles((theme) => ({
     root: {
-
+        //
     },
     main: {
         width: '100%',
@@ -52,6 +52,13 @@ const useStyles = makeStyles((theme) => ({
         margin: '50px',
         position: 'relative',
         zIndex: 2,
+    },
+    footer: {
+        position: 'fixed',
+        zIndex: '5 !important',
+        bottom: 0,
+        width: '100%',
+        height: '50px'
     }
 }))
 

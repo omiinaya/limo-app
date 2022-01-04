@@ -10,7 +10,7 @@ function NavBar(props) {
 
     return (
         <div>
-            <AppBar position="relative" className={classes.root}>
+            <AppBar className={classes.root}>
                 <Toolbar>
                     <div className={classes.leftContainer}>
                         <Link

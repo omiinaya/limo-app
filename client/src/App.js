@@ -1,7 +1,6 @@
 import React from "react";
 import Home from "./components/Home/";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { ParallaxProvider } from 'react-scroll-parallax';
 import CssBaseline from "@mui/material/CssBaseline";
 import NavBar from "./components/NavBar";
 import "./App.css";
@@ -9,7 +8,6 @@ import "./App.css";
 class App extends React.Component {
   render() {
     return (
-      <ParallaxProvider>
         <React.Fragment>
           <CssBaseline />
           <Router>
@@ -23,7 +21,6 @@ class App extends React.Component {
             />
           </Router>
         </React.Fragment>
-      </ParallaxProvider>
     );
   }
 }
