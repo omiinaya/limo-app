@@ -66,6 +66,9 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         zIndex: 2,
         left: 'calc(50% - 115px)',
+    },
+    modal: {
+        
     }
 }))
 

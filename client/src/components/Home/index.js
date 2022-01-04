@@ -11,27 +11,47 @@ import AboutUs from "../AboutUs";
 import ContactUs from "../ContactUs";
 import Footer from "../Footer"
 import MottoMenu from "../MottoMenu"
+import ReserveModal from '../ReserveModal';
 
 function Home() {
-  const classes = styles();
-  const handleScroll = () => { setOffsetY(window.pageYOffset) }
-
   const [offsetY, setOffsetY] = useState(0);
+  const [openReserve, setOpenReserve] = useState(false);
+  const [openQuote, setOpenQuote] = useState(false);
+
+  const handleScroll = () => {
+    setOffsetY(window.pageYOffset)
+
+  }
+  const toggleReserve = () => {
+    setOpenReserve(!openReserve)
+    console.log(openReserve)
+  }
+
+  const toggleQuote = () => {
+    setOpenQuote(!openQuote)
+    console.log(openQuote)
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll)
   }, []);
 
+  const classes = styles();
+
   return (
-    <div name='Main'>
+    <div name='main'>
       <div className={classes.main} style={{ transform: `translateY(${offsetY * 0.3}px)` }}>
         <div className={classes.carousel}>
           <Carousel />
         </div>
         <div className={classes.bannerMenu}>
-          <BannerMenu />
+          <BannerMenu
+            stateReserve={openReserve}
+            stateQuote={openQuote}
+            toggleReserve={toggleReserve}
+            toggleQuote={toggleQuote}
+          />
         </div>
       </div>
       <div className={classes.sub}>
@@ -60,8 +80,14 @@ function Home() {
           <ContactUs />
         </div>
       </div>
-      <div className={classes.footer} >
+      <div className={classes.footer}>
         <Footer />
+      </div>
+      <div>
+        <ReserveModal
+          stateReserve={openReserve}
+          toggleReserve={toggleReserve}
+        />
       </div>
     </div>
   );
