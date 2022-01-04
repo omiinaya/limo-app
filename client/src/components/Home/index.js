@@ -22,17 +22,6 @@ function Home() {
     setOffsetY(window.pageYOffset)
   }
 
-  const handleClick = () => {
-    if (!openReserve) {
-      document.addEventListener("click", handleOutsideClick, false);
-      console.log('enabled')
-    } else {
-      document.removeEventListener("click", handleOutsideClick, false);
-      console.log('disabled')
-    }
-    setOpenReserve(!openReserve)
-  }
-
   const toggleReserve = () => {
     setOpenReserve(!openReserve)
     console.log(openReserve)
@@ -64,15 +53,14 @@ function Home() {
       if (elementRef.current !== parent) {
         if (elementRef.current !== grandparent) {
           console.log('outside')
-          handleClick()
         }
       }
     }
   }
 
   const testingRef = () => {
-    //console.log(elementRef)
-    handleClick()
+    console.log(elementRef)
+    toggleReserve()
   }
 
   useEffect(() => {
@@ -93,8 +81,8 @@ function Home() {
           <BannerMenu
             stateReserve={openReserve}
             stateQuote={openQuote}
-            toggleReserve={handleClick}
-            //toggleQuote={toggleQuote}
+            toggleReserve={toggleReserve}
+            toggleQuote={toggleQuote}
           />
         </div>
       </div>
@@ -129,10 +117,11 @@ function Home() {
       </div>
       <div>
         <ReserveModal
-          myRef={elementRef}
+          myRef = {elementRef}
           stateReserve={openReserve}
-          //toggleReserve={toggleReserve}
-          myTest={testingRef}
+          toggleReserve={toggleReserve}
+          toggleListeners= {toggleListeners} 
+          myTest = {testingRef}
         />
       </div>
     </div>
