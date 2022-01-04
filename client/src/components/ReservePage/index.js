@@ -11,6 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 
 const steps = ['Ride Information', 'Select Vehicle', 'Final Details'];
+const services = ['Point-to-Point', 'Hourly/As Directe', 'From Airport', 'To Airport']
 
 export default function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -68,10 +69,11 @@ export default function HorizontalLinearStepper() {
                                 label="Service"
                                 onChange={handleChange}
                             >
-                                <MenuItem value={0}>Point-to-Point</MenuItem>
-                                <MenuItem value={1}>Hourly/As Directed</MenuItem>
-                                <MenuItem value={2}>From Airport</MenuItem>
-                                <MenuItem value={3}>To Airport</MenuItem>
+                                {services.map((service, index) => {
+                                    return (
+                                        <MenuItem value={index}>{service}</MenuItem>
+                                    );
+                                })}
                             </Select>
                         </FormControl>
                     </Box>
