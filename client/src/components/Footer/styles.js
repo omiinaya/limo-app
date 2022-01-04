@@ -4,9 +4,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: "rgba(0, 0, 0, .75)",
+    background: "rgba(0, 0, 0, .90)",
     margin: '0px',
     justifyContent: "center",
+    height: '45px'
   },
   leftContainer: {
     marginLeft: theme.spacing(3),
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   middleItems: {
     marginLeft: "10px",
     marginRight: "10px",
-    fontSize: '17px',
+    fontSize: '15px',
     fontFamily: 'MyFont4'
   },
   rightContainer: {

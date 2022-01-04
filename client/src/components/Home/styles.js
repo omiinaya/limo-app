@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: '5 !important',
         bottom: 0,
         width: '100%',
-        height: '50px'
+        height: 'auto'
     }
 }))
 
