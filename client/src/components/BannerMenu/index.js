@@ -6,7 +6,6 @@ import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 
 function BannerMenu(props) {
     const classes = styles();
-    console.log(props)
     return (
         <div className={classes.root}>
             <Stack direction="row" spacing={2}>

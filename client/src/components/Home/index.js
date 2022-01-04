@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./styles";
 import Carousel from "../Carousel";
 import BannerMenu from "../BannerMenu";
@@ -20,8 +20,8 @@ function Home() {
 
   const handleScroll = () => {
     setOffsetY(window.pageYOffset)
-
   }
+
   const toggleReserve = () => {
     setOpenReserve(!openReserve)
     console.log(openReserve)
@@ -32,12 +32,46 @@ function Home() {
     console.log(openQuote)
   }
 
+  const toggleListeners = () => {
+    //not disabling
+    console.log(openReserve)
+    if (!openReserve) {
+      document.addEventListener("click", handleOutsideClick, false);
+      console.log('enabled')
+    } else {
+      document.removeEventListener("click", handleOutsideClick, false);
+      console.log('disabled')
+    }
+  }
+
+  const handleOutsideClick = e => {
+    //console.log(elementRef.current)
+    //console.log(e.target)
+    var target= e.target
+    var parent = target.parentElement
+    var grandparent = parent.parentElement
+    if (elementRef.current !== target) {
+      if (elementRef.current !== parent) {
+        if (elementRef.current !== grandparent) {
+          console.log('outside')
+          toggleReserve()
+        }
+      }
+    }
+  }
+
+  const testingRef = () => {
+    console.log(elementRef)
+    toggleReserve()
+  }
+
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener("scroll", handleScroll)
   }, []);
 
   const classes = styles();
+  const elementRef = useRef();
 
   return (
     <div name='main'>
@@ -85,8 +119,10 @@ function Home() {
       </div>
       <div>
         <ReserveModal
+          myRef = {elementRef}
           stateReserve={openReserve}
-          toggleReserve={toggleReserve}
+          toggleReserve={ ()=> { toggleReserve() }}
+          myTest = { () => { testingRef() }}
         />
       </div>
     </div>
