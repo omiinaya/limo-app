@@ -14,7 +14,7 @@ const steps = ['Ride Information', 'Select Vehicle', 'Final Details'];
 
 export default function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = React.useState(0);
-    const [age, setAge] = React.useState('');
+    const [service, setService] = React.useState(0);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -29,7 +29,7 @@ export default function HorizontalLinearStepper() {
     };
 
     const handleChange = (event) => {
-        setAge(event.target.value);
+        setService(event.target.value);
     };
 
     return (
@@ -60,17 +60,18 @@ export default function HorizontalLinearStepper() {
                     <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
                     <Box disableEnforceFocus sx={{ minWidth: 120 }}>
                         <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                            <InputLabel id="demo-simple-select-label">Service</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={age}
-                                label="Age"
+                                value={service}
+                                label="Service"
                                 onChange={handleChange}
                             >
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
+                                <MenuItem value={0}>Point-to-Point</MenuItem>
+                                <MenuItem value={1}>Hourly/As Directed</MenuItem>
+                                <MenuItem value={2}>From Airport</MenuItem>
+                                <MenuItem value={3}>To Airport</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
