@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import Carousel from "../Carousel";
 import BannerMenu from "../BannerMenu";
@@ -11,56 +11,13 @@ import AboutUs from "../AboutUs";
 import ContactUs from "../ContactUs";
 import Footer from "../Footer"
 import MottoMenu from "../MottoMenu"
-import ReserveModal from '../ReserveModal';
+import NavBar from "../NavBar";
 
 function Home() {
   const [offsetY, setOffsetY] = useState(0);
-  const [openReserve, setOpenReserve] = useState(false);
-  const [openQuote, setOpenQuote] = useState(false);
 
   const handleScroll = () => {
     setOffsetY(window.pageYOffset)
-  }
-
-  const toggleReserve = () => {
-    setOpenReserve(!openReserve)
-    console.log(openReserve)
-  }
-
-  const toggleQuote = () => {
-    setOpenQuote(!openQuote)
-    console.log(openQuote)
-  }
-
-  const toggleListeners = () => {
-    //not disabling
-    if (!openReserve) {
-      window.addEventListener("click", handleOutsideClick, false);
-      console.log('enabled')
-    } else {
-      window.removeEventListener("click", handleOutsideClick, false);
-      console.log('disabled')
-    }
-  }
-
-  const handleOutsideClick = e => {
-    //console.log(elementRef.current)
-    //console.log(e.target)
-    var target = e.target
-    var parent = target.parentElement
-    var grandparent = parent.parentElement
-    if (elementRef.current !== target) {
-      if (elementRef.current !== parent) {
-        if (elementRef.current !== grandparent) {
-          console.log('outside')
-        }
-      }
-    }
-  }
-
-  const testingRef = () => {
-    console.log(elementRef)
-    toggleReserve()
   }
 
   useEffect(() => {
@@ -69,21 +26,16 @@ function Home() {
   }, []);
 
   const classes = styles();
-  const elementRef = useRef();
 
   return (
     <div name='main'>
+      <NavBar />
       <div className={classes.main} style={{ transform: `translateY(${offsetY * 0.3}px)` }}>
         <div className={classes.carousel}>
           <Carousel />
         </div>
         <div className={classes.bannerMenu}>
-          <BannerMenu
-            stateReserve={openReserve}
-            stateQuote={openQuote}
-            toggleReserve={toggleReserve}
-            toggleQuote={toggleQuote}
-          />
+          <BannerMenu />
         </div>
       </div>
       <div className={classes.sub}>
@@ -114,15 +66,6 @@ function Home() {
       </div>
       <div className={classes.footer}>
         <Footer />
-      </div>
-      <div>
-        <ReserveModal
-          myRef = {elementRef}
-          stateReserve={openReserve}
-          toggleReserve={toggleReserve}
-          toggleListeners= {toggleListeners} 
-          myTest = {testingRef}
-        />
       </div>
     </div>
   );

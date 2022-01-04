@@ -13,7 +13,7 @@ function LoginModal() {
         <div className={classes.paper}>
             <div id="simple-modal-content">
                 <div>
-                    RESERVE
+                    QUOTE
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@ function LoginModal() {
                 size="large"
                 onClick={toggle}
             >
-                RESERVE NOW
+                GET A QUOTE
             </Button>
             <Modal
                 open={open}

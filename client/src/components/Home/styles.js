@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: 1,
     },
     bannerMenu: {
+        display: 'flex',
         width: '100%',
         position: 'absolute',
         top: constants.bannerMenu(),
