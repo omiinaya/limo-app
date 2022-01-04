@@ -10,6 +10,7 @@ import Reservations from "../Reservations";
 import AboutUs from "../AboutUs";
 import ContactUs from "../ContactUs";
 import Footer from "../Footer"
+import MottoMenu from "../MottoMenu"
 
 function Home() {
   const classes = styles();
@@ -39,6 +40,9 @@ function Home() {
         </div>
         <div className={classes.moreInfo}>
           <MoreInfo />
+        </div>
+        <div className={classes.mottoMenu}>
+          <MottoMenu />
         </div>
         <div className={classes.sections} name='Services'>
           <Services />

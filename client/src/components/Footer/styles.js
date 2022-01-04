@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   middleItems: {
     marginLeft: "10px",
     marginRight: "10px",
-    fontSize: '15px',
+    fontSize: '17px',
     fontFamily: 'MyFont4'
   },
   rightContainer: {

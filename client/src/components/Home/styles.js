@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         position: 'relative',
         zIndex: 2,
-        //borderBottom: '2px black solid'
     },
     carousel: {
         width: '100%',
@@ -36,14 +35,15 @@ const useStyles = makeStyles((theme) => ({
     },
     homeMenu: {
         width: '1100px',
-        height: '50px',
+        height: constants.singleSpace(),
         margin: '0 auto',
-        paddingTop: constants.singleSpace()
+        paddingTop: constants.singleSpace(),
+        paddingBottom: constants.halfSpace
     },
     moreInfo: {
         width: '100%',
-        marginTop: '50px',
-        marginBottom: '5p0x',
+        marginTop: constants.doubleSpace(),
+        marginBottom: constants.doubleSpace(),
         position: 'relative',
         zIndex: 2,
     },
@@ -59,6 +59,14 @@ const useStyles = makeStyles((theme) => ({
         bottom: 0,
         width: '100%',
         height: 'auto'
+    },
+    mottoMenu: {
+        width: '100%',
+        marginTop: constants.singleSpace(),
+        marginBottom: constants.doubleSpace(),
+        position: 'relative',
+        zIndex: 2,
+        left: 'calc(50% - 115px)',
     }
 }))
 
