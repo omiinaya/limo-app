@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
         marginRight: theme.spacing(0.5),
         width: 20,
         height: 20,
+    },
+    Typography: {
+        fontSize: '17px',
+        fontFamily: 'MyFont5'
     }
 }))
 

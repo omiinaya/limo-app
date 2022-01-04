@@ -66,11 +66,8 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: constants.tripleSpace(),
         position: 'relative',
         zIndex: 2,
-        left: 'calc(50% - 115px)',
+        left: 'calc(50% - 120px)'
     },
-    modal: {
-        
-    }
 }))
 
 export default useStyles

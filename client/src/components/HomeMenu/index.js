@@ -15,35 +15,35 @@ function HomeMenu() {
     return (
         <div className={classes.root}>
             <Breadcrumbs aria-label="breadcrumb">
-                <Typography onClick={() => { }} className={classes.Typography}>
+                <Typography className={classes.Typography}>
                     <FlightIcon className={classes.icon} />
                     AIRPORT
                 </Typography>
-                <Typography onClick={() => { }} className={classes.Typography}>
+                <Typography className={classes.Typography}>
                     <DirectionsBoatIcon className={classes.icon} />
                     PORT
                 </Typography>
-                <Typography onClick={() => { }} className={classes.Typography}>
+                <Typography className={classes.Typography}>
                     <ShieldIcon className={classes.icon} />
                     PRIVATE
                 </Typography>
-                <Typography onClick={() => { }} className={classes.Typography}>
+                <Typography className={classes.Typography}>
                     <CorporateFareIcon className={classes.icon} />
                     CORPORATE
                 </Typography>
-                <Typography onClick={() => { }} className={classes.Typography}>
+                <Typography className={classes.Typography}>
                     <AccessTimeIcon className={classes.icon} />
                     HOURLY AND DAILY
                 </Typography>
-                <Typography onClick={() => { }} className={classes.Typography}>
+                <Typography className={classes.Typography}>
                     <FavoriteIcon className={classes.icon} />
                     WEDDING
                 </Typography>
-                <Typography onClick={() => { }} className={classes.Typography}>
+                <Typography className={classes.Typography}>
                     <CelebrationIcon className={classes.icon} />
                     PARTY
                 </Typography>
-                <Typography onClick={() => { }} className={classes.Typography}>
+                <Typography className={classes.Typography}>
                     <AttractionsIcon className={classes.icon} />
                     AMUSEMENT PARKS
                 </Typography>
