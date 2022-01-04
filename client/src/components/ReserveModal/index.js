@@ -2,7 +2,8 @@ import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-import styles from './styles'
+import ReservePage from '../ReservePage';
+import styles from './styles';
 
 function LoginModal() {
     const classes = styles();
@@ -11,7 +12,7 @@ function LoginModal() {
 
     const body = (
         <div className={classes.paper}>
-            RESERVE
+            <ReservePage />
         </div>
     );
 
@@ -30,8 +31,6 @@ function LoginModal() {
             <Modal
                 open={open}
                 onClose={toggle}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
             >
                 {body}
             </Modal>
