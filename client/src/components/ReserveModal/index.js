@@ -5,14 +5,12 @@ import styles from './styles'
 function ReserveModal(props) {
     const classes = styles();
     //console.log(props)
+
     return (
         <Modal
             ref={props.myRef}
             className={classes.root}
             open={props.stateReserve}
-            onClose={() => {
-                props.toggleReserve()
-            }}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             BackdropProps={{ style: { display: 'none' } }}

@@ -25,7 +25,7 @@ function BannerMenu(props) {
                     startIcon={<PriceCheckIcon />}
                     sx={{ boxShadow: 15 }}
                     size="large"
-                    onClick={() => { props.toggleQuote() }}
+                    //onClick={() => { props.toggleQuote() }}
                 >
                     GET A QUOTE
                 </Button>

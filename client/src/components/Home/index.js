@@ -22,6 +22,17 @@ function Home() {
     setOffsetY(window.pageYOffset)
   }
 
+  const handleClick = () => {
+    if (!openReserve) {
+      document.addEventListener("click", handleOutsideClick, false);
+      console.log('enabled')
+    } else {
+      document.removeEventListener("click", handleOutsideClick, false);
+      console.log('disabled')
+    }
+    setOpenReserve(!openReserve)
+  }
+
   const toggleReserve = () => {
     setOpenReserve(!openReserve)
     console.log(openReserve)
@@ -34,12 +45,11 @@ function Home() {
 
   const toggleListeners = () => {
     //not disabling
-    console.log(openReserve)
     if (!openReserve) {
-      document.addEventListener("click", handleOutsideClick, false);
+      window.addEventListener("click", handleOutsideClick, false);
       console.log('enabled')
     } else {
-      document.removeEventListener("click", handleOutsideClick, false);
+      window.removeEventListener("click", handleOutsideClick, false);
       console.log('disabled')
     }
   }
@@ -47,22 +57,22 @@ function Home() {
   const handleOutsideClick = e => {
     //console.log(elementRef.current)
     //console.log(e.target)
-    var target= e.target
+    var target = e.target
     var parent = target.parentElement
     var grandparent = parent.parentElement
     if (elementRef.current !== target) {
       if (elementRef.current !== parent) {
         if (elementRef.current !== grandparent) {
           console.log('outside')
-          toggleReserve()
+          handleClick()
         }
       }
     }
   }
 
   const testingRef = () => {
-    console.log(elementRef)
-    toggleReserve()
+    //console.log(elementRef)
+    handleClick()
   }
 
   useEffect(() => {
@@ -83,8 +93,8 @@ function Home() {
           <BannerMenu
             stateReserve={openReserve}
             stateQuote={openQuote}
-            toggleReserve={toggleReserve}
-            toggleQuote={toggleQuote}
+            toggleReserve={handleClick}
+            //toggleQuote={toggleQuote}
           />
         </div>
       </div>
@@ -119,10 +129,10 @@ function Home() {
       </div>
       <div>
         <ReserveModal
-          myRef = {elementRef}
+          myRef={elementRef}
           stateReserve={openReserve}
-          toggleReserve={ ()=> { toggleReserve() }}
-          myTest = { () => { testingRef() }}
+          //toggleReserve={toggleReserve}
+          myTest={testingRef}
         />
       </div>
     </div>
