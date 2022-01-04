@@ -9,6 +9,7 @@ import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
 
 const steps = ['Ride Information', 'Select Vehicle', 'Final Details'];
 const services = ['Point-to-Point', 'Hourly/As Directe', 'From Airport', 'To Airport']
@@ -71,6 +72,29 @@ export default function HorizontalLinearStepper() {
                                     );
                                 })}
                             </Select>
+                            <TextField
+                                id="date"
+                                label="Birthday"
+                                type="date"
+                                defaultValue="2017-05-24"
+                                sx={{ width: 250 }}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                            <TextField
+                                id="time"
+                                label="Alarm clock"
+                                type="time"
+                                defaultValue="07:30"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                inputProps={{
+                                    step: 300, // 5 min
+                                }}
+                                sx={{ width: 250 }}
+                            />
                         </FormControl>
                     </Box>
 
