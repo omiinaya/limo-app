@@ -11,11 +11,7 @@ function LoginModal() {
 
     const body = (
         <div className={classes.paper}>
-            <div id="simple-modal-content">
-                <div>
-                    QUOTE
-                </div>
-            </div>
+            QUOTE
         </div>
     );
 

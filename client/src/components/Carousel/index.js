@@ -8,7 +8,7 @@ const rows = [
   {
     Items: [
       {
-        Name: "LIMO",
+        Name: "",
         Image:
           "https://images.unsplash.com/photo-1605329674253-c7680c5e44cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
       },
@@ -17,7 +17,7 @@ const rows = [
   {
     Items: [
       {
-        Name: "SUV",
+        Name: "",
         Image:
           "https://images.unsplash.com/photo-1574729418856-5a0804729a8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
       },
@@ -26,7 +26,7 @@ const rows = [
   {
     Items: [
       {
-        Name: "CAR",
+        Name: "-",
         Image:
           "https://images.unsplash.com/photo-1618277841432-02359de77eb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1333&q=80",
       },
