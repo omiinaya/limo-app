@@ -42,8 +42,8 @@ const useStyles = makeStyles((theme) => ({
     },
     moreInfo: {
         width: '100%',
-        marginTop: constants.doubleSpace(),
-        marginBottom: constants.doubleSpace(),
+        marginTop: constants.singleSpace(),
+        marginBottom: constants.halfSpace,
         position: 'relative',
         zIndex: 2,
     },
@@ -62,8 +62,7 @@ const useStyles = makeStyles((theme) => ({
     },
     mottoMenu: {
         width: '100%',
-        marginTop: constants.singleSpace(),
-        marginBottom: constants.doubleSpace(),
+        marginBottom: constants.tripleSpace(),
         position: 'relative',
         zIndex: 2,
         left: 'calc(50% - 115px)',
