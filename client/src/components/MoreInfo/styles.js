@@ -6,11 +6,8 @@ const useStyles = makeStyles((theme) => ({
     root: {
         //
     },
-    icons: {
-        //
-    },
-    text: {
-        //
+    test: {
+        width: '170px'
     }
 }))
 
