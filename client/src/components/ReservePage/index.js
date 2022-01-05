@@ -11,13 +11,14 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import styles from './styles';
+import MapView from '../MapView';
+//import styles from './styles';
 
 const steps = ['Ride Details', 'Select Vehicle', 'Final Steps'];
 const services = ['Point-to-Point', 'Hourly/As Directed', 'From Airport', 'To Airport']
 const autocomplete = ['Select a location', 'Use current location']
 
-export default function HorizontalLinearStepper() {
+function ReservePage() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [service, setService] = React.useState(services[0]);
     const [date, setDate] = React.useState('2017-05-24');
@@ -62,14 +63,6 @@ export default function HorizontalLinearStepper() {
         setDropoff(value)
         console.log(value);
     };
-
-    const reloadData = () => {
-        setService(services[1])
-        //setDate('2')
-        //setTime(time)
-        setPickup('2')
-        setDropoff('3')
-    }
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -188,9 +181,7 @@ export default function HorizontalLinearStepper() {
                                 />
                             </Box>
                         </FormControl>
-                        <Box>
-                            map
-                        </Box>
+                        <MapView />
                     </Box>
                 </React.Fragment>
             ) : (activeStep === 1 ? (
@@ -221,8 +212,11 @@ export default function HorizontalLinearStepper() {
                     </Button>
                     <Box sx={{ flex: '1 1 auto' }} />
                     <Button onClick={() => {
+                        console.log(service)
+                        console.log(date)
+                        console.log(time)
                         console.log(pickup)
-                        reloadData()
+                        console.log(dropoff)
                     }}>
                         test
                     </Button>
@@ -234,3 +228,5 @@ export default function HorizontalLinearStepper() {
         </Box>
     );
 }
+
+export default ReservePage
