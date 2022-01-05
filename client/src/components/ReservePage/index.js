@@ -12,13 +12,17 @@ import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-const steps = ['Ride Information', 'Select Vehicle', 'Final Details'];
+const steps = ['Ride Details', 'Select Vehicle', 'Final Steps'];
 const services = ['Point-to-Point', 'Hourly/As Directe', 'From Airport', 'To Airport']
-const autocomplete = ['test', 'test2', 'test3']
+const autocomplete = ['Use current location']
 
 export default function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [service, setService] = React.useState(0);
+    const [date, setDate] = React.useState(0);
+    const [time, setTime] = React.useState(0);
+    const [pickup, setPickup] = React.useState(0);
+    const [dropoff, setDropoff] = React.useState(0);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -33,12 +37,36 @@ export default function HorizontalLinearStepper() {
     };
 
     const handleChangeService = (event) => {
-        setService(event.target.value);
+        setService(event.target.value)
+        console.log(service);
+    };
+
+    const handleChangeDate = (event) => {
+        setDate(event.target.value)
+        console.log(date);
+    };
+
+    const handleChangeTime = (event) => {
+        setTime(event.target.value)
+        console.log(time);
+    };
+
+    const handleChangePickup = (event) => {
+        setPickup(event.target.value)
+        console.log(event.target)
+        console.log(pickup);
+    };
+
+    const handleChangeDropoff = (event) => {
+        setDropoff(event.target.value)
+        console.log(dropoff);
     };
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Stepper activeStep={activeStep}>
+            <Stepper
+                activeStep={activeStep}
+                sx={{ mt: 2 }}>
                 {steps.map((label, index) => {
                     const stepProps = {};
                     const labelProps = {};
@@ -87,6 +115,7 @@ export default function HorizontalLinearStepper() {
                                     label="Date"
                                     type="date"
                                     defaultValue="2017-05-24"
+                                    onChange={handleChangeDate}
                                     sx={{
                                         width: 250
                                     }}
@@ -103,6 +132,7 @@ export default function HorizontalLinearStepper() {
                                     label="Time"
                                     type="time"
                                     defaultValue="07:30"
+                                    onChange={handleChangeTime}
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
@@ -119,16 +149,18 @@ export default function HorizontalLinearStepper() {
                             sx={{ mb: 2 }}
                         >
                             <Autocomplete
-                                disablePortal
+                                openOnFocus
                                 options={autocomplete}
+                                onChange={handleChangePickup}
                                 sx={{ width: 515 }}
                                 renderInput={(params) => <TextField {...params} label="Pick-Up Location" />}
                             />
                         </Box>
                         <Box>
                             <Autocomplete
-                                disablePortal
+                                openOnFocus
                                 options={autocomplete}
+                                onChange={handleChangeDropoff}
                                 sx={{ width: 515 }}
                                 renderInput={(params) => <TextField {...params} label="Drop-Off Location" />}
                             />
