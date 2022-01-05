@@ -10,9 +10,11 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 const steps = ['Ride Information', 'Select Vehicle', 'Final Details'];
 const services = ['Point-to-Point', 'Hourly/As Directe', 'From Airport', 'To Airport']
+const autocomplete = ['test', 'test2', 'test3']
 
 export default function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -55,68 +57,83 @@ export default function HorizontalLinearStepper() {
                 </React.Fragment>
             ) : (activeStep === 0 ? (
                 <React.Fragment>
-                    <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
-                    <Box disableEnforceFocus>
-                        <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Service</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={service}
-                                label="Service"
-                                onChange={handleChangeService}
-                                sx={{
-                                    width: 515
-                                }}
-                            >
-                                {services.map((service, index) => {
-                                    return (
-                                        <MenuItem value={index} key={index}>{service}</MenuItem>
-                                    );
-                                })}
-                            </Select>
-                            <Box
-                                display="flex"
-                                //flexDirection="row" This is the default
-                                //p={1}
-                                //m={1}
-                                bgcolor="background.paper"
-                            >
-                                <Box alignSelf="center">
-                                    <TextField
-                                        id="date"
-                                        label="Birthday"
-                                        type="date"
-                                        defaultValue="2017-05-24"
-                                        sx={{
-                                            width: 250
-                                        }}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                    />
-                                </Box>
-                                <Box m={2} alignSelf="center">
-                                    <TextField
-                                        id="time"
-                                        label="Time"
-                                        type="time"
-                                        defaultValue="07:30"
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                        inputProps={{
-                                            step: 300, // 5 min
-                                        }}
-                                        sx={{ 
-                                            width: 250
-                                         }}
-                                    />
-                                </Box>
+                    <Typography sx={{ mt: 2, mb: 2 }}>Step {activeStep + 1}</Typography>
+                    <FormControl fullWidth >
+                        <InputLabel>Service</InputLabel>
+                        <Select
+                            value={service}
+                            label="Service"
+                            onChange={handleChangeService}
+                            sx={{
+                                width: 515
+                            }}
+                        >
+                            {services.map((service, index) => {
+                                return (
+                                    <MenuItem value={index} key={index}>{service}</MenuItem>
+                                );
+                            })}
+                        </Select>
+                        <Box
+                            display="flex"
+                            //flexDirection="row" This is the default
+                            //p={1}
+                            //m={1}
+                            bgcolor="background.paper"
+                        >
+                            <Box alignSelf="center">
+                                <TextField
+                                    id="date"
+                                    label="Date"
+                                    type="date"
+                                    defaultValue="2017-05-24"
+                                    sx={{
+                                        width: 250
+                                    }}
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                />
                             </Box>
-                        </FormControl>
-                    </Box>
-
+                            <Box
+                                m={2}
+                                alignSelf="center">
+                                <TextField
+                                    id="time"
+                                    label="Time"
+                                    type="time"
+                                    defaultValue="07:30"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                    inputProps={{
+                                        step: 300, // 5 min
+                                    }}
+                                    sx={{
+                                        width: 250
+                                    }}
+                                />
+                            </Box>
+                        </Box>
+                        <Box
+                            sx={{ mb: 2 }}
+                        >
+                            <Autocomplete
+                                disablePortal
+                                options={autocomplete}
+                                sx={{ width: 515 }}
+                                renderInput={(params) => <TextField {...params} label="Pick-Up Location" />}
+                            />
+                        </Box>
+                        <Box>
+                            <Autocomplete
+                                disablePortal
+                                options={autocomplete}
+                                sx={{ width: 515 }}
+                                renderInput={(params) => <TextField {...params} label="Drop-Off Location" />}
+                            />
+                        </Box>
+                    </FormControl>
                 </React.Fragment>
             ) : (activeStep === 1 ? (
                 <React.Fragment>
