@@ -19,10 +19,10 @@ const autocomplete = ['Use current location']
 export default function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [service, setService] = React.useState(0);
-    const [date, setDate] = React.useState(0);
-    const [time, setTime] = React.useState(0);
-    const [pickup, setPickup] = React.useState(0);
-    const [dropoff, setDropoff] = React.useState(0);
+    const [date, setDate] = React.useState('');
+    const [time, setTime] = React.useState('');
+    const [pickup, setPickup] = React.useState('');
+    const [dropoff, setDropoff] = React.useState('');
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
