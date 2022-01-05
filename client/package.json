@@ -20,7 +20,6 @@
     "react-device-detect": "^1.17.0",
     "react-dom": "^17.0.2",
     "react-geocode": "^0.2.3",
-    "react-google-map-picker": "github:omiinaya/react-google-map-picker",
     "react-material-ui-carousel": "^2.3.8",
     "react-native": "^0.65.1",
     "react-native-web": "^0.17.1",
