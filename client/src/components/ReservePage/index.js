@@ -11,21 +11,23 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import styles from './styles';
 
 const steps = ['Ride Details', 'Select Vehicle', 'Final Steps'];
-const services = ['Point-to-Point', 'Hourly/As Directe', 'From Airport', 'To Airport']
-const autocomplete = ['Use current location']
+const services = ['Point-to-Point', 'Hourly/As Directed', 'From Airport', 'To Airport']
+const autocomplete = ['Select a location', 'Use current location']
 
 export default function HorizontalLinearStepper() {
     const [activeStep, setActiveStep] = React.useState(0);
-    const [service, setService] = React.useState(0);
-    const [date, setDate] = React.useState('');
-    const [time, setTime] = React.useState('');
-    const [pickup, setPickup] = React.useState('');
-    const [dropoff, setDropoff] = React.useState('');
+    const [service, setService] = React.useState(services[0]);
+    const [date, setDate] = React.useState('2017-05-24');
+    const [time, setTime] = React.useState("07:30");
+    const [pickup, setPickup] = React.useState(autocomplete[0]);
+    const [dropoff, setDropoff] = React.useState(autocomplete[0]);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        console.log({ activeStep, service, date, time, pickup, dropoff })
     };
 
     const handleBack = () => {
@@ -61,6 +63,14 @@ export default function HorizontalLinearStepper() {
         console.log(value);
     };
 
+    const reloadData = () => {
+        setService(services[1])
+        //setDate('2')
+        //setTime(time)
+        setPickup('2')
+        setDropoff('3')
+    }
+
     return (
         <Box sx={{ width: '100%' }}>
             <Stepper
@@ -76,6 +86,7 @@ export default function HorizontalLinearStepper() {
                     );
                 })}
             </Stepper>
+            <Typography sx={{ mt: 2, mb: 2 }}>Step {activeStep + 1}</Typography>
             {activeStep === steps.length ? (
                 <React.Fragment>
                     <Typography sx={{ mt: 2, mb: 1 }}>
@@ -84,7 +95,6 @@ export default function HorizontalLinearStepper() {
                 </React.Fragment>
             ) : (activeStep === 0 ? (
                 <React.Fragment>
-                    <Typography sx={{ mt: 2, mb: 2 }}>Step {activeStep + 1}</Typography>
                     <Box
                         display="flex"
                     >
@@ -102,7 +112,7 @@ export default function HorizontalLinearStepper() {
                             >
                                 {services.map((service, index) => {
                                     return (
-                                        <MenuItem value={index} key={index}>{service}</MenuItem>
+                                        <MenuItem value={service} key={index}>{service}</MenuItem>
                                     );
                                 })}
                             </Select>
@@ -118,7 +128,7 @@ export default function HorizontalLinearStepper() {
                                         id="date"
                                         label="Date"
                                         type="date"
-                                        defaultValue="2017-05-24"
+                                        defaultValue={date}
                                         onChange={handleChangeDate}
                                         sx={{
                                             width: 220
@@ -135,7 +145,7 @@ export default function HorizontalLinearStepper() {
                                         id="time"
                                         label="Time"
                                         type="time"
-                                        defaultValue="07:30"
+                                        defaultValue={time}
                                         onChange={handleChangeTime}
                                         InputLabelProps={{
                                             shrink: true,
@@ -155,7 +165,8 @@ export default function HorizontalLinearStepper() {
                                 <Autocomplete
                                     openOnFocus
                                     options={autocomplete}
-                                    onChange={(event, value) => handleChangePickup(event, value)}
+                                    defaultValue={pickup}
+                                    onChange={handleChangePickup}
                                     sx={{ width: 400 }}
                                     renderInput={(params) => <TextField {...params}
                                         label="Pick-Up Location"
@@ -167,11 +178,12 @@ export default function HorizontalLinearStepper() {
                                 <Autocomplete
                                     openOnFocus
                                     options={autocomplete}
-                                    onChange={(event, value) => handleChangeDropoff(event, value)}
+                                    defaultValue={dropoff}
+                                    onChange={handleChangeDropoff}
                                     sx={{ width: 400 }}
-                                    renderInput={(params) => <TextField {...params} 
-                                    label="Drop-Off Location" 
-                                    InputLabelProps={{ shrink: true }}
+                                    renderInput={(params) => <TextField {...params}
+                                        label="Drop-Off Location"
+                                        InputLabelProps={{ shrink: true }}
                                     />}
                                 />
                             </Box>
@@ -183,11 +195,11 @@ export default function HorizontalLinearStepper() {
                 </React.Fragment>
             ) : (activeStep === 1 ? (
                 <React.Fragment>
-                    Step 2
+                    placeholder
                 </React.Fragment>
             ) : (
                 <React.Fragment>
-                    Step 3
+                    placeholder
                 </React.Fragment>
             )
             )
@@ -208,6 +220,12 @@ export default function HorizontalLinearStepper() {
                         Back
                     </Button>
                     <Box sx={{ flex: '1 1 auto' }} />
+                    <Button onClick={() => {
+                        console.log(pickup)
+                        reloadData()
+                    }}>
+                        test
+                    </Button>
                     <Button onClick={handleNext}>
                         {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                     </Button>
