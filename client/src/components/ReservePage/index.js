@@ -56,7 +56,7 @@ export default function HorizontalLinearStepper() {
             ) : (activeStep === 0 ? (
                 <React.Fragment>
                     <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
-                    <Box disableEnforceFocus sx={{ minWidth: 120 }}>
+                    <Box disableEnforceFocus>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Service</InputLabel>
                             <Select
@@ -65,6 +65,9 @@ export default function HorizontalLinearStepper() {
                                 value={service}
                                 label="Service"
                                 onChange={handleChangeService}
+                                sx={{
+                                    width: 515
+                                }}
                             >
                                 {services.map((service, index) => {
                                     return (
@@ -72,29 +75,45 @@ export default function HorizontalLinearStepper() {
                                     );
                                 })}
                             </Select>
-                            <TextField
-                                id="date"
-                                label="Birthday"
-                                type="date"
-                                defaultValue="2017-05-24"
-                                sx={{ width: 250 }}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                            />
-                            <TextField
-                                id="time"
-                                label="Alarm clock"
-                                type="time"
-                                defaultValue="07:30"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                inputProps={{
-                                    step: 300, // 5 min
-                                }}
-                                sx={{ width: 250 }}
-                            />
+                            <Box
+                                display="flex"
+                                //flexDirection="row" This is the default
+                                //p={1}
+                                //m={1}
+                                bgcolor="background.paper"
+                            >
+                                <Box alignSelf="center">
+                                    <TextField
+                                        id="date"
+                                        label="Birthday"
+                                        type="date"
+                                        defaultValue="2017-05-24"
+                                        sx={{
+                                            width: 250
+                                        }}
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                    />
+                                </Box>
+                                <Box m={2} alignSelf="center">
+                                    <TextField
+                                        id="time"
+                                        label="Time"
+                                        type="time"
+                                        defaultValue="07:30"
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        inputProps={{
+                                            step: 300, // 5 min
+                                        }}
+                                        sx={{ 
+                                            width: 250
+                                         }}
+                                    />
+                                </Box>
+                            </Box>
                         </FormControl>
                     </Box>
 
