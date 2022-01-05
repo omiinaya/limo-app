@@ -159,7 +159,10 @@ export default function HorizontalLinearStepper() {
                                     options={autocomplete}
                                     onChange={handleChangePickup}
                                     sx={{ width: 400 }}
-                                    renderInput={(params) => <TextField {...params} label="Pick-Up Location" />}
+                                    renderInput={(params) => <TextField {...params}
+                                        label="Pick-Up Location"
+                                        InputLabelProps={{ shrink: true }}
+                                    />}
                                 />
                             </Box>
                             <Box>
@@ -168,7 +171,10 @@ export default function HorizontalLinearStepper() {
                                     options={autocomplete}
                                     onChange={handleChangeDropoff}
                                     sx={{ width: 400 }}
-                                    renderInput={(params) => <TextField {...params} label="Drop-Off Location" />}
+                                    renderInput={(params) => <TextField {...params} 
+                                    label="Drop-Off Location" 
+                                    InputLabelProps={{ shrink: true }}
+                                    />}
                                 />
                             </Box>
                         </FormControl>
