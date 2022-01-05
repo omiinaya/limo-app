@@ -38,28 +38,27 @@ export default function HorizontalLinearStepper() {
 
     const handleChangeService = (event) => {
         setService(event.target.value)
-        console.log(service);
+        console.log(event.target.value);
     };
 
     const handleChangeDate = (event) => {
         setDate(event.target.value)
-        console.log(date);
+        console.log(event.target.value);
     };
 
     const handleChangeTime = (event) => {
         setTime(event.target.value)
-        console.log(time);
+        console.log(event.target.value);
     };
 
-    const handleChangePickup = (event) => {
-        setPickup(event.target.value)
-        console.log(event.target)
-        console.log(pickup);
+    const handleChangePickup = (event, value) => {
+        setPickup(value)
+        console.log(value);
     };
 
-    const handleChangeDropoff = (event) => {
-        setDropoff(event.target.value)
-        console.log(dropoff);
+    const handleChangeDropoff = (event, value) => {
+        setDropoff(value)
+        console.log(value);
     };
 
     return (
@@ -90,7 +89,6 @@ export default function HorizontalLinearStepper() {
                         display="flex"
                     >
                         <FormControl
-                            alignSelf="center"
                             sx={{ width: 415 }}
                         >
                             <InputLabel>Service</InputLabel>
@@ -157,7 +155,7 @@ export default function HorizontalLinearStepper() {
                                 <Autocomplete
                                     openOnFocus
                                     options={autocomplete}
-                                    onChange={handleChangePickup}
+                                    onChange={(event, value) => handleChangePickup(event, value)}
                                     sx={{ width: 400 }}
                                     renderInput={(params) => <TextField {...params}
                                         label="Pick-Up Location"
@@ -169,7 +167,7 @@ export default function HorizontalLinearStepper() {
                                 <Autocomplete
                                     openOnFocus
                                     options={autocomplete}
-                                    onChange={handleChangeDropoff}
+                                    onChange={(event, value) => handleChangeDropoff(event, value)}
                                     sx={{ width: 400 }}
                                     renderInput={(params) => <TextField {...params} 
                                     label="Drop-Off Location" 
