@@ -32,7 +32,7 @@ function ReservePage() {
     const [time, setTime] = React.useState("07:30");
     const [pickup, setPickup] = React.useState(autocomplete[0]);
     const [dropoff, setDropoff] = React.useState(autocomplete[0]);
-    const [passengers, setPassengers] = React.useState(0);
+    const [passengers, setPassengers] = React.useState(1);
     const [luggage, setLuggage] = React.useState(0);
 
     const handleNext = () => {
@@ -80,7 +80,7 @@ function ReservePage() {
     };
 
     const handleRemovePassengers = () => {
-        if (passengers > 0) {
+        if (passengers > 1) {
             var value = passengers - 1
             setPassengers(value)
         } else {
@@ -133,15 +133,16 @@ function ReservePage() {
                         display="flex"
                     >
                         <FormControl
-                            sx={{ width: 415 }}
+                            sx={{ width: 400 }}
                         >
                             <InputLabel>Service</InputLabel>
                             <Select
+                                size="small"
                                 value={service}
                                 label="Service"
                                 onChange={handleChangeService}
                                 sx={{
-                                    width: 400
+                                    width: 380
                                 }}
                             >
                                 {services.map((service, index) => {
@@ -161,11 +162,12 @@ function ReservePage() {
                                     <TextField
                                         id="date"
                                         label="Date"
+                                        size="small"
                                         type="date"
                                         defaultValue={date}
                                         onChange={handleChangeDate}
                                         sx={{
-                                            width: 220
+                                            width: 200
                                         }}
                                         InputLabelProps={{
                                             shrink: true,
@@ -176,6 +178,7 @@ function ReservePage() {
                                     m={2}
                                     alignSelf="center">
                                     <TextField
+                                        size="small"
                                         id="time"
                                         label="Time"
                                         type="time"
@@ -198,10 +201,11 @@ function ReservePage() {
                             >
                                 <Autocomplete
                                     openOnFocus
+                                    size="small"
                                     options={autocomplete}
                                     defaultValue={pickup}
                                     onChange={handleChangePickup}
-                                    sx={{ width: 400 }}
+                                    sx={{ width: 380 }}
                                     renderInput={(params) => <TextField {...params}
                                         label="Pick-Up Location"
                                         InputLabelProps={{ shrink: true }}
@@ -211,10 +215,11 @@ function ReservePage() {
                             <Box sx={{ mb: 2 }}>
                                 <Autocomplete
                                     openOnFocus
+                                    size="small"
                                     options={autocomplete}
                                     defaultValue={dropoff}
                                     onChange={handleChangeDropoff}
-                                    sx={{ width: 400 }}
+                                    sx={{ width: 380 }}
                                     renderInput={(params) => <TextField {...params}
                                         label="Drop-Off Location"
                                         InputLabelProps={{ shrink: true }}
@@ -229,10 +234,10 @@ function ReservePage() {
                                         borderRadius: '5px'
                                     }}
                                 >
-                                    <ButtonGroup variant="contained" color="inherit" style={{ height: 40 }}>
+                                    <ButtonGroup disableRipple={true} size="small" variant="contained" color="inherit">
                                         <IconButton><PeopleIcon style={{ width: 20 }} /></IconButton>
                                         <IconButton onClick={handleRemovePassengers}><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton style={{ width: 70 }}> {passengers} </IconButton>
+                                        <IconButton style={{ width: 60, fontSize: 17 }}> {passengers} </IconButton>
                                         <IconButton onClick={handleAddPassengers}><AddIcon style={{ width: 20 }} /></IconButton>
                                     </ButtonGroup>
                                 </Box>
@@ -242,10 +247,10 @@ function ReservePage() {
                                         borderRadius: '5px'
                                     }}
                                 >
-                                    <ButtonGroup variant="contained" color="inherit" style={{ height: 40 }}>
+                                    <ButtonGroup disableRipple={true} size="small" variant="contained" color="inherit">
                                         <IconButton><WorkIcon style={{ width: 20 }} /></IconButton>
                                         <IconButton onClick={handleRemoveLuggage}><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton style={{ width: 70 }}> {luggage} </IconButton>
+                                        <IconButton disabled style={{ width: 60, fontSize: 17 }}> {luggage} </IconButton>
                                         <IconButton onClick={handleAddLuggage}><AddIcon style={{ width: 20 }} /></IconButton>
                                     </ButtonGroup>
                                 </Box>
