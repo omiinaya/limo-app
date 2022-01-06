@@ -189,7 +189,13 @@ function ReservePage() {
                                 />
                             </Box>
                             <Box display='flex'>
-                                <Box sx={{ mr: 2 }}>
+                                <Box
+                                    sx={{ mr: 2 }}
+                                    style={{
+                                        border: '1px solid lightgray',
+                                        borderRadius: '5px'
+                                    }}
+                                >
                                     <ButtonGroup variant="contained" color="inherit" style={{ height: 40 }}>
                                         <IconButton><PeopleIcon style={{ width: 20 }} /></IconButton>
                                         <IconButton><RemoveIcon style={{ width: 20 }} /></IconButton>
@@ -197,7 +203,12 @@ function ReservePage() {
                                         <IconButton><AddIcon style={{ width: 20 }} /></IconButton>
                                     </ButtonGroup>
                                 </Box>
-                                <Box>
+                                <Box
+                                    style={{
+                                        border: '1px solid lightgray',
+                                        borderRadius: '5px'
+                                    }}
+                                >
                                     <ButtonGroup variant="contained" color="inherit" style={{ height: 40 }}>
                                         <IconButton><WorkIcon style={{ width: 20 }} /></IconButton>
                                         <IconButton><RemoveIcon style={{ width: 20 }} /></IconButton>
