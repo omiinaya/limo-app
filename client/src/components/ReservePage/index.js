@@ -234,7 +234,7 @@ function ReservePage() {
                                         borderRadius: '5px'
                                     }}
                                 >
-                                    <ButtonGroup disableRipple={true} size="small" variant="contained" color="inherit">
+                                    <ButtonGroup size="small" variant="contained" color="inherit">
                                         <IconButton><PeopleIcon style={{ width: 20 }} /></IconButton>
                                         <IconButton onClick={handleRemovePassengers}><RemoveIcon style={{ width: 20 }} /></IconButton>
                                         <IconButton style={{ width: 60, fontSize: 17 }}> {passengers} </IconButton>
@@ -247,10 +247,10 @@ function ReservePage() {
                                         borderRadius: '5px'
                                     }}
                                 >
-                                    <ButtonGroup disableRipple={true} size="small" variant="contained" color="inherit">
+                                    <ButtonGroup size="small" variant="contained" color="inherit">
                                         <IconButton><WorkIcon style={{ width: 20 }} /></IconButton>
                                         <IconButton onClick={handleRemoveLuggage}><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton disabled style={{ width: 60, fontSize: 17 }}> {luggage} </IconButton>
+                                        <IconButton style={{ width: 60, fontSize: 17 }}> {luggage} </IconButton>
                                         <IconButton onClick={handleAddLuggage}><AddIcon style={{ width: 20 }} /></IconButton>
                                     </ButtonGroup>
                                 </Box>
