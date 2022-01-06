@@ -32,7 +32,8 @@ function ReservePage() {
     const [time, setTime] = React.useState("07:30");
     const [pickup, setPickup] = React.useState(autocomplete[0]);
     const [dropoff, setDropoff] = React.useState(autocomplete[0]);
-    const count = 0
+    const [passengers, setPassengers] = React.useState(0);
+    const [luggage, setLuggage] = React.useState(0);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -69,6 +70,38 @@ function ReservePage() {
 
     const handleChangeDropoff = (event, value) => {
         setDropoff(value)
+        console.log(value);
+    };
+
+    const handleAddPassengers = () => {
+        var value = passengers + 1
+        setPassengers(value)
+        console.log(value);
+    };
+
+    const handleRemovePassengers = () => {
+        if (passengers > 0) {
+            var value = passengers - 1
+            setPassengers(value)
+        } else {
+            return
+        }
+        console.log(value);
+    };
+
+    const handleAddLuggage = () => {
+        var value = luggage + 1
+        setLuggage(value)
+        console.log(value);
+    };
+
+    const handleRemoveLuggage = () => {
+        if (luggage > 0) {
+            var value = luggage - 1
+            setLuggage(value)
+        } else {
+            return
+        }
         console.log(value);
     };
 
@@ -198,9 +231,9 @@ function ReservePage() {
                                 >
                                     <ButtonGroup variant="contained" color="inherit" style={{ height: 40 }}>
                                         <IconButton><PeopleIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton style={{ width: 70 }}> {count} </IconButton>
-                                        <IconButton><AddIcon style={{ width: 20 }} /></IconButton>
+                                        <IconButton onClick={handleRemovePassengers}><RemoveIcon style={{ width: 20 }} /></IconButton>
+                                        <IconButton style={{ width: 70 }}> {passengers} </IconButton>
+                                        <IconButton onClick={handleAddPassengers}><AddIcon style={{ width: 20 }} /></IconButton>
                                     </ButtonGroup>
                                 </Box>
                                 <Box
@@ -211,9 +244,9 @@ function ReservePage() {
                                 >
                                     <ButtonGroup variant="contained" color="inherit" style={{ height: 40 }}>
                                         <IconButton><WorkIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton style={{ width: 70 }}> {count} </IconButton>
-                                        <IconButton><AddIcon style={{ width: 20 }} /></IconButton>
+                                        <IconButton onClick={handleRemoveLuggage}><RemoveIcon style={{ width: 20 }} /></IconButton>
+                                        <IconButton style={{ width: 70 }}> {luggage} </IconButton>
+                                        <IconButton onClick={handleAddLuggage}><AddIcon style={{ width: 20 }} /></IconButton>
                                     </ButtonGroup>
                                 </Box>
                             </Box>
