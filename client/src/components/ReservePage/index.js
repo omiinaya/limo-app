@@ -407,13 +407,22 @@ function ReservePage() {
                                     Add Child Seat
                                 </Button>
                             </Box>
-                            <Box>
+                            <Box
+                                style={{
+                                    width: '393px'
+                                }}
+                            >
                                 {seats.map((seat, index) => {
                                     return (
                                         <Box
                                             key={index}
                                             mb={2}
                                             display='flex'
+                                            style={{
+                                                borderBottom: '3px solid lightgray',
+                                                borderRight: '3px solid lightgray',
+                                                borderRadius: '7px'
+                                            }}
                                         >
                                             <FormControl>
                                                 <InputLabel>Child Seat {(index + 1)}</InputLabel>
@@ -437,14 +446,14 @@ function ReservePage() {
                                                 <IconButton onClick={(event) => { handleRemoveQuantity(event, index) }}><RemoveIcon style={{ width: 20 }} /></IconButton>
                                                 <IconButton style={{ width: 40, fontSize: 17 }}> {quantity[index]} </IconButton>
                                                 <IconButton onClick={(event) => { handleAddQuantity(event, index) }}><AddIcon style={{ width: 20 }} /></IconButton>
+                                                <IconButton
+                                                    key={index}
+                                                    id={index}
+                                                    onClick={(event) => { handleRemoveSeat(event, index) }}
+                                                >
+                                                    <DeleteIcon key={index} />
+                                                </IconButton>
                                             </ButtonGroup>
-                                            <IconButton
-                                                key={index}
-                                                id={index}
-                                                onClick={(event) => { handleRemoveSeat(event, index) }}
-                                            >
-                                                <DeleteIcon key={index} />
-                                            </IconButton>
                                         </Box>
                                     );
                                 })}
