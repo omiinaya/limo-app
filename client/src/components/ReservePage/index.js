@@ -137,9 +137,12 @@ function ReservePage() {
     }
 
     const handleAddSeats = () => {
-        var array = [...seats, ...['']]
-        setSeats(array)
-        console.log(array)
+        var type = [...seats, ...['']]
+        setSeats(type)
+        var count = [...quantity, ...[0]]
+        setQuantity(count)
+        console.log(type)
+        console.log(count)
     }
 
     const handleChangeSeats = (event, value, index) => {
@@ -158,6 +161,24 @@ function ReservePage() {
         console.log(x)
     }
 
+    const handleAddQuantity = (event, index) => {
+        console.log(index)
+        var array = [...quantity]
+        array[index] = array[index] + 1
+        setQuantity(array)
+        console.log(array)
+    };
+
+    const handleRemoveQuantity = (event, index) => {
+        console.log(index)
+        var array = [...quantity]
+        if (array[index] > 0) {
+            array[index] = array[index] - 1
+        }
+        setQuantity(array)
+        console.log(array)
+    };
+
     const handleTest = () => {
         console.log(service)
         console.log(date)
@@ -168,6 +189,7 @@ function ReservePage() {
         console.log(luggage)
         console.log(stops)
         console.log(seats)
+        console.log(quantity)
     }
 
     return (
@@ -407,9 +429,9 @@ function ReservePage() {
                                                 </Select>
                                             </FormControl>
                                             <ButtonGroup size="small" variant="contained" color="inherit">
-                                                <IconButton onClick={handleRemovePassengers}><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                                <IconButton style={{ width: 40, fontSize: 17 }}> {passengers} </IconButton>
-                                                <IconButton onClick={handleAddPassengers}><AddIcon style={{ width: 20 }} /></IconButton>
+                                                <IconButton onClick={(event) => { handleRemoveQuantity(event, index) }}><RemoveIcon style={{ width: 20 }} /></IconButton>
+                                                <IconButton style={{ width: 40, fontSize: 17 }}> {quantity[index]} </IconButton>
+                                                <IconButton onClick={(event) => { handleAddQuantity(event, index) }}><AddIcon style={{ width: 20 }} /></IconButton>
                                             </ButtonGroup>
                                             <IconButton
                                                 key={index}
