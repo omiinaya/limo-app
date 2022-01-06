@@ -12,6 +12,12 @@ import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import MapView from '../MapView';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
+import PeopleIcon from '@mui/icons-material/People';
+import WorkIcon from '@mui/icons-material/Work';
+import Test from '../Test';
 //import styles from './styles';
 
 const steps = ['Ride Details', 'Select Vehicle', 'Final Steps'];
@@ -25,6 +31,7 @@ function ReservePage() {
     const [time, setTime] = React.useState("07:30");
     const [pickup, setPickup] = React.useState(autocomplete[0]);
     const [dropoff, setDropoff] = React.useState(autocomplete[0]);
+    const count = 0
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -167,7 +174,7 @@ function ReservePage() {
                                     />}
                                 />
                             </Box>
-                            <Box>
+                            <Box sx={{ mb: 2 }}>
                                 <Autocomplete
                                     openOnFocus
                                     options={autocomplete}
@@ -180,13 +187,29 @@ function ReservePage() {
                                     />}
                                 />
                             </Box>
+                            <Box sx={{ mb: 2 }}>
+                                <ButtonGroup variant="contained" color="inherit">
+                                    <Button><PeopleIcon style={{ width: 20 }} /></Button>
+                                    <Button><RemoveIcon style={{ width: 20 }} /></Button>
+                                    <Button style={{ width: 100 }}> {count} </Button>
+                                    <Button><AddIcon style={{ width: 20 }} /></Button>
+                                </ButtonGroup>
+                            </Box>
+                            <Box sx={{ mb: 2 }}>
+                                <ButtonGroup variant="contained" color="inherit">
+                                    <Button><WorkIcon style={{ width: 20 }} /></Button>
+                                    <Button><RemoveIcon style={{ width: 20 }} /></Button>
+                                    <Button style={{ width: 100 }}> {count} </Button>
+                                    <Button><AddIcon style={{ width: 20 }} /></Button>
+                                </ButtonGroup>
+                            </Box>
                         </FormControl>
                         <MapView />
                     </Box>
                 </React.Fragment>
             ) : (activeStep === 1 ? (
                 <React.Fragment>
-                    placeholder
+                    <Test />
                 </React.Fragment>
             ) : (
                 <React.Fragment>
