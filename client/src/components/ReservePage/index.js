@@ -28,6 +28,7 @@ const services = ['Point-to-Point', 'Hourly/As Directed', 'From Airport', 'To Ai
 const acPickup = ['Use current location', '']
 const acDropoff = ['Use current location', '']
 const acStops = ['Use current location', 'test', '']
+const seatTypes = ['Infact Seat (ages 0-1)', 'Toddler Seat (age 1-3)', 'Booster Seat (3-5)']
 
 function ReservePage() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -39,6 +40,7 @@ function ReservePage() {
     const [passengers, setPassengers] = React.useState(1);
     const [luggage, setLuggage] = React.useState(0);
     const [stops, setStops] = React.useState([]);
+    const [seats, setSeats] = React.useState([]);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -118,7 +120,10 @@ function ReservePage() {
 
     const handleRemoveStop = (event, index) => {
         var i = index
-        var x = stops.filter((eachElem, index) => index !== i)
+        //this setup allows for multiple filters
+        var x = stops.filter(function (eachElem, index) {
+            return index !== i
+        })
         setStops(x)
         console.log(x)
     }
@@ -130,6 +135,18 @@ function ReservePage() {
         console.log(array)
     }
 
+    const handleAddSeats = () => {
+        var array = [...seats, ...['']]
+        setSeats(array)
+        console.log(array)
+    }
+
+    const handleChangeSeats = (event, value, index) => {
+        var array = [...seats]
+        array[index] = value.props.value
+        setSeats(array)
+        console.log(array)
+    }
 
     const handleTest = () => {
         console.log(service)
@@ -139,7 +156,10 @@ function ReservePage() {
         console.log(dropoff)
         console.log(passengers)
         console.log(luggage)
-        console.log(stops)
+        //console.log(stops)
+        console.log(seats)
+        console.log(seats.length)
+        console.log(seats[seats.length-1])
     }
 
     return (
@@ -169,25 +189,27 @@ function ReservePage() {
                     <Box
                         display="flex"
                     >
-                        <FormControl
+                        <Box
                             sx={{ width: 400 }}
                         >
-                            <InputLabel>Service</InputLabel>
-                            <Select
-                                size="small"
-                                value={service}
-                                label="Service"
-                                onChange={handleChangeService}
-                                sx={{
-                                    width: 380
-                                }}
-                            >
-                                {services.map((service, index) => {
-                                    return (
-                                        <MenuItem value={service} key={index}>{service}</MenuItem>
-                                    );
-                                })}
-                            </Select>
+                            <FormControl>
+                                <InputLabel>Service</InputLabel>
+                                <Select
+                                    size="small"
+                                    value={service}
+                                    label="Service"
+                                    onChange={handleChangeService}
+                                    sx={{
+                                        width: 380
+                                    }}
+                                >
+                                    {services.map((service, index) => {
+                                        return (
+                                            <MenuItem value={service} key={index}>{service}</MenuItem>
+                                        );
+                                    })}
+                                </Select>
+                            </FormControl>
                             <Box
                                 display="flex"
                                 bgcolor="background.paper"
@@ -345,12 +367,50 @@ function ReservePage() {
                                 </Box>
                             </Box>
                             <Box sx={{ mb: 1 }}>
-                                <Button color="primary">
+                                <Button color="primary" onClick={handleAddSeats}>
                                     <AddIcon style={{ width: 20, fontSize: 17 }} />
                                     Add Child Seat
                                 </Button>
                             </Box>
-                        </FormControl>
+                            <Box>
+                                {seats.map((seat, index) => {
+                                    return (
+                                        <Box
+                                            key={index}
+                                            mb={2}
+                                            display='flex'
+                                        >
+                                            <IconButton disabled key={index}><ArrowRightIcon key={index} /></IconButton>
+                                            <FormControl>
+                                                <InputLabel>Child Seat {(index + 1)}</InputLabel>
+                                                <Select
+                                                    size="small"
+                                                    value={(seats[index] === '') ? (seatTypes[0]):(seats[index])}
+                                                    label={"Child Seat x"}
+                                                    onChange={(event, value) => { handleChangeSeats(event, value, index) }}
+                                                    sx={{
+                                                        width: 310
+                                                    }}
+                                                >
+                                                    {seatTypes.map((type, index) => {
+                                                        return (
+                                                            <MenuItem value={type} key={index}>{type}</MenuItem>
+                                                        );
+                                                    })}
+                                                </Select>
+                                            </FormControl>
+                                            <IconButton
+                                                key={index}
+                                                id={index}
+                                                onClick={(event) => { handleRemoveStop(event, index) }}
+                                            >
+                                                <DeleteIcon key={index} />
+                                            </IconButton>
+                                        </Box>
+                                    );
+                                })}
+                            </Box>
+                        </Box>
                         <MapView />
                     </Box>
                 </React.Fragment>
