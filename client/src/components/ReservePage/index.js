@@ -19,13 +19,11 @@ import AddIcon from '@mui/icons-material/Add';
 import PeopleIcon from '@mui/icons-material/People';
 import WorkIcon from '@mui/icons-material/Work';
 import DeleteIcon from '@mui/icons-material/Delete';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-//import Test from '../Test';
 import { getDate, getTime } from "../../scripts"
 //import styles from './styles';
 
-const steps = ['Ride Details', 'Select Vehicle', 'Final Steps'];
+const steps = ['Trip Details', 'Select Vehicle', 'Final Steps']
 const services = ['Point-to-Point', 'Hourly/As Directed', 'From Airport', 'To Airport']
 const acPickup = ['Use current location', '']
 const acDropoff = ['Use current location', '']
@@ -119,7 +117,6 @@ function ReservePage() {
     };
 
     const handleRemoveStop = (event, index) => {
-        //updates the state correctly, but deletes the last ???
         var i = index
         var x = stops.filter((eachElem, index) => index !== i)
         setStops(x)
@@ -193,9 +190,6 @@ function ReservePage() {
                             </Select>
                             <Box
                                 display="flex"
-                                //flexDirection="row" This is the default
-                                //p={1}
-                                //m={1}
                                 bgcolor="background.paper"
                             >
                                 <Box alignSelf="center">
@@ -246,10 +240,15 @@ function ReservePage() {
                                     defaultValue={pickup}
                                     onChange={handleChangePickup}
                                     sx={{ width: 380 }}
-                                    renderInput={(params) => <TextField {...params}
-                                        label="Pick-Up Location"
-                                        InputLabelProps={{ shrink: true }}
-                                    />}
+                                    renderInput={function (params) {
+                                        return (
+                                            <TextField {...params}
+                                                label="Pick-Up Location"
+                                                InputLabelProps={{ shrink: true }}
+                                            />
+                                        )
+                                    }
+                                    }
                                 />
                             </Box>
                             <Box sx={{ mb: 1 }}>
@@ -302,10 +301,15 @@ function ReservePage() {
                                     defaultValue={dropoff}
                                     onChange={handleChangeDropoff}
                                     sx={{ width: 380 }}
-                                    renderInput={(params) => <TextField {...params}
-                                        label="Drop-Off Location"
-                                        InputLabelProps={{ shrink: true }}
-                                    />}
+                                    renderInput={function (params) {
+                                        return (
+                                            <TextField {...params}
+                                                label="Drop-off Location"
+                                                InputLabelProps={{ shrink: true }}
+                                            />
+                                        )
+                                    }
+                                    }
                                 />
                             </Box>
                             <Box
