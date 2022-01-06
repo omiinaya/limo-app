@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         top: constants.bannerMenu(),
         zIndex: 2,
-        left: 'calc(50% - 208px)',
+        left: 'calc(50% - 208px)'
     },
     homeMenu: {
         width: '1100px',

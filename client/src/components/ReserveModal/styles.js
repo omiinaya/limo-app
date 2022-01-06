@@ -21,7 +21,9 @@ const useStyles = makeStyles((theme) => ({
         height: '60px',
         width: '200px',
         border: '2px white solid !important',
-        color: 'white'
+        color: 'white',
+        fontSize: '17px',
+        fontFamily: 'MyFont5'
     }
 }))
 
