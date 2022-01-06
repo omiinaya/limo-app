@@ -375,28 +375,35 @@ function ReservePage() {
                             >
                                 <Box
                                     sx={{ mr: 2 }}
-                                    style={{
-                                        border: '1px solid lightgray',
-                                        borderRadius: '5px'
-                                    }}
                                 >
-                                    <ButtonGroup size="small" variant="contained" color="inherit">
+                                    <ButtonGroup
+                                        size="small"
+                                        variant="outlined"
+                                        color="inherit"
+                                        style={{
+                                            border: '1px solid silver',
+                                            borderRadius: '3px'
+                                        }}
+                                    >
                                         <IconButton><PeopleIcon style={{ width: 20 }} /></IconButton>
                                         <IconButton onClick={handleRemovePassengers}><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton style={{ width: 60, fontSize: 17 }}> {passengers} </IconButton>
+                                        <IconButton style={{ width: 63, fontSize: 17 }}> {passengers} </IconButton>
                                         <IconButton onClick={handleAddPassengers}><AddIcon style={{ width: 20 }} /></IconButton>
                                     </ButtonGroup>
                                 </Box>
-                                <Box
-                                    style={{
-                                        border: '1px solid lightgray',
-                                        borderRadius: '5px'
-                                    }}
-                                >
-                                    <ButtonGroup size="small" variant="contained" color="inherit">
+                                <Box>
+                                    <ButtonGroup
+                                        size="small"
+                                        variant="outlined"
+                                        color="inherit"
+                                        style={{
+                                            border: '1px solid silver',
+                                            borderRadius: '3px'
+                                        }}
+                                    >
                                         <IconButton><WorkIcon style={{ width: 20 }} /></IconButton>
                                         <IconButton onClick={handleRemoveLuggage}><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton style={{ width: 60, fontSize: 17 }}> {luggage} </IconButton>
+                                        <IconButton style={{ width: 63, fontSize: 17 }}> {luggage} </IconButton>
                                         <IconButton onClick={handleAddLuggage}><AddIcon style={{ width: 20 }} /></IconButton>
                                     </ButtonGroup>
                                 </Box>
@@ -418,11 +425,6 @@ function ReservePage() {
                                             key={index}
                                             mb={2}
                                             display='flex'
-                                            style={{
-                                                borderBottom: '3px solid lightgray',
-                                                borderRight: '3px solid lightgray',
-                                                borderRadius: '7px'
-                                            }}
                                         >
                                             <FormControl>
                                                 <InputLabel>Child Seat {(index + 1)}</InputLabel>
@@ -432,7 +434,7 @@ function ReservePage() {
                                                     label={"Child Seat x"}
                                                     onChange={(event, value) => { handleChangeSeats(event, value, index) }}
                                                     sx={{
-                                                        width: 230
+                                                        width: 220
                                                     }}
                                                 >
                                                     {seatTypes.map((type, index) => {
@@ -442,7 +444,15 @@ function ReservePage() {
                                                     })}
                                                 </Select>
                                             </FormControl>
-                                            <ButtonGroup size="small" variant="contained" color="inherit">
+                                            <ButtonGroup
+                                                size="small"
+                                                variant="outlined"
+                                                color="inherit"
+                                                style={{
+                                                    border: '1px solid silver',
+                                                    borderRadius: '3px'
+                                                }}
+                                            >
                                                 <IconButton onClick={(event) => { handleRemoveQuantity(event, index) }}><RemoveIcon style={{ width: 20 }} /></IconButton>
                                                 <IconButton style={{ width: 40, fontSize: 17 }}> {quantity[index]} </IconButton>
                                                 <IconButton onClick={(event) => { handleAddQuantity(event, index) }}><AddIcon style={{ width: 20 }} /></IconButton>
