@@ -28,7 +28,7 @@ const services = ['Point-to-Point', 'Hourly/As Directed', 'From Airport', 'To Ai
 const acPickup = ['Use current location', '']
 const acDropoff = ['Use current location', '']
 const acStops = ['Use current location', 'test', '']
-const seatTypes = ['Infact Seat (Ages 0-1)', 'Toddler Seat (Ages 1-3)', 'Booster Seat (Ages 3-5)']
+const seatTypes = ['Infact (Age 0-1)', 'Toddler (Age 1-3)', 'Booster (Age 3-5)']
 
 function ReservePage() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -392,12 +392,12 @@ function ReservePage() {
                                             onClick={handleRemovePassengers}
                                             style={{ borderRight: '1px solid silver' }}
                                         ><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton 
-                                        style={{ 
-                                            width: 63, 
-                                            fontSize: 17,
-                                            borderRight: '1px solid silver'
-                                        }}
+                                        <IconButton
+                                            style={{
+                                                width: 63,
+                                                fontSize: 17,
+                                                borderRight: '1px solid silver'
+                                            }}
                                         > {passengers} </IconButton>
                                         <IconButton onClick={handleAddPassengers}><AddIcon style={{ width: 20 }} /></IconButton>
                                     </ButtonGroup>
@@ -447,48 +447,56 @@ function ReservePage() {
                                             mb={2}
                                             display='flex'
                                         >
-                                            <FormControl>
-                                                <InputLabel>Child Seat {(index + 1)}</InputLabel>
-                                                <Select
+                                            <IconButton disabled key={index}><ArrowRightIcon key={index} /></IconButton>
+                                            <Box
+                                                mr={2}
+                                            >
+                                                <FormControl>
+                                                    <InputLabel>Child Seat {(index + 1)}</InputLabel>
+                                                    <Select
+                                                        size="small"
+                                                        value={(seats[index] === '') ? (seatTypes[0]) : (seats[index])}
+                                                        label={"Child Seat x"}
+                                                        onChange={(event, value) => { handleChangeSeats(event, value, index) }}
+                                                        sx={{
+                                                            width: 170
+                                                        }}
+                                                    >
+                                                        {seatTypes.map((type, index) => {
+                                                            return (
+                                                                <MenuItem value={type} key={index}>{type}</MenuItem>
+                                                            );
+                                                        })}
+                                                    </Select>
+                                                </FormControl>
+                                            </Box>
+                                            <Box
+                                                display='flex'
+                                            >
+                                                <ButtonGroup
                                                     size="small"
-                                                    value={(seats[index] === '') ? (seatTypes[0]) : (seats[index])}
-                                                    label={"Child Seat x"}
-                                                    onChange={(event, value) => { handleChangeSeats(event, value, index) }}
-                                                    sx={{
-                                                        width: 220
+                                                    variant="outlined"
+                                                    color="inherit"
+                                                    style={{
+                                                        border: '1px solid silver',
+                                                        borderRadius: '3px'
                                                     }}
                                                 >
-                                                    {seatTypes.map((type, index) => {
-                                                        return (
-                                                            <MenuItem value={type} key={index}>{type}</MenuItem>
-                                                        );
-                                                    })}
-                                                </Select>
-                                            </FormControl>
-                                            <ButtonGroup
-                                                size="small"
-                                                variant="outlined"
-                                                color="inherit"
-                                                style={{
-                                                    border: '1px solid silver',
-                                                    borderRadius: '3px'
-                                                }}
-                                            >
-                                                <IconButton
-                                                    onClick={(event) => { handleRemoveQuantity(event, index) }}
-                                                    style={{ borderRight: '1px solid silver' }}
-                                                ><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                                <IconButton
-                                                    style={{
-                                                        width: 40,
-                                                        fontSize: 17,
-                                                        borderRight: '1px solid silver'
-                                                    }}
-                                                > {quantity[index]} </IconButton>
-                                                <IconButton
-                                                    onClick={(event) => { handleAddQuantity(event, index) }}
-                                                    style={{ borderRight: '1px solid silver' }}
-                                                ><AddIcon style={{ width: 20 }} /></IconButton>
+                                                    <IconButton
+                                                        onClick={(event) => { handleRemoveQuantity(event, index) }}
+                                                        style={{ borderRight: '1px solid silver' }}
+                                                    ><RemoveIcon style={{ width: 20 }} /></IconButton>
+                                                    <IconButton
+                                                        style={{
+                                                            width: 40,
+                                                            fontSize: 17,
+                                                            borderRight: '1px solid silver'
+                                                        }}
+                                                    > {quantity[index]} </IconButton>
+                                                    <IconButton
+                                                        onClick={(event) => { handleAddQuantity(event, index) }}
+                                                    ><AddIcon style={{ width: 20 }} /></IconButton>
+                                                </ButtonGroup>
                                                 <IconButton
                                                     key={index}
                                                     id={index}
@@ -496,7 +504,7 @@ function ReservePage() {
                                                 >
                                                     <DeleteIcon key={index} />
                                                 </IconButton>
-                                            </ButtonGroup>
+                                            </Box>
                                         </Box>
                                     );
                                 })}
