@@ -26,8 +26,9 @@ import { getDate, getTime } from "../../scripts"
 
 const steps = ['Ride Details', 'Select Vehicle', 'Final Steps'];
 const services = ['Point-to-Point', 'Hourly/As Directed', 'From Airport', 'To Airport']
-const acPickup = ['Use current location']
-const acDropoff = ['Use current location']
+const acPickup = ['Use current location', '']
+const acDropoff = ['Use current location', '']
+const acStops = ['Use current location', 'test', '']
 
 function ReservePage() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -116,12 +117,21 @@ function ReservePage() {
         console.log(array)
     };
 
-    const handleRemoveStop = (event) => {
-        //removes last item
-        var array = stops.slice(0, stops.length-1);
+    const handleRemoveStop = (event, value, index) => {
+        //currently reomves last.
+        //should remove index based on text found instead.
+        var array = [...stops]
+        array.splice(index, 1)
+        console.log(array)
+        //setStops(array)
+    };
+
+    const handleChangeStop = (event, value, index) => {
+        var array = [...stops]
+        array[index] = value
         setStops(array)
         console.log(array)
-    };
+    }
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -247,21 +257,29 @@ function ReservePage() {
                                             mb={2}
                                             display='flex'
                                         >
-                                            <IconButton><MoreVertIcon /></IconButton>
+                                            <IconButton key={index}><MoreVertIcon key={index} /></IconButton>
                                             <Autocomplete
                                                 openOnFocus
-                                                size="small"
-                                                options={acPickup}
-                                                defaultValue={stop}
                                                 key={index}
-                                                //onChange={handleChangeStop}
+                                                size="small"
+                                                options={acStops}
+                                                defaultValue={stop}
+                                                onChange={(event, value) => { handleChangeStop(event, value, index) }}
                                                 sx={{ width: 310 }}
-                                                renderInput={(params) => <TextField {...params}
-                                                    label={"Stop Location " + (index + 1)}
-                                                    InputLabelProps={{ shrink: true }}
-                                                />}
+                                                renderInput={(params) => {
+                                                    <TextField key={index} {...params}
+                                                        label={"Stop Location " + (index + 1)}
+                                                        InputLabelProps={{ shrink: true }}
+                                                    />
+                                                }}
                                             />
-                                            <IconButton key={index} id={index} onClick={(event)=> {handleRemoveStop(event)}}><DeleteIcon /></IconButton>
+                                            <IconButton
+                                                key={index}
+                                                id={index}
+                                                onClick={(event, value) => { handleRemoveStop(event, value, index) }}
+                                            >
+                                                <DeleteIcon key={index} />
+                                            </IconButton>
                                         </Box>
                                     );
                                 })}
