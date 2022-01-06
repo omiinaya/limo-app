@@ -20,7 +20,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import WorkIcon from '@mui/icons-material/Work';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import Test from '../Test';
+//import Test from '../Test';
 import { getDate, getTime } from "../../scripts"
 //import styles from './styles';
 
@@ -123,13 +123,25 @@ function ReservePage() {
         var x = stops.filter((eachElem, index) => index !== i)
         setStops(x)
         console.log(x)
-    };
+    }
 
     const handleChangeStop = (event, value, index) => {
         var array = [...stops]
         array[index] = value
         setStops(array)
         console.log(array)
+    }
+
+
+    const handleTest = () => {
+        console.log(service)
+        console.log(date)
+        console.log(time)
+        console.log(pickup)
+        console.log(dropoff)
+        console.log(passengers)
+        console.log(luggage)
+        console.log(stops)
     }
 
     return (
@@ -262,7 +274,7 @@ function ReservePage() {
                                                 key={index}
                                                 size="small"
                                                 options={acStops}
-                                                defaultValue={stop}
+                                                value={stops[index]}
                                                 onChange={(event, value) => { handleChangeStop(event, value, index) }}
                                                 sx={{ width: 310 }}
                                                 renderInput={(params) => <TextField key={index} {...params}
@@ -276,7 +288,7 @@ function ReservePage() {
                                                 onClick={(event) => { handleRemoveStop(event, index) }}
                                             >
                                                 <DeleteIcon key={index} />
-                                                </IconButton>
+                                            </IconButton>
                                         </Box>
                                     );
                                 })}
@@ -364,16 +376,7 @@ function ReservePage() {
                         Back
                     </Button>
                     <Box sx={{ flex: '1 1 auto' }} />
-                    <Button onClick={() => {
-                        console.log(service)
-                        console.log(date)
-                        console.log(time)
-                        console.log(pickup)
-                        console.log(dropoff)
-                        console.log(passengers)
-                        console.log(luggage)
-                        console.log(stops)
-                    }}>
+                    <Button onClick={handleTest}>
                         test
                     </Button>
                     <Button onClick={handleNext}>
