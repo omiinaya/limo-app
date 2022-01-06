@@ -4,6 +4,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
@@ -187,21 +188,23 @@ function ReservePage() {
                                     />}
                                 />
                             </Box>
-                            <Box sx={{ mb: 2 }}>
-                                <ButtonGroup variant="contained" color="inherit">
-                                    <Button><PeopleIcon style={{ width: 20 }} /></Button>
-                                    <Button><RemoveIcon style={{ width: 20 }} /></Button>
-                                    <Button style={{ width: 100 }}> {count} </Button>
-                                    <Button><AddIcon style={{ width: 20 }} /></Button>
-                                </ButtonGroup>
-                            </Box>
-                            <Box sx={{ mb: 2 }}>
-                                <ButtonGroup variant="contained" color="inherit">
-                                    <Button><WorkIcon style={{ width: 20 }} /></Button>
-                                    <Button><RemoveIcon style={{ width: 20 }} /></Button>
-                                    <Button style={{ width: 100 }}> {count} </Button>
-                                    <Button><AddIcon style={{ width: 20 }} /></Button>
-                                </ButtonGroup>
+                            <Box display='flex'>
+                                <Box sx={{ mr: 2 }}>
+                                    <ButtonGroup variant="contained" color="inherit" style={{ height: 40 }}>
+                                        <IconButton><PeopleIcon style={{ width: 20 }} /></IconButton>
+                                        <IconButton><RemoveIcon style={{ width: 20 }} /></IconButton>
+                                        <IconButton style={{ width: 70 }}> {count} </IconButton>
+                                        <IconButton><AddIcon style={{ width: 20 }} /></IconButton>
+                                    </ButtonGroup>
+                                </Box>
+                                <Box>
+                                    <ButtonGroup variant="contained" color="inherit" style={{ height: 40 }}>
+                                        <IconButton><WorkIcon style={{ width: 20 }} /></IconButton>
+                                        <IconButton><RemoveIcon style={{ width: 20 }} /></IconButton>
+                                        <IconButton style={{ width: 70 }}> {count} </IconButton>
+                                        <IconButton><AddIcon style={{ width: 20 }} /></IconButton>
+                                    </ButtonGroup>
+                                </Box>
                             </Box>
                         </FormControl>
                         <MapView />
