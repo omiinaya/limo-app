@@ -43,7 +43,7 @@ function ReservePage() {
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        console.log({ activeStep, service, date, time, pickup, dropoff, passengers, luggage })
+        handleTest()
     };
 
     const handleBack = () => {
