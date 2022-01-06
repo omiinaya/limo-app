@@ -18,6 +18,8 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import PeopleIcon from '@mui/icons-material/People';
 import WorkIcon from '@mui/icons-material/Work';
+import DeleteIcon from '@mui/icons-material/Delete';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Test from '../Test';
 import { getDate, getTime } from "../../scripts"
 //import styles from './styles';
@@ -36,6 +38,7 @@ function ReservePage() {
     const [dropoff, setDropoff] = React.useState('');
     const [passengers, setPassengers] = React.useState(1);
     const [luggage, setLuggage] = React.useState(0);
+    const [stops, setStops] = React.useState([]);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -105,6 +108,12 @@ function ReservePage() {
             return
         }
         console.log(value);
+    };
+
+    const handleAddStop = (event, value) => {
+        var array = stops.push(value)
+        setDropoff(array)
+        console.log(array);
     };
 
     return (
@@ -199,7 +208,7 @@ function ReservePage() {
                                 </Box>
                             </Box>
                             <Box
-                                sx={{ mb: 2 }}
+                                sx={{ mb: 1 }}
                             >
                                 <Autocomplete
                                     openOnFocus
@@ -213,6 +222,41 @@ function ReservePage() {
                                         InputLabelProps={{ shrink: true }}
                                     />}
                                 />
+                            </Box>
+                            <Box sx={{ mb: 1 }}>
+                                <Button
+                                    color="primary"
+                                    onClick={handleAddStop}
+                                >
+                                    <AddIcon style={{ width: 20, fontSize: 17 }} />
+                                    Add Stop
+                                </Button>
+                            </Box>
+                            <Box>
+                                {stops.map((stop, index) => {
+                                    return (
+                                        <Box
+                                            key={index}
+                                            mb={2}
+                                            display='flex'
+                                        >
+                                            <IconButton><MoreVertIcon /></IconButton>
+                                            <Autocomplete
+                                                openOnFocus
+                                                size="small"
+                                                options={acPickup}
+                                                defaultValue={stop}
+                                                //onChange={handleChangeStop}
+                                                sx={{ width: 310 }}
+                                                renderInput={(params) => <TextField {...params}
+                                                    label={"Stop Location " + (index + 1)}
+                                                    InputLabelProps={{ shrink: true }}
+                                                />}
+                                            />
+                                            <IconButton><DeleteIcon /></IconButton>
+                                        </Box>
+                                    );
+                                })}
                             </Box>
                             <Box sx={{ mb: 2 }}>
                                 <Autocomplete
@@ -228,7 +272,10 @@ function ReservePage() {
                                     />}
                                 />
                             </Box>
-                            <Box display='flex'>
+                            <Box
+                                display='flex'
+                                sx={{ mb: 1 }}
+                            >
                                 <Box
                                     sx={{ mr: 2 }}
                                     style={{
@@ -257,13 +304,19 @@ function ReservePage() {
                                     </ButtonGroup>
                                 </Box>
                             </Box>
+                            <Box sx={{ mb: 1 }}>
+                                <Button color="primary">
+                                    <AddIcon style={{ width: 20, fontSize: 17 }} />
+                                    Add Child Seat
+                                </Button>
+                            </Box>
                         </FormControl>
                         <MapView />
                     </Box>
                 </React.Fragment>
             ) : (activeStep === 1 ? (
                 <React.Fragment>
-                    <Test />
+                    placeholder
                 </React.Fragment>
             ) : (
                 <React.Fragment>
@@ -294,6 +347,8 @@ function ReservePage() {
                         console.log(time)
                         console.log(pickup)
                         console.log(dropoff)
+                        console.log(passengers)
+                        console.log(luggage)
                     }}>
                         test
                     </Button>
