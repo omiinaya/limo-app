@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import DateRangeIcon from '@mui/icons-material/DateRange';
+import PaymentsIcon from '@mui/icons-material/Payments';
 import styles from './styles'
 
 function LoginModal() {
@@ -20,7 +20,7 @@ function LoginModal() {
             <Button
                 className={classes.button}
                 variant="contained"
-                startIcon={<DateRangeIcon />}
+                startIcon={<PaymentsIcon />}
                 sx={{ boxShadow: 15 }}
                 size="large"
                 onClick={toggle}

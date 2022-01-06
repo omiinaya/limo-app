@@ -48,10 +48,27 @@ export function scrollTo(name) {
 export var constants = {
     halfSpace: 15,
     halfScreen: window.screen.height / 2,
-    singleSpace: function() { return this.halfSpace * 2 }, //30
-    doubleSpace: function() { return this.halfSpace * 4 }, //60
-    tripleSpace: function() { return this.halfSpace * 6 }, //90
-    indicHeight: function() { return this.halfScreen - this.halfSpace * 2 }, //495
-    bannerMenu: function() { return this.halfScreen + this.halfSpace }, //510
-    bannerEdge: function() { return this.halfScreen + this.halfSpace * 6 }, //585
+    singleSpace: function () { return this.halfSpace * 2 }, //30
+    doubleSpace: function () { return this.halfSpace * 4 }, //60
+    tripleSpace: function () { return this.halfSpace * 6 }, //90
+    indicHeight: function () { return this.halfScreen - this.halfSpace * 2 }, //495
+    bannerMenu: function () { return this.halfScreen + this.halfSpace }, //510
+    bannerEdge: function () { return this.halfScreen + this.halfSpace * 6 }, //585
+}
+
+export function getDate() {
+    var current = new Date();
+    var dd = String(current.getDate()).padStart(2, '0')
+    var mm = String(current.getMonth() + 1).padStart(2, '0')
+    var yyyy = current.getFullYear()
+    var date = yyyy + '-' + mm + '-' + dd
+    return date;
+}
+
+export function getTime() {
+    var current = new Date();
+    var hh = String(current.getHours()).padStart(2,'0') //String(current.getDate()).padStart(2, '0')
+    var mm = String(current.getMinutes()).padStart(2,'0') //String(current.getMonth() + 1).padStart(2, '0')
+    var time = hh + ':' + mm
+    return time;
 }

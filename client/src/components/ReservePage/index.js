@@ -19,6 +19,7 @@ import AddIcon from '@mui/icons-material/Add';
 import PeopleIcon from '@mui/icons-material/People';
 import WorkIcon from '@mui/icons-material/Work';
 import Test from '../Test';
+import { getDate, getTime } from "../../scripts"
 //import styles from './styles';
 
 const steps = ['Ride Details', 'Select Vehicle', 'Final Steps'];
@@ -29,8 +30,8 @@ const acDropoff = ['Use current location']
 function ReservePage() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [service, setService] = React.useState(services[0]);
-    const [date, setDate] = React.useState('2017-05-24');
-    const [time, setTime] = React.useState("07:30");
+    const [date, setDate] = React.useState(getDate());
+    const [time, setTime] = React.useState(getTime());
     const [pickup, setPickup] = React.useState('');
     const [dropoff, setDropoff] = React.useState('');
     const [passengers, setPassengers] = React.useState(1);
