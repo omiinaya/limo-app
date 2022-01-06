@@ -28,7 +28,7 @@ const services = ['Point-to-Point', 'Hourly/As Directed', 'From Airport', 'To Ai
 const acPickup = ['Use current location', '']
 const acDropoff = ['Use current location', '']
 const acStops = ['Use current location', 'test', '']
-const seatTypes = ['Infact Seat (ages 0-1)', 'Toddler Seat (age 1-3)', 'Booster Seat (3-5)']
+const seatTypes = ['Infact Seat (Ages 0-1)', 'Toddler Seat (Ages 1-3)', 'Booster Seat (Ages 3-5)']
 
 function ReservePage() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -41,6 +41,7 @@ function ReservePage() {
     const [luggage, setLuggage] = React.useState(0);
     const [stops, setStops] = React.useState([]);
     const [seats, setSeats] = React.useState([]);
+    const [quantity, setQuantity] = React.useState([])
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -148,6 +149,15 @@ function ReservePage() {
         console.log(array)
     }
 
+    const handleRemoveSeat = (event, index) => {
+        var i = index
+        var x = seats.filter(function (eachElem, index) {
+            return index !== i
+        })
+        setSeats(x)
+        console.log(x)
+    }
+
     const handleTest = () => {
         console.log(service)
         console.log(date)
@@ -156,10 +166,8 @@ function ReservePage() {
         console.log(dropoff)
         console.log(passengers)
         console.log(luggage)
-        //console.log(stops)
+        console.log(stops)
         console.log(seats)
-        console.log(seats.length)
-        console.log(seats[seats.length-1])
     }
 
     return (
@@ -380,16 +388,15 @@ function ReservePage() {
                                             mb={2}
                                             display='flex'
                                         >
-                                            <IconButton disabled key={index}><ArrowRightIcon key={index} /></IconButton>
                                             <FormControl>
                                                 <InputLabel>Child Seat {(index + 1)}</InputLabel>
                                                 <Select
                                                     size="small"
-                                                    value={(seats[index] === '') ? (seatTypes[0]):(seats[index])}
+                                                    value={(seats[index] === '') ? (seatTypes[0]) : (seats[index])}
                                                     label={"Child Seat x"}
                                                     onChange={(event, value) => { handleChangeSeats(event, value, index) }}
                                                     sx={{
-                                                        width: 310
+                                                        width: 230
                                                     }}
                                                 >
                                                     {seatTypes.map((type, index) => {
@@ -399,10 +406,15 @@ function ReservePage() {
                                                     })}
                                                 </Select>
                                             </FormControl>
+                                            <ButtonGroup size="small" variant="contained" color="inherit">
+                                                <IconButton onClick={handleRemovePassengers}><RemoveIcon style={{ width: 20 }} /></IconButton>
+                                                <IconButton style={{ width: 40, fontSize: 17 }}> {passengers} </IconButton>
+                                                <IconButton onClick={handleAddPassengers}><AddIcon style={{ width: 20 }} /></IconButton>
+                                            </ButtonGroup>
                                             <IconButton
                                                 key={index}
                                                 id={index}
-                                                onClick={(event) => { handleRemoveStop(event, index) }}
+                                                onClick={(event) => { handleRemoveSeat(event, index) }}
                                             >
                                                 <DeleteIcon key={index} />
                                             </IconButton>
