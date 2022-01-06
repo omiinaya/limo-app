@@ -110,10 +110,17 @@ function ReservePage() {
         console.log(value);
     };
 
-    const handleAddStop = (event, value) => {
-        var array = stops.push(value)
-        setDropoff(array)
-        console.log(array);
+    const handleAddStop = () => {
+        var array = [...stops, ...['']]
+        setStops(array)
+        console.log(array)
+    };
+
+    const handleRemoveStop = (event) => {
+        //removes last item
+        var array = stops.slice(0, stops.length-1);
+        setStops(array)
+        console.log(array)
     };
 
     return (
@@ -246,6 +253,7 @@ function ReservePage() {
                                                 size="small"
                                                 options={acPickup}
                                                 defaultValue={stop}
+                                                key={index}
                                                 //onChange={handleChangeStop}
                                                 sx={{ width: 310 }}
                                                 renderInput={(params) => <TextField {...params}
@@ -253,7 +261,7 @@ function ReservePage() {
                                                     InputLabelProps={{ shrink: true }}
                                                 />}
                                             />
-                                            <IconButton><DeleteIcon /></IconButton>
+                                            <IconButton key={index} id={index} onClick={(event)=> {handleRemoveStop(event)}}><DeleteIcon /></IconButton>
                                         </Box>
                                     );
                                 })}
