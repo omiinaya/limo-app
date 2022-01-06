@@ -117,13 +117,12 @@ function ReservePage() {
         console.log(array)
     };
 
-    const handleRemoveStop = (event, value, index) => {
-        //currently reomves last.
-        //should remove index based on text found instead.
-        var array = [...stops]
-        array.splice(index, 1)
-        console.log(array)
-        //setStops(array)
+    const handleRemoveStop = (event, index) => {
+        //updates the state correctly, but deletes the last ???
+        var i = index
+        var x = stops.filter((eachElem, index) => index !== i)
+        setStops(x)
+        console.log(x)
     };
 
     const handleChangeStop = (event, value, index) => {
@@ -266,20 +265,18 @@ function ReservePage() {
                                                 defaultValue={stop}
                                                 onChange={(event, value) => { handleChangeStop(event, value, index) }}
                                                 sx={{ width: 310 }}
-                                                renderInput={(params) => {
-                                                    <TextField key={index} {...params}
-                                                        label={"Stop Location " + (index + 1)}
-                                                        InputLabelProps={{ shrink: true }}
-                                                    />
-                                                }}
+                                                renderInput={(params) => <TextField key={index} {...params}
+                                                    label={"Stop Location " + (index + 1)}
+                                                    InputLabelProps={{ shrink: true }}
+                                                />}
                                             />
                                             <IconButton
                                                 key={index}
                                                 id={index}
-                                                onClick={(event, value) => { handleRemoveStop(event, value, index) }}
+                                                onClick={(event) => { handleRemoveStop(event, index) }}
                                             >
                                                 <DeleteIcon key={index} />
-                                            </IconButton>
+                                                </IconButton>
                                         </Box>
                                     );
                                 })}
@@ -375,6 +372,7 @@ function ReservePage() {
                         console.log(dropoff)
                         console.log(passengers)
                         console.log(luggage)
+                        console.log(stops)
                     }}>
                         test
                     </Button>
