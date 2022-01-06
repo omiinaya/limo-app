@@ -20,6 +20,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import WorkIcon from '@mui/icons-material/Work';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 //import Test from '../Test';
 import { getDate, getTime } from "../../scripts"
 //import styles from './styles';
@@ -268,7 +269,7 @@ function ReservePage() {
                                             mb={2}
                                             display='flex'
                                         >
-                                            <IconButton key={index}><MoreVertIcon key={index} /></IconButton>
+                                            <IconButton disabled key={index}><ArrowRightIcon key={index} /></IconButton>
                                             <Autocomplete
                                                 openOnFocus
                                                 key={index}
