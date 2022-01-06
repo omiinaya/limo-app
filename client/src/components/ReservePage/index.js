@@ -23,21 +23,22 @@ import Test from '../Test';
 
 const steps = ['Ride Details', 'Select Vehicle', 'Final Steps'];
 const services = ['Point-to-Point', 'Hourly/As Directed', 'From Airport', 'To Airport']
-const autocomplete = ['Select a location', 'Use current location']
+const acPickup = ['Use current location']
+const acDropoff = ['Use current location']
 
 function ReservePage() {
     const [activeStep, setActiveStep] = React.useState(0);
     const [service, setService] = React.useState(services[0]);
     const [date, setDate] = React.useState('2017-05-24');
     const [time, setTime] = React.useState("07:30");
-    const [pickup, setPickup] = React.useState(autocomplete[0]);
-    const [dropoff, setDropoff] = React.useState(autocomplete[0]);
+    const [pickup, setPickup] = React.useState('');
+    const [dropoff, setDropoff] = React.useState('');
     const [passengers, setPassengers] = React.useState(1);
     const [luggage, setLuggage] = React.useState(0);
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        console.log({ activeStep, service, date, time, pickup, dropoff })
+        console.log({ activeStep, service, date, time, pickup, dropoff, passengers, luggage })
     };
 
     const handleBack = () => {
@@ -202,7 +203,7 @@ function ReservePage() {
                                 <Autocomplete
                                     openOnFocus
                                     size="small"
-                                    options={autocomplete}
+                                    options={acPickup}
                                     defaultValue={pickup}
                                     onChange={handleChangePickup}
                                     sx={{ width: 380 }}
@@ -216,7 +217,7 @@ function ReservePage() {
                                 <Autocomplete
                                     openOnFocus
                                     size="small"
-                                    options={autocomplete}
+                                    options={acDropoff}
                                     defaultValue={dropoff}
                                     onChange={handleChangeDropoff}
                                     sx={{ width: 380 }}
