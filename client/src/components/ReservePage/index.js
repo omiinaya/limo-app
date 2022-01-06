@@ -385,9 +385,20 @@ function ReservePage() {
                                             borderRadius: '3px'
                                         }}
                                     >
-                                        <IconButton><PeopleIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton onClick={handleRemovePassengers}><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton style={{ width: 63, fontSize: 17 }}> {passengers} </IconButton>
+                                        <IconButton
+                                            style={{ borderRight: '1px solid silver' }}
+                                        ><PeopleIcon style={{ width: 20 }} /></IconButton>
+                                        <IconButton
+                                            onClick={handleRemovePassengers}
+                                            style={{ borderRight: '1px solid silver' }}
+                                        ><RemoveIcon style={{ width: 20 }} /></IconButton>
+                                        <IconButton 
+                                        style={{ 
+                                            width: 63, 
+                                            fontSize: 17,
+                                            borderRight: '1px solid silver'
+                                        }}
+                                        > {passengers} </IconButton>
                                         <IconButton onClick={handleAddPassengers}><AddIcon style={{ width: 20 }} /></IconButton>
                                     </ButtonGroup>
                                 </Box>
@@ -401,9 +412,19 @@ function ReservePage() {
                                             borderRadius: '3px'
                                         }}
                                     >
-                                        <IconButton><WorkIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton onClick={handleRemoveLuggage}><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                        <IconButton style={{ width: 63, fontSize: 17 }}> {luggage} </IconButton>
+                                        <IconButton
+                                            style={{ borderRight: '1px solid silver' }}
+                                        ><WorkIcon style={{ width: 20 }} /></IconButton>
+                                        <IconButton
+                                            onClick={handleRemoveLuggage}
+                                            style={{ borderRight: '1px solid silver' }}
+                                        ><RemoveIcon style={{ width: 20 }} /></IconButton>
+                                        <IconButton
+                                            style={{
+                                                width: 63,
+                                                fontSize: 17,
+                                                borderRight: '1px solid silver'
+                                            }}> {luggage} </IconButton>
                                         <IconButton onClick={handleAddLuggage}><AddIcon style={{ width: 20 }} /></IconButton>
                                     </ButtonGroup>
                                 </Box>
@@ -453,9 +474,21 @@ function ReservePage() {
                                                     borderRadius: '3px'
                                                 }}
                                             >
-                                                <IconButton onClick={(event) => { handleRemoveQuantity(event, index) }}><RemoveIcon style={{ width: 20 }} /></IconButton>
-                                                <IconButton style={{ width: 40, fontSize: 17 }}> {quantity[index]} </IconButton>
-                                                <IconButton onClick={(event) => { handleAddQuantity(event, index) }}><AddIcon style={{ width: 20 }} /></IconButton>
+                                                <IconButton
+                                                    onClick={(event) => { handleRemoveQuantity(event, index) }}
+                                                    style={{ borderRight: '1px solid silver' }}
+                                                ><RemoveIcon style={{ width: 20 }} /></IconButton>
+                                                <IconButton
+                                                    style={{
+                                                        width: 40,
+                                                        fontSize: 17,
+                                                        borderRight: '1px solid silver'
+                                                    }}
+                                                > {quantity[index]} </IconButton>
+                                                <IconButton
+                                                    onClick={(event) => { handleAddQuantity(event, index) }}
+                                                    style={{ borderRight: '1px solid silver' }}
+                                                ><AddIcon style={{ width: 20 }} /></IconButton>
                                                 <IconButton
                                                     key={index}
                                                     id={index}
