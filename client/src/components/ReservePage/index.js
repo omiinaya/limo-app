@@ -157,8 +157,13 @@ function ReservePage() {
         var x = seats.filter(function (eachElem, index) {
             return index !== i
         })
+        var y = quantity.filter(function (eachElem, index) {
+            return index !== i
+        })
         setSeats(x)
+        setQuantity(y)
         console.log(x)
+        console.log(y)
     }
 
     const handleAddQuantity = (event, index) => {
