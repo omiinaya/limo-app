@@ -80,7 +80,7 @@ export default function App(props) {
         var lat = e.result.geometry.coordinates[0]
         var long = e.result.geometry.coordinates[1]
         setPickup([lat, long])
-        console.log(lat, long)
+        console.log(e.result)
     });
 
     geocoder2.on('result', (e) => {
