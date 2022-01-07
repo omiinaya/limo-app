@@ -6,8 +6,8 @@ const MapboxGeocoder = window.MapboxGeocoder
 
 mapboxgl.accessToken = process.env.REACT_APP_MAP_KEY;
 
+//use props and ref to attach to another div
 export default function App() {
-    console.log(window)
     useEffect(() => {
         const map = new mapboxgl.Map({
             container: 'map',
@@ -24,8 +24,13 @@ export default function App() {
     });
 
     return (
-        <div>
-            <div id="map"></div>
+        <div style={{ position: 'relative', width: '100%' }}>
+            <div id="map" style={{
+                width: '100%', 
+                height: 'auto',
+                
+                
+                }}></div>
 
             <div id="geocoder" class="geocoder"></div>
         </div>
