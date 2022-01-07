@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { getMidpoint } from "../../scripts"
 //import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
 const mapboxgl = window.mapboxgl
@@ -12,6 +13,7 @@ export default function App(props) {
     const [mapObj, setMapObj] = React.useState(0)
     const [pickup, setPickup] = React.useState([]);
     const [dropoff, setDropoff] = React.useState([]);
+    const [midpoint, setMidpoint] = React.useState([]);
 
     const marker = document.createElement('div');
     marker.classList = 'truck';
@@ -32,18 +34,27 @@ export default function App(props) {
 
     }, []);
 
-    //updates location every time location state is changed.
+    //updates location every time pickup state is changed.
     useEffect(() => {
         console.log(pickup)
         if (pickup.length > 1) {
             updateLocation(pickup[0], pickup[1])
+            addMarker(pickup[0], pickup[1])
         }
     }, [pickup]);
 
+    //updates location every time dropoff state is changed
     useEffect(() => {
         console.log(dropoff)
-        if (dropoff.length > 1) {
+        if (dropoff.length > 1 && pickup.length > 1) {
+            var mid = getMidpoint(pickup[0], pickup[1], dropoff[0], dropoff[1])
+            updateLocation(mid[0], mid[1])
+            addMarker(dropoff[0], dropoff[1])
+        } else if (dropoff.length > 1) {
             updateLocation(dropoff[0], dropoff[1])
+            addMarker(dropoff[0], dropoff[1])
+        } else {
+            return
         }
     }, [dropoff]);
 
@@ -57,18 +68,15 @@ export default function App(props) {
         mapboxgl: mapboxgl
     });
 
-    function updateLocation(lat, long) {
-        console.log(lat, long)
-        
+    function addMarker(lat, long) {
         new mapboxgl.Marker(marker).setLngLat([lat, long]).addTo(mapObj);
+    }
+
+    function updateLocation(lat, long) {
         mapObj.flyTo({
             center: [lat, long],
             essential: true
         })
-        console.log(dropoff)
-        console.log(pickup)
-        console.log(mapObj)
-        
     }
 
     geocoder.on('result', (e) => {
