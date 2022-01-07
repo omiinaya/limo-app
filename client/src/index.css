@@ -72,3 +72,15 @@ a:hover {
   margin-left: -20px !important;
   transform: scale(0.7)
 }
+
+.mapboxgl-ctrl-geocoder--input:focus {
+  color: rgb(81,150,217) !important;
+  outline: 2.7px groove !important;
+  border-radius: 2px;
+}
+
+.mapboxgl-ctrl-geocoder--input:hover:not(:focus) {
+  color: black !important;
+  outline: 1px solid !important;
+  border-radius: 2px;
+}
