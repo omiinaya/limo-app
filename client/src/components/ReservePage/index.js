@@ -351,7 +351,7 @@ function ReservePage() {
                                 >
                                     <Box 
                                         id="geocoder2"
-                                        className="geocoder"
+                                        className="geocoder2"
                                         style={{ width: '330px' }}
                                         sx={{ mr: 1 }}
                                     ></Box>
