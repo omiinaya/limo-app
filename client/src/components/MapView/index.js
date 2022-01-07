@@ -1,10 +1,8 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { getMidpoint } from "../../scripts"
-//import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
 const mapboxgl = window.mapboxgl
 const MapboxGeocoder = window.MapboxGeocoder
-const turf = window.turf
 
 mapboxgl.accessToken = process.env.REACT_APP_MAP_KEY;
 
@@ -13,7 +11,6 @@ export default function App(props) {
     const [mapObj, setMapObj] = React.useState(0)
     const [pickup, setPickup] = React.useState([]);
     const [dropoff, setDropoff] = React.useState([]);
-    const [midpoint, setMidpoint] = React.useState([]);
 
     const marker = document.createElement('div');
     marker.classList = 'truck';
@@ -38,8 +35,8 @@ export default function App(props) {
     useEffect(() => {
         console.log(pickup)
         if (pickup.length > 1) {
-            updateLocation(pickup[0], pickup[1])
-            addMarker(pickup[0], pickup[1])
+            updateLocation(pickup)
+            addMarker(pickup)
         }
     }, [pickup]);
 
@@ -48,11 +45,11 @@ export default function App(props) {
         console.log(dropoff)
         if (dropoff.length > 1 && pickup.length > 1) {
             var mid = getMidpoint(pickup[0], pickup[1], dropoff[0], dropoff[1])
-            updateLocation(mid[0], mid[1])
-            addMarker(dropoff[0], dropoff[1])
+            updateLocation(mid)
+            addMarker(dropoff)
         } else if (dropoff.length > 1) {
-            updateLocation(dropoff[0], dropoff[1])
-            addMarker(dropoff[0], dropoff[1])
+            updateLocation(dropoff)
+            addMarker(dropoff)
         } else {
             return
         }
@@ -68,13 +65,13 @@ export default function App(props) {
         mapboxgl: mapboxgl
     });
 
-    function addMarker(lat, long) {
-        new mapboxgl.Marker(marker).setLngLat([lat, long]).addTo(mapObj);
+    function addMarker(coordinates) {
+        new mapboxgl.Marker(marker).setLngLat(coordinates).addTo(mapObj);
     }
 
-    function updateLocation(lat, long) {
+    function updateLocation(coordinates) {
         mapObj.flyTo({
-            center: [lat, long],
+            center: coordinates,
             essential: true
         })
     }
