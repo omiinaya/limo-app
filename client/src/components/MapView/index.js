@@ -1,40 +1,33 @@
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+//import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+
+const mapboxgl = window.mapboxgl
+const MapboxGeocoder = window.MapboxGeocoder
 
 mapboxgl.accessToken = process.env.REACT_APP_MAP_KEY;
 
 export default function App() {
-    const mapContainer = useRef(null);
-    const map = useRef(null);
-    const [lng, setLng] = useState(-70.9);
-    const [lat, setLat] = useState(42.35);
-    const [zoom, setZoom] = useState(9);
-
+    console.log(window)
     useEffect(() => {
-        if (map.current) return; // initialize map only once
-        map.current = new mapboxgl.Map({
-            container: mapContainer.current,
+        const map = new mapboxgl.Map({
+            container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [lng, lat],
-            zoom: zoom
+            center: [-79.4512, 43.6568],
+            zoom: 13
         });
-    });
+        document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+    }, []);
 
-    useEffect(() => {
-        if (!map.current) return; // wait for map to initialize
-        map.current.on('move', () => {
-            setLng(map.current.getCenter().lng.toFixed(4));
-            setLat(map.current.getCenter().lat.toFixed(4));
-            setZoom(map.current.getZoom().toFixed(2));
-        });
+    const geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
     });
 
     return (
         <div>
-            <div className="sidebar">
-                Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-            </div>
-            <div ref={mapContainer} className="map-container" />
+            <div id="map"></div>
+
+            <div id="geocoder" class="geocoder"></div>
         </div>
     );
 }
