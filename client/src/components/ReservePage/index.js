@@ -29,7 +29,7 @@ const services = ['Point-to-Point', 'Hourly/As Directed', 'From Airport', 'To Ai
 const acPickup = ['Use current location', '']
 const acDropoff = ['Use current location', '']
 const acStops = ['Use current location', 'test', '']
-const seatTypes = ['Infact (Age 0-1)', 'Toddler (Age 1-3)', 'Booster (Age 3-5)']
+const seatTypes = ['Infant (Age 0-1)', 'Toddler (Age 1-3)', 'Booster (Age 3-5)']
 
 function ReservePage() {
     const [activeStep, setActiveStep] = React.useState(0);
@@ -294,7 +294,7 @@ function ReservePage() {
                                         id="geocoder"
                                         className="geocoder"
                                         style={{ width: '333px' }}
-                                        sx={{ mr: 0.5 }}
+                                        sx={{ mr: 0.3 }}
                                     ></Box>
                                     <IconButton>
                                         <MyLocationIcon />
@@ -315,6 +315,7 @@ function ReservePage() {
                                     return (
                                         <Box
                                             key={index}
+                                            ml={-2}
                                             mb={2}
                                             display='flex'
                                         >
@@ -353,7 +354,7 @@ function ReservePage() {
                                         id="geocoder2"
                                         className="geocoder2"
                                         style={{ width: '333px' }}
-                                        sx={{ mr: 0.5 }}
+                                        sx={{ mr: 0.3 }}
                                         onChage={(event) => {console.log(event)}}
                                     ></Box>
                                     <IconButton>
@@ -411,7 +412,7 @@ function ReservePage() {
                                         ><RemoveIcon style={{ width: 20 }} /></IconButton>
                                         <IconButton
                                             style={{
-                                                width: 63,
+                                                width: 60,
                                                 fontSize: 17,
                                                 borderRight: '1px solid silver'
                                             }}> {luggage} </IconButton>
@@ -434,6 +435,7 @@ function ReservePage() {
                                     return (
                                         <Box
                                             key={index}
+                                            ml={-2}
                                             mb={2}
                                             display='flex'
                                         >
@@ -449,7 +451,7 @@ function ReservePage() {
                                                         label={"Child Seat x"}
                                                         onChange={(event, value) => { handleChangeSeats(event, value, index) }}
                                                         sx={{
-                                                            width: 170
+                                                            width: 174
                                                         }}
                                                     >
                                                         {seatTypes.map((type, index) => {
