@@ -26,13 +26,11 @@ export default function App() {
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <div id="map" style={{
-                width: '100%', 
+                width: '100%',
                 height: 'auto',
-                
-                
-                }}></div>
+            }}></div>
 
-            <div id="geocoder" class="geocoder"></div>
+
         </div>
     );
 }

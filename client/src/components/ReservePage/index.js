@@ -20,6 +20,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import WorkIcon from '@mui/icons-material/Work';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import MyLocationIcon from '@mui/icons-material/MyLocation';
 import { getDate, getTime } from "../../scripts"
 //import styles from './styles';
 
@@ -290,23 +291,19 @@ function ReservePage() {
                             <Box
                                 sx={{ mb: 1 }}
                             >
-                                <Autocomplete
-                                    openOnFocus
-                                    size="small"
-                                    options={acPickup}
-                                    defaultValue={pickup}
-                                    onChange={handleChangePickup}
-                                    sx={{ width: 380 }}
-                                    renderInput={function (params) {
-                                        return (
-                                            <TextField {...params}
-                                                label="Pick-Up Location"
-                                                InputLabelProps={{ shrink: true }}
-                                            />
-                                        )
-                                    }
-                                    }
-                                />
+                                <Box
+                                    style={{ display: 'flex' }}
+                                >
+                                    <Box
+                                        id="geocoder"
+                                        class="geocoder"
+                                        style={{ width: '330px' }}
+                                        sx={{ mr: 1 }}
+                                    ></Box>
+                                    <IconButton>
+                                        <MyLocationIcon />
+                                    </IconButton>
+                                </Box>
                             </Box>
                             <Box sx={{ mb: 1 }}>
                                 <Button
