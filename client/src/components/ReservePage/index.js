@@ -296,7 +296,7 @@ function ReservePage() {
                                 >
                                     <Box
                                         id="geocoder"
-                                        class="geocoder"
+                                        className="geocoder"
                                         style={{ width: '330px' }}
                                         sx={{ mr: 1 }}
                                     ></Box>
@@ -347,24 +347,22 @@ function ReservePage() {
                                     );
                                 })}
                             </Box>
-                            <Box sx={{ mb: 2 }}>
-                                <Autocomplete
-                                    openOnFocus
-                                    size="small"
-                                    options={acDropoff}
-                                    defaultValue={dropoff}
-                                    onChange={handleChangeDropoff}
-                                    sx={{ width: 380 }}
-                                    renderInput={function (params) {
-                                        return (
-                                            <TextField {...params}
-                                                label="Drop-off Location"
-                                                InputLabelProps={{ shrink: true }}
-                                            />
-                                        )
-                                    }
-                                    }
-                                />
+                            <Box
+                                sx={{ mb: 2 }}
+                            >
+                                <Box
+                                    style={{ display: 'flex' }}
+                                >
+                                    <Box 
+                                        id="geocoder2"
+                                        className="geocoder"
+                                        style={{ width: '330px' }}
+                                        sx={{ mr: 1 }}
+                                    ></Box>
+                                    <IconButton>
+                                        <MyLocationIcon />
+                                    </IconButton>
+                                </Box>
                             </Box>
                             <Box
                                 display='flex'
