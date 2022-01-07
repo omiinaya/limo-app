@@ -8,6 +8,8 @@ mapboxgl.accessToken = process.env.REACT_APP_MAP_KEY;
 
 //use props and ref to attach to another div
 export default function App(props) {
+    console.log(props)
+
     const [mapObj, setMapObj] = React.useState(0)
     const [pickup, setPickup] = React.useState([]);
     const [dropoff, setDropoff] = React.useState([]);
@@ -32,14 +34,12 @@ export default function App(props) {
 
         //pickup element
         var pickEl = document.getElementById('geocoder').querySelector(".mapboxgl-ctrl-geocoder--input")
-        pickEl.addEventListener("input", (event) => {
-            console.log("pickup: "+pickEl.value)
-        });
+        pickEl.addEventListener("input", () => props.handleChangePickup(pickEl.value));
+
         //dropoff element
         var dropEl = document.getElementById('geocoder2').querySelector(".mapboxgl-ctrl-geocoder--input")
-        dropEl.addEventListener("input", (event) => {
-            console.log("dropoff: "+dropEl.value)
-        });
+        dropEl.addEventListener("input", () => props.handleChangeDropoff(dropEl.value));
+
         //observing change in height to fix map sizing issue.
         const myObserver = new ResizeObserver(entries => {
             entries.forEach(entry => {

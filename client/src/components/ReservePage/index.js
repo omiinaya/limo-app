@@ -72,12 +72,12 @@ function ReservePage() {
         console.log(event.target.value);
     };
 
-    const handleChangePickup = (event, value) => {
+    function handleChangePickup(value) {
         setPickup(value)
         console.log(value);
     };
 
-    const handleChangeDropoff = (event, value) => {
+    function handleChangeDropoff(value) {
         setDropoff(value)
         console.log(value);
     };
@@ -350,12 +350,12 @@ function ReservePage() {
                                 <Box
                                     style={{ display: 'flex' }}
                                 >
-                                    <Box 
+                                    <Box
                                         id="geocoder2"
                                         className="geocoder2"
                                         style={{ width: '333px' }}
                                         sx={{ mr: 0.3 }}
-                                        onChage={(event) => {console.log(event)}}
+                                        onChage={(event) => { console.log(event) }}
                                     ></Box>
                                     <IconButton>
                                         <MyLocationIcon />
@@ -502,7 +502,9 @@ function ReservePage() {
                                 })}
                             </Box>
                         </Box>
-                        <MapView />
+                        <MapView
+                            handleChangePickup={handleChangePickup}
+                            handleChangeDropoff={handleChangeDropoff} />
                     </Box>
                 </React.Fragment>
             ) : (activeStep === 1 ? (
