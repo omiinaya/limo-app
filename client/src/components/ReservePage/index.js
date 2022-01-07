@@ -510,7 +510,7 @@ function ReservePage() {
                 </React.Fragment>
             ) : (activeStep === 1 ? (
                 <React.Fragment>
-                    <MapView />
+                    placeholder
                 </React.Fragment>
             ) : (
                 <React.Fragment>

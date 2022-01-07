@@ -8,12 +8,15 @@ const turf = window.turf
 mapboxgl.accessToken = process.env.REACT_APP_MAP_KEY;
 
 //use props and ref to attach to another div
-export default function App() {
-    const [pickup, setPickup] = React.useState(0);
-    const [dropoff, setDropoff] = React.useState(0);
+export default function App(props) {
+    const [mapObj, setMapObj] = React.useState(0)
+    const [pickup, setPickup] = React.useState([]);
+    const [dropoff, setDropoff] = React.useState([]);
 
-    var test
+    const marker = document.createElement('div');
+    marker.classList = 'truck';
 
+    //executes before anything else is loaded
     useEffect(() => {
         const map = new mapboxgl.Map({
             container: 'map',
@@ -22,21 +25,27 @@ export default function App() {
             zoom: 13
         });
 
-        test = map
+        setMapObj(map)
 
-        document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-        document.getElementById('geocoder2').appendChild(geocoder2.onAdd(map));
-
-        map.on('load', async () => {
-            const marker = document.createElement('div');
-            marker.classList = 'truck';
-
-            new mapboxgl.Marker(marker).setLngLat(warehouseLocation).addTo(test);
-        });
+        geocoder.addTo('#geocoder');
+        geocoder2.addTo('#geocoder2')
 
     }, []);
 
-    const warehouseLocation = [-83.093, 42.376]
+    //updates location every time location state is changed.
+    useEffect(() => {
+        console.log(pickup)
+        if (pickup.length > 1) {
+            updateLocation(pickup[0], pickup[1])
+        }
+    }, [pickup]);
+
+    useEffect(() => {
+        console.log(dropoff)
+        if (dropoff.length > 1) {
+            updateLocation(dropoff[0], dropoff[1])
+        }
+    }, [dropoff]);
 
     const geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
@@ -48,19 +57,48 @@ export default function App() {
         mapboxgl: mapboxgl
     });
 
-    geocoder.on('result', (e) => {
-        console.log(JSON.stringify(e.result, null, 2))
-        console.log(test)
-
+    function updateLocation(lat, long) {
+        console.log(lat, long)
         
+        new mapboxgl.Marker(marker).setLngLat([lat, long]).addTo(mapObj);
+        mapObj.flyTo({
+            center: [lat, long],
+            essential: true
+        })
+        console.log(dropoff)
+        console.log(pickup)
+        console.log(mapObj)
+        
+    }
+
+    geocoder.on('result', (e) => {
+        var lat = e.result.geometry.coordinates[0]
+        var long = e.result.geometry.coordinates[1]
+        setPickup([lat, long])
+        console.log(lat, long)
     });
+
+    geocoder2.on('result', (e) => {
+        var lat = e.result.geometry.coordinates[0]
+        var long = e.result.geometry.coordinates[1]
+        setDropoff([lat, long])
+        console.log(lat, long)
+    });
+
+    const testing = () => {
+        console.log(pickup)
+        console.log(mapObj)
+    }
 
     return (
         <div style={{ position: 'relative', width: '100%' }}>
-            <div id="map" style={{
-                width: '100%',
-                height: 'auto',
-            }}></div>
+            <div id="map"
+                style={{
+                    width: '100%',
+                    height: 'auto',
+                }}
+                onClick={testing}
+            ></div>
         </div>
     );
 }
