@@ -288,12 +288,8 @@ function ReservePage() {
                                     />
                                 </Box>
                             </Box>
-                            <Box
-                                sx={{ mb: 1 }}
-                            >
-                                <Box
-                                    style={{ display: 'flex' }}
-                                >
+                            <Box sx={{ mb: 1 }}>
+                                <Box style={{ display: 'flex' }}>
                                     <Box
                                         id="geocoder"
                                         className="geocoder"
@@ -368,9 +364,7 @@ function ReservePage() {
                                 display='flex'
                                 sx={{ mb: 1 }}
                             >
-                                <Box
-                                    sx={{ mr: 2 }}
-                                >
+                                <Box sx={{ mr: 2 }} >
                                     <ButtonGroup
                                         size="small"
                                         variant="outlined"

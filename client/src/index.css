@@ -60,3 +60,9 @@ a:hover {
   background: #3887be;
   pointer-events: none;
 }
+
+.mapboxgl-ctrl-logo {
+  margin-bottom: -10px !important;
+  margin-left: -20px !important;
+  transform: scale(0.7)
+}

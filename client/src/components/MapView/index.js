@@ -21,7 +21,8 @@ export default function App(props) {
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [-83.093, 42.376],
-            zoom: 13
+            zoom: 13,
+            attributionControl: false
         });
 
         setMapObj(map)
