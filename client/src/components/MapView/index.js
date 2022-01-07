@@ -31,18 +31,23 @@ export default function App(props) {
         geocoder2.addTo('#geocoder2')
 
         //pickup element
-        console.log(document.getElementById('geocoder').querySelector(".mapboxgl-ctrl-geocoder--input"))
+        var pickEl = document.getElementById('geocoder').querySelector(".mapboxgl-ctrl-geocoder--input")
+        pickEl.addEventListener("input", (event) => {
+            console.log("pickup: "+pickEl.value)
+        });
         //dropoff element
-        console.log(document.getElementById('geocoder2').querySelector(".mapboxgl-ctrl-geocoder--input"))
-
+        var dropEl = document.getElementById('geocoder2').querySelector(".mapboxgl-ctrl-geocoder--input")
+        dropEl.addEventListener("input", (event) => {
+            console.log("dropoff: "+dropEl.value)
+        });
         //observing change in height to fix map sizing issue.
         const myObserver = new ResizeObserver(entries => {
             entries.forEach(entry => {
-              console.log('width', entry.contentRect.width);
-              console.log('height', entry.contentRect.height);
-              map.resize()
+                console.log('width', entry.contentRect.width);
+                console.log('height', entry.contentRect.height);
+                map.resize()
             });
-          });
+        });
         const targetNode = document.getElementById('map')
         myObserver.observe(targetNode)
     }, []);
