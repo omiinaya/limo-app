@@ -22,7 +22,7 @@ export default function App(props) {
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [-83.093, 42.376],
             zoom: 13,
-            attributionControl: false
+            attributionControl: false,
         });
 
         setMapObj(map)
@@ -34,6 +34,17 @@ export default function App(props) {
         console.log(document.getElementById('geocoder').querySelector(".mapboxgl-ctrl-geocoder--input"))
         //dropoff element
         console.log(document.getElementById('geocoder2').querySelector(".mapboxgl-ctrl-geocoder--input"))
+
+        //observing change in height to fix map sizing issue.
+        const myObserver = new ResizeObserver(entries => {
+            entries.forEach(entry => {
+              console.log('width', entry.contentRect.width);
+              console.log('height', entry.contentRect.height);
+              map.resize()
+            });
+          });
+        const targetNode = document.getElementById('map')
+        myObserver.observe(targetNode)
     }, []);
 
     //updates location every time pickup state is changed.
@@ -100,9 +111,14 @@ export default function App(props) {
         console.log(mapObj)
     }
 
+    const mapResize = () => {
+        //console.log('test')
+    }
+
     return (
-        <div style={{ position: 'relative', width: '100%' }}>
+        <div style={{ display: 'inline-block', position: 'relative', width: '100%' }}>
             <div id="map"
+                onresize={mapResize()}
                 style={{
                     width: '100%',
                     height: 'auto',
