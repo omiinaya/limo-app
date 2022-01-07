@@ -47,6 +47,8 @@ a:hover {
 .mapboxgl-ctrl-geocoder {
   min-width: 100%;
   width: 100% !important;
+  border: 1px solid silver;
+  box-shadow: none !important;
 }
 
 #map {

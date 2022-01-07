@@ -354,6 +354,7 @@ function ReservePage() {
                                         className="geocoder2"
                                         style={{ width: '330px' }}
                                         sx={{ mr: 1 }}
+                                        onChage={(event) => {console.log(event)}}
                                     ></Box>
                                     <IconButton>
                                         <MyLocationIcon />

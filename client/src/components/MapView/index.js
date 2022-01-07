@@ -27,9 +27,13 @@ export default function App(props) {
 
         setMapObj(map)
 
-        geocoder.addTo('#geocoder');
+        geocoder.addTo('#geocoder')
         geocoder2.addTo('#geocoder2')
 
+        //pickup element
+        console.log(document.getElementById('geocoder').querySelector(".mapboxgl-ctrl-geocoder--input"))
+        //dropoff element
+        console.log(document.getElementById('geocoder2').querySelector(".mapboxgl-ctrl-geocoder--input"))
     }, []);
 
     //updates location every time pickup state is changed.
