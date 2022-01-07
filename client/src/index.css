@@ -23,5 +23,19 @@
 }
 
 a:hover {
-  color: inherit !important
+  color: inherit !important;
+}
+
+.map-container {
+  height: 400px;
+}
+
+.sidebar {
+  background-color: rgba(35, 55, 75, 0.9);
+  color: #fff;
+  padding: 6px 12px;
+  font-family: monospace;
+  z-index: 1;
+  border-radius: 4px;
+  margin: '0 auto';
 }
