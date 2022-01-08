@@ -1,1 +1,1 @@
-placeholder | https://limolux.herokuapp.com/
+placeholder
