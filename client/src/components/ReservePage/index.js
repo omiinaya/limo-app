@@ -38,6 +38,8 @@ function ReservePage() {
     const [time, setTime] = React.useState(getTime());
     const [pickup, setPickup] = React.useState('');
     const [dropoff, setDropoff] = React.useState('');
+    const [currentP, setCurrentP] = React.useState('');
+    const [currentD, setCurrentD] = React.useState('');
     const [passengers, setPassengers] = React.useState(1);
     const [luggage, setLuggage] = React.useState(0);
     const [stops, setStops] = React.useState([]);
@@ -196,24 +198,27 @@ function ReservePage() {
         console.log(stops)
         console.log(seats)
         console.log(quantity)
+        console.log(currentP)
     }
 
     const currentLocation = async () => {
+        var pickEl = document.getElementById('geocoder').querySelector(".mapboxgl-ctrl-geocoder--input")
+        //var dropEl = document.getElementById('geocoder2').querySelector(".mapboxgl-ctrl-geocoder--input")
         navigator.geolocation.getCurrentPosition(async function (position) {
             let token = process.env.REACT_APP_MAP_KEY;
             let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
-            console.log("Latitude is :", position.coords.latitude);
-            console.log("Longitude is :", position.coords.longitude);
-            //https://api.mapbox.com/geocoding/v5/{endpoint}/{longitude},{latitude}.json
 
-            const test = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${token}`)
+            const location = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${token}`)
                 .catch(error => {
                     console.error('Error:', error);
                 });
-            let result = await test.json();
+            let result = await location.json();
             if (result) {
-                console.log(result.features[0].place_name)
+                console.log(result.features[0])
+                pickEl.value = result.features[0].place_name
+                handleChangePickup(pickEl.value)
+                setCurrentP(result.features[0].geometry.coordinates)
             }
         });
     }
@@ -524,7 +529,10 @@ function ReservePage() {
                         </Box>
                         <MapView
                             handleChangePickup={handleChangePickup}
-                            handleChangeDropoff={handleChangeDropoff} />
+                            handleChangeDropoff={handleChangeDropoff}
+                            currentPickup={currentP}
+                            currentDropoff={currentD}
+                        />
                     </Box>
                 </React.Fragment>
             ) : (activeStep === 1 ? (

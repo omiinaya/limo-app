@@ -76,6 +76,11 @@ export default function App(props) {
         }
     }, [dropoff]);
 
+    useEffect(() => {
+        //coordinates from current location button
+        console.log(props.currentPickup)
+    }, [props.currentPickup]);
+
     const geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl
