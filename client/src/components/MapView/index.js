@@ -116,14 +116,9 @@ export default function App(props) {
         console.log(mapObj)
     }
 
-    const mapResize = () => {
-        //console.log('test')
-    }
-
     return (
         <div style={{ display: 'inline-block', position: 'relative', width: '100%' }}>
             <div id="map"
-                onresize={mapResize()}
                 style={{
                     width: '100%',
                     height: 'auto',

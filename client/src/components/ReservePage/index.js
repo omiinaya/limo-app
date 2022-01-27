@@ -198,6 +198,26 @@ function ReservePage() {
         console.log(quantity)
     }
 
+    const currentLocation = async () => {
+        navigator.geolocation.getCurrentPosition(async function (position) {
+            let token = process.env.REACT_APP_MAP_KEY;
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            console.log("Latitude is :", position.coords.latitude);
+            console.log("Longitude is :", position.coords.longitude);
+            //https://api.mapbox.com/geocoding/v5/{endpoint}/{longitude},{latitude}.json
+
+            const test = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${token}`)
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            let result = await test.json();
+            if (result) {
+                console.log(result.features[0].place_name)
+            }
+        });
+    }
+
     return (
         <Box sx={{ width: '100%' }}>
             <Stepper
@@ -296,7 +316,7 @@ function ReservePage() {
                                         style={{ width: '333px' }}
                                         sx={{ mr: 0.3 }}
                                     ></Box>
-                                    <IconButton>
+                                    <IconButton onClick={currentLocation}>
                                         <MyLocationIcon />
                                     </IconButton>
                                 </Box>
@@ -357,7 +377,7 @@ function ReservePage() {
                                         sx={{ mr: 0.3 }}
                                         onChage={(event) => { console.log(event) }}
                                     ></Box>
-                                    <IconButton>
+                                    <IconButton onClick={currentLocation}>
                                         <MyLocationIcon />
                                     </IconButton>
                                 </Box>
