@@ -77,8 +77,10 @@ export default function App(props) {
     }, [dropoff]);
 
     useEffect(() => {
-        //coordinates from current location button
-        console.log(props.currentPickup)
+        if (props.currentPickup) {
+            console.log(props.currentPickup)
+            updateLocation(props.currentPickup)
+        }
     }, [props.currentPickup]);
 
     const geocoder = new MapboxGeocoder({
