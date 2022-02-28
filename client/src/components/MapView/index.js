@@ -80,6 +80,7 @@ export default function App(props) {
         if (props.currentPickup) {
             console.log(props.currentPickup)
             updateLocation(props.currentPickup)
+            addMarker(props.currentPickup)
         }
     }, [props.currentPickup]);
 
