@@ -5,6 +5,8 @@ import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-direct
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 //import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css'
 
+//Northwest 175th Street, Hialeah, Florida 33015, United States
+
 var mapboxgl = require('mapbox-gl');
 //const MapboxGeocoder = window.MapboxGeocoder
 
@@ -18,9 +20,6 @@ export default function App(props) {
     const [dirObj, setDirObj] = React.useState(0)
     const [pickup, setPickup] = React.useState([]);
     const [dropoff, setDropoff] = React.useState([]);
-
-    const marker = document.createElement('div');
-    marker.classList = 'truck';
 
     //executes before anything else is loaded
     useEffect(() => {
@@ -36,7 +35,7 @@ export default function App(props) {
             accessToken: process.env.REACT_APP_MAP_KEY,
             unit: 'metric',
             profile: 'mapbox/driving',
-            interactive: true,
+            interactive: false,
             controls: {
                 profileSwitcher: false,
                 instructions: false,
@@ -44,27 +43,28 @@ export default function App(props) {
             }
         });
 
+        //necessary for directions and waypoints to work
         map.addControl(directions, 'top-left');
 
-        setMapObj(prev => prev = map)
-        setDirObj(prev => prev = directions)
+        //states used to globalize variables
+        setMapObj((prev) => prev = map)
+        setDirObj((prev) => prev = directions)
 
+        //adding geocoders to their respective dom elements
         geocoder.addTo('#geocoder')
         geocoder2.addTo('#geocoder2')
 
-        //pickup element
+        //dom input elements
         var pickEl = document.getElementById('geocoder').querySelector(".mapboxgl-ctrl-geocoder--input")
-        pickEl.addEventListener("input", () => props.handleChangePickup(pickEl.value));
-
-        //dropoff element
         var dropEl = document.getElementById('geocoder2').querySelector(".mapboxgl-ctrl-geocoder--input")
+
+        //onchange listeners
+        pickEl.addEventListener("input", () => props.handleChangePickup(pickEl.value));
         dropEl.addEventListener("input", () => props.handleChangeDropoff(dropEl.value));
 
-        //observing change in height to fix map sizing issue.
+        //observing change in height and resizing map
         const myObserver = new ResizeObserver(entries => {
             entries.forEach(entry => {
-                console.log('width', entry.contentRect.width);
-                console.log('height', entry.contentRect.height);
                 map.resize()
             });
         });
@@ -77,23 +77,17 @@ export default function App(props) {
         if (pickup.length > 1) return dirObj.setOrigin(pickup)
     }, [pickup]);
 
-    //updates location every time dropoff state is changed
+    //updates location every time dropoff state is changed.
     useEffect(() => {
         if (dropoff.length > 1) return dirObj.setDestination(dropoff)
     }, [dropoff]);
 
     useEffect(() => {
-        if (props.currentPickup) {
-            setPickup(props.currentPickup)
-            //updateLocation(props.currentPickup)
-        }
+        if (props.currentPickup) return setPickup(props.currentPickup)
     }, [props.currentPickup]);
 
     useEffect(() => {
-        if (props.currentDropoff) {
-            setDropoff(props.currentDropoff)
-            //updateLocation(props.currentDropoff)
-        }
+        if (props.currentDropoff) return setDropoff(props.currentDropoff)
     }, [props.currentDropoff]);
 
     const geocoder = new MapboxGeocoder({
@@ -106,16 +100,9 @@ export default function App(props) {
         mapboxgl: mapboxgl
     });
 
-    function updateLocation(coordinates) {
-        dirObj.setOrigin(coordinates)
-        //dirObj.addWaypoint(0, coordinates);
-        //dirObj.setWaypoint(0, coordinates);
-    }
-
     geocoder.on('result', (e) => {
         var lat = e.result.geometry.coordinates[0]
         var long = e.result.geometry.coordinates[1]
-        console.log(e.result.geometry)
         setPickup(prev => prev = [lat, long])
     });
 
@@ -123,7 +110,6 @@ export default function App(props) {
         var lat = e.result.geometry.coordinates[0]
         var long = e.result.geometry.coordinates[1]
         setDropoff(prev => prev = [lat, long])
-        console.log(lat, long)
     });
 
     const testing = () => {

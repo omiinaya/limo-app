@@ -268,12 +268,8 @@ function ReservePage() {
                 </React.Fragment>
             ) : (activeStep === 0 ? (
                 <React.Fragment>
-                    <Box
-                        display="flex"
-                    >
-                        <Box
-                            sx={{ width: 400 }}
-                        >
+                    <Box display="flex">
+                        <Box sx={{ width: 400 }} >
                             <FormControl>
                                 <InputLabel>Service</InputLabel>
                                 <Select
