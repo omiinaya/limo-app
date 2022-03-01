@@ -93,8 +93,14 @@ export default function App(props) {
     useEffect(() => {
         if (props.stops.length >= 1) {
             var waypoints = document.querySelectorAll(".waypoint-geocoder")
-            waypoints.forEach(elem => {
-                console.log(elem)
+            waypoints.forEach((elem, index) => {
+                if (index === waypoints.length - 1) {
+                    var x = new MapboxGeocoder({
+                        accessToken: mapboxgl.accessToken,
+                        mapboxgl: mapboxgl
+                    })
+                    x.addTo(elem)
+                }
             })
         }
     }, [props.stops]);
