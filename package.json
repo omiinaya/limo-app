@@ -22,6 +22,8 @@
   "author": "VP",
   "license": "",
   "dependencies": {
+    "@mapbox/mapbox-gl-directions": "^4.1.0",
+    "@mapbox/mapbox-gl-geocoder": "^4.7.4",
     "axios": "^0.21.4",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
@@ -31,6 +33,7 @@
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
+    "mapbox-gl": "^2.7.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.0",
     "node-fetch": "^2.6.5",

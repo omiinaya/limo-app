@@ -201,9 +201,8 @@ function ReservePage() {
         console.log(currentP)
     }
 
-    const currentLocation = async () => {
+    const currentLocationP = async () => {
         var pickEl = document.getElementById('geocoder').querySelector(".mapboxgl-ctrl-geocoder--input")
-        //var dropEl = document.getElementById('geocoder2').querySelector(".mapboxgl-ctrl-geocoder--input")
         navigator.geolocation.getCurrentPosition(async function (position) {
             let token = process.env.REACT_APP_MAP_KEY;
             let latitude = position.coords.latitude;
@@ -216,9 +215,31 @@ function ReservePage() {
             let result = await location.json();
             if (result) {
                 console.log(result.features[0])
+                console.log(result.features[0].geometry.coordinates)
                 pickEl.value = result.features[0].place_name
                 handleChangePickup(pickEl.value)
                 setCurrentP(result.features[0].geometry.coordinates)
+            }
+        });
+    }
+
+    const currentLocationD = async () => {
+        var dropEl = document.getElementById('geocoder2').querySelector(".mapboxgl-ctrl-geocoder--input")
+        navigator.geolocation.getCurrentPosition(async function (position) {
+            let token = process.env.REACT_APP_MAP_KEY;
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+
+            const location = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${token}`)
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            let result = await location.json();
+            if (result) {
+                console.log(result.features[0])
+                dropEl.value = result.features[0].place_name
+                handleChangeDropoff(dropEl.value)
+                setCurrentD(result.features[0].geometry.coordinates)
             }
         });
     }
@@ -321,7 +342,7 @@ function ReservePage() {
                                         style={{ width: '333px' }}
                                         sx={{ mr: 0.3 }}
                                     ></Box>
-                                    <IconButton onClick={currentLocation}>
+                                    <IconButton onClick={currentLocationP}>
                                         <MyLocationIcon />
                                     </IconButton>
                                 </Box>
@@ -369,20 +390,15 @@ function ReservePage() {
                                     );
                                 })}
                             </Box>
-                            <Box
-                                sx={{ mb: 2 }}
-                            >
-                                <Box
-                                    style={{ display: 'flex' }}
-                                >
+                            <Box sx={{ mb: 2 }}>
+                                <Box style={{ display: 'flex' }}>
                                     <Box
                                         id="geocoder2"
                                         className="geocoder2"
                                         style={{ width: '333px' }}
                                         sx={{ mr: 0.3 }}
-                                        onChange={(event) => { console.log(event) }}
                                     ></Box>
-                                    <IconButton onClick={currentLocation}>
+                                    <IconButton onClick={currentLocationD}>
                                         <MyLocationIcon />
                                     </IconButton>
                                 </Box>

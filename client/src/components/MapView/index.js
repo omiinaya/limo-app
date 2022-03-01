@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
 import { getMidpoint } from "../../scripts"
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions'
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+//import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css'
 
-const mapboxgl = window.mapboxgl
-const MapboxGeocoder = window.MapboxGeocoder
+var mapboxgl = require('mapbox-gl');
+//const MapboxGeocoder = window.MapboxGeocoder
 
 mapboxgl.accessToken = process.env.REACT_APP_MAP_KEY;
 
@@ -27,7 +31,7 @@ export default function App(props) {
             attributionControl: false,
         });
 
-        setMapObj(map)
+        setMapObj((prev) => prev = map)
 
         geocoder.addTo('#geocoder')
         geocoder2.addTo('#geocoder2')
@@ -63,7 +67,6 @@ export default function App(props) {
 
     //updates location every time dropoff state is changed
     useEffect(() => {
-        console.log(dropoff)
         if (dropoff.length > 1 && pickup.length > 1) {
             var mid = getMidpoint(pickup[0], pickup[1], dropoff[0], dropoff[1])
             updateLocation(mid)
@@ -79,10 +82,20 @@ export default function App(props) {
     useEffect(() => {
         if (props.currentPickup) {
             console.log(props.currentPickup)
+            setPickup(props.currentPickup)
             updateLocation(props.currentPickup)
             addMarker(props.currentPickup)
         }
     }, [props.currentPickup]);
+
+    useEffect(() => {
+        if (props.currentDropoff) {
+            console.log(props.currentDropoff)
+            setDropoff(props.currentDropoff)
+            updateLocation(props.currentDropoff)
+            addMarker(props.currentDropoff)
+        }
+    }, [props.currentDropoff]);
 
     const geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
@@ -103,19 +116,20 @@ export default function App(props) {
             center: coordinates,
             essential: true
         })
+        
     }
 
     geocoder.on('result', (e) => {
         var lat = e.result.geometry.coordinates[0]
         var long = e.result.geometry.coordinates[1]
-        setPickup([lat, long])
-        console.log(e.result)
+        console.log(e.result.geometry)
+        setPickup(prev => prev = [lat, long])
     });
 
     geocoder2.on('result', (e) => {
         var lat = e.result.geometry.coordinates[0]
         var long = e.result.geometry.coordinates[1]
-        setDropoff([lat, long])
+        setDropoff(prev => prev = [lat, long])
         console.log(lat, long)
     });
 
