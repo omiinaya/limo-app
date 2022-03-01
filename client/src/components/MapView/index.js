@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { getMidpoint } from "../../scripts"
+import React, { useEffect, useRef } from 'react';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions'
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
@@ -20,6 +19,19 @@ export default function App(props) {
     const [dirObj, setDirObj] = React.useState(0)
     const [pickup, setPickup] = React.useState([]);
     const [dropoff, setDropoff] = React.useState([]);
+    const prevStop = usePrevious(props.stops);
+
+    function usePrevious(value) {
+        // The ref object is a generic container whose current property is mutable ...
+        // ... and can hold any value, similar to an instance property on a class
+        const ref = useRef();
+        // Store current value in ref
+        useEffect(() => {
+          ref.current = value;
+        }, [value]); // Only re-run if value changes
+        // Return previous value (happens before update in useEffect above)
+        return ref.current;
+      }
 
     //executes before anything else is loaded
     useEffect(() => {
@@ -102,6 +114,11 @@ export default function App(props) {
                     x.addTo(elem)
                 }
             })
+        }
+        if (props.stops != prevStop) {
+            //remove stop
+            console.log(prevStop)
+            console.log(props.stops)
         }
     }, [props.stops]);
 
