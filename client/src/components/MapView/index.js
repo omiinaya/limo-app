@@ -90,6 +90,15 @@ export default function App(props) {
         if (props.currentDropoff) return setDropoff(props.currentDropoff)
     }, [props.currentDropoff]);
 
+    useEffect(() => {
+        if (props.stops.length >= 1) {
+            var waypoints = document.querySelectorAll(".waypoint-geocoder")
+            waypoints.forEach(elem => {
+                console.log(elem)
+            })
+        }
+    }, [props.stops]);
+
     const geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl

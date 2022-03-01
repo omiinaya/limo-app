@@ -11,7 +11,6 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import MapView from '../MapView';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -22,7 +21,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import { getDate, getTime } from "../../scripts"
-//import styles from './styles';
 
 const steps = ['Trip Details', 'Select Vehicle', 'Final Steps']
 const services = ['Point-to-Point', 'Hourly/As Directed', 'From Airport', 'To Airport']
@@ -282,11 +280,12 @@ function ReservePage() {
                                             ml={-2}
                                             mb={2}
                                             display='flex'
+                                            key={index}
                                         >
-                                            <IconButton disabled key={index}><ArrowRightIcon key={index} /></IconButton>
+                                            <IconButton disabled><ArrowRightIcon /></IconButton>
                                             <Box
                                                 id={`waypoint-geocoder-${index}`}
-                                                className={`waypoint-geocoder-${index}`}
+                                                className={`waypoint-geocoder`}
                                                 style={{ width: '310px' }}
                                                 sx={{ mr: 0.3 }}
                                             />
@@ -295,7 +294,7 @@ function ReservePage() {
                                                 id={index}
                                                 onClick={(event) => { handleRemoveStop(event, index) }}
                                             >
-                                                <DeleteIcon key={index} />
+                                                <DeleteIcon />
                                             </IconButton>
                                         </Box>
                                     );
@@ -459,6 +458,7 @@ function ReservePage() {
                             handleChangeDropoff={handleChangeDropoff}
                             currentPickup={currentP}
                             currentDropoff={currentD}
+                            stops={stops}
                         />
                     </Box>
                 </React.Fragment>
