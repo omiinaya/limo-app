@@ -47,8 +47,8 @@ export default function App(props) {
         map.addControl(directions, 'top-left');
 
         //states used to globalize variables
-        setMapObj((prev) => prev = map)
-        setDirObj((prev) => prev = directions)
+        setMapObj(map)
+        setDirObj(directions)
 
         //adding geocoders to their respective dom elements
         geocoder.addTo('#geocoder')

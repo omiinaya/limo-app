@@ -26,9 +26,6 @@ import { getDate, getTime } from "../../scripts"
 
 const steps = ['Trip Details', 'Select Vehicle', 'Final Steps']
 const services = ['Point-to-Point', 'Hourly/As Directed', 'From Airport', 'To Airport']
-const acPickup = ['Use current location', '']
-const acDropoff = ['Use current location', '']
-const acStops = ['Use current location', 'test', '']
 const seatTypes = ['Infant (Age 0-1)', 'Toddler (Age 1-3)', 'Booster (Age 3-5)']
 
 function ReservePage() {
@@ -46,145 +43,71 @@ function ReservePage() {
     const [seats, setSeats] = React.useState([]);
     const [quantity, setQuantity] = React.useState([])
 
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        handleTest()
-    };
+    //form
+    const handleNext = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    const handleBack = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    const handleReset = () => setActiveStep(0);
 
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+    //change
+    const handleChangeService = (event) => setService(event.target.value);
+    const handleChangeDate = (event) => setDate(event.target.value);
+    const handleChangeTime = (event) => setTime(event.target.value);
+    const handleChangePickup = (value) => setPickup(value);
+    const handleChangeDropoff = (value) => setDropoff(value)
 
-    const handleReset = () => {
-        setActiveStep(0);
-    };
+    //add
+    const handleAddPassengers = () => setPassengers(passengers + 1)
+    const handleAddLuggage = () => setLuggage(luggage + 1)
+    const handleAddStop = () => setStops([...stops, ...['']])
 
-    const handleChangeService = (event) => {
-        setService(event.target.value)
-        console.log(event.target.value);
-    };
-
-    const handleChangeDate = (event) => {
-        setDate(event.target.value)
-        console.log(event.target.value);
-    };
-
-    const handleChangeTime = (event) => {
-        setTime(event.target.value)
-        console.log(event.target.value);
-    };
-
-    function handleChangePickup(value) {
-        setPickup(value)
-        console.log(value);
-    };
-
-    function handleChangeDropoff(value) {
-        setDropoff(value)
-        console.log(value);
-    };
-
-    const handleAddPassengers = () => {
-        var value = passengers + 1
-        setPassengers(value)
-        console.log(value);
-    };
-
+    //remove
     const handleRemovePassengers = () => {
-        if (passengers > 1) {
-            var value = passengers - 1
-            setPassengers(value)
-        } else {
-            return
-        }
-        console.log(value);
-    };
-
-    const handleAddLuggage = () => {
-        var value = luggage + 1
-        setLuggage(value)
-        console.log(value);
+        if (passengers > 1) setPassengers(passengers - 1)
     };
 
     const handleRemoveLuggage = () => {
-        if (luggage > 0) {
-            var value = luggage - 1
-            setLuggage(value)
-        } else {
-            return
-        }
-        console.log(value);
+        if (luggage > 0) setLuggage(luggage - 1)
     };
 
-    const handleAddStop = () => {
-        var array = [...stops, ...['']]
-        setStops(array)
-        console.log(array)
-    };
-
-    const handleRemoveStop = (event, index) => {
-        var i = index
-        //this setup allows for multiple filters
-        var x = stops.filter(function (eachElem, index) {
-            return index !== i
-        })
-        setStops(x)
-        console.log(x)
+    const handleRemoveStop = (event, idx) => {
+        setStops(stops.filter((elem, index) => index !== idx))
     }
-
+    /*
     const handleChangeStop = (event, value, index) => {
         var array = [...stops]
         array[index] = value
         setStops(array)
         console.log(array)
     }
-
+    */
     const handleAddSeats = () => {
-        var type = [...seats, ...['']]
-        setSeats(type)
-        var count = [...quantity, ...[0]]
-        setQuantity(count)
-        console.log(type)
-        console.log(count)
+        setSeats([...seats, ...['']])
+        setQuantity([...quantity, ...[0]])
     }
 
     const handleChangeSeats = (event, value, index) => {
         var array = [...seats]
         array[index] = value.props.value
         setSeats(array)
-        console.log(array)
     }
 
-    const handleRemoveSeat = (event, index) => {
-        var i = index
-        var x = seats.filter(function (eachElem, index) {
-            return index !== i
-        })
-        var y = quantity.filter(function (eachElem, index) {
-            return index !== i
-        })
+    const handleRemoveSeat = (event, idx) => {
+        var x = seats.filter((elem, index) => index !== idx)
+        var y = quantity.filter((elem, index) => index !== idx)
         setSeats(x)
         setQuantity(y)
-        console.log(x)
-        console.log(y)
     }
 
     const handleAddQuantity = (event, index) => {
-        console.log(index)
         var array = [...quantity]
         array[index] = array[index] + 1
         setQuantity(array)
-        console.log(array)
     };
 
     const handleRemoveQuantity = (event, index) => {
-        console.log(index)
         var array = [...quantity]
-        if (array[index] > 0) {
-            array[index] = array[index] - 1
-        }
+        if (array[index] > 0) array[index] = array[index] - 1
         setQuantity(array)
-        console.log(array)
     };
 
     const handleTest = () => {
@@ -213,13 +136,12 @@ function ReservePage() {
                     console.error('Error:', error);
                 });
             let result = await location.json();
-            if (result) {
-                console.log(result.features[0])
-                console.log(result.features[0].geometry.coordinates)
-                pickEl.value = result.features[0].place_name
-                handleChangePickup(pickEl.value)
-                setCurrentP(result.features[0].geometry.coordinates)
-            }
+            if (!result) return
+            console.log(result.features[0])
+            console.log(result.features[0].geometry.coordinates)
+            pickEl.value = result.features[0].place_name
+            handleChangePickup(pickEl.value)
+            setCurrentP(result.features[0].geometry.coordinates)
         });
     }
 
@@ -337,7 +259,7 @@ function ReservePage() {
                                         className="geocoder"
                                         style={{ width: '333px' }}
                                         sx={{ mr: 0.3 }}
-                                    ></Box>
+                                    />
                                     <IconButton onClick={currentLocationP}>
                                         <MyLocationIcon />
                                     </IconButton>
@@ -362,18 +284,11 @@ function ReservePage() {
                                             display='flex'
                                         >
                                             <IconButton disabled key={index}><ArrowRightIcon key={index} /></IconButton>
-                                            <Autocomplete
-                                                openOnFocus
-                                                key={index}
-                                                size="small"
-                                                options={acStops}
-                                                value={stops[index]}
-                                                onChange={(event, value) => { handleChangeStop(event, value, index) }}
-                                                sx={{ width: 310 }}
-                                                renderInput={(params) => <TextField key={index} {...params}
-                                                    label={"Stop Location " + (index + 1)}
-                                                    InputLabelProps={{ shrink: true }}
-                                                />}
+                                            <Box
+                                                id={`waypoint-geocoder-${index}`}
+                                                className={`waypoint-geocoder-${index}`}
+                                                style={{ width: '310px' }}
+                                                sx={{ mr: 0.3 }}
                                             />
                                             <IconButton
                                                 key={index}
@@ -393,7 +308,7 @@ function ReservePage() {
                                         className="geocoder2"
                                         style={{ width: '333px' }}
                                         sx={{ mr: 0.3 }}
-                                    ></Box>
+                                    />
                                     <IconButton onClick={currentLocationD}>
                                         <MyLocationIcon />
                                     </IconButton>
