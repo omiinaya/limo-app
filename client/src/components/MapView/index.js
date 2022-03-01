@@ -15,6 +15,7 @@ export default function App(props) {
     console.log(props)
 
     const [mapObj, setMapObj] = React.useState(0)
+    const [dirObj, setDirObj] = React.useState(0)
     const [pickup, setPickup] = React.useState([]);
     const [dropoff, setDropoff] = React.useState([]);
 
@@ -31,7 +32,22 @@ export default function App(props) {
             attributionControl: false,
         });
 
-        setMapObj((prev) => prev = map)
+        const directions = new MapboxDirections({
+            accessToken: process.env.REACT_APP_MAP_KEY,
+            unit: 'metric',
+            profile: 'mapbox/driving',
+            interactive: true,
+            controls: {
+                profileSwitcher: false,
+                instructions: false,
+                inputs: true
+            }
+        });
+
+        map.addControl(directions, 'top-left');
+
+        setMapObj(prev => prev = map)
+        setDirObj(prev => prev = directions)
 
         geocoder.addTo('#geocoder')
         geocoder2.addTo('#geocoder2')
@@ -58,42 +74,25 @@ export default function App(props) {
 
     //updates location every time pickup state is changed.
     useEffect(() => {
-        console.log(pickup)
-        if (pickup.length > 1) {
-            updateLocation(pickup)
-            addMarker(pickup)
-        }
+        if (pickup.length > 1) return dirObj.setOrigin(pickup)
     }, [pickup]);
 
     //updates location every time dropoff state is changed
     useEffect(() => {
-        if (dropoff.length > 1 && pickup.length > 1) {
-            var mid = getMidpoint(pickup[0], pickup[1], dropoff[0], dropoff[1])
-            updateLocation(mid)
-            addMarker(dropoff)
-        } else if (dropoff.length > 1) {
-            updateLocation(dropoff)
-            addMarker(dropoff)
-        } else {
-            return
-        }
+        if (dropoff.length > 1) return dirObj.setDestination(dropoff)
     }, [dropoff]);
 
     useEffect(() => {
         if (props.currentPickup) {
-            console.log(props.currentPickup)
             setPickup(props.currentPickup)
-            updateLocation(props.currentPickup)
-            addMarker(props.currentPickup)
+            //updateLocation(props.currentPickup)
         }
     }, [props.currentPickup]);
 
     useEffect(() => {
         if (props.currentDropoff) {
-            console.log(props.currentDropoff)
             setDropoff(props.currentDropoff)
-            updateLocation(props.currentDropoff)
-            addMarker(props.currentDropoff)
+            //updateLocation(props.currentDropoff)
         }
     }, [props.currentDropoff]);
 
@@ -107,16 +106,10 @@ export default function App(props) {
         mapboxgl: mapboxgl
     });
 
-    function addMarker(coordinates) {
-        new mapboxgl.Marker(marker).setLngLat(coordinates).addTo(mapObj);
-    }
-
     function updateLocation(coordinates) {
-        mapObj.flyTo({
-            center: coordinates,
-            essential: true
-        })
-        
+        dirObj.setOrigin(coordinates)
+        //dirObj.addWaypoint(0, coordinates);
+        //dirObj.setWaypoint(0, coordinates);
     }
 
     geocoder.on('result', (e) => {
