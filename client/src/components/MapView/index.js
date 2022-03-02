@@ -2,12 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions'
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
-//import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css'
 
 //Northwest 175th Street, Hialeah, Florida 33015, United States
 
 var mapboxgl = require('mapbox-gl');
-//const MapboxGeocoder = window.MapboxGeocoder
 
 mapboxgl.accessToken = process.env.REACT_APP_MAP_KEY;
 
@@ -33,28 +31,35 @@ export default function App(props) {
         return ref.current;
     }
 
-    function addGeocoders() {
-        var waypoints = document.querySelectorAll('.waypoint-geocoder')
-        waypoints.forEach((elem, index) => {
-            if (index === waypoints.length - 1) {
-                new MapboxGeocoder({
-                    accessToken: mapboxgl.accessToken,
-                    mapboxgl: mapboxgl
-                }).addTo(elem)
-            }
+    function addGeocoder(element) {
+        var x = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
         })
+        
+        x.addTo(element)
+
+        x.on('result', (e) => {
+            var lat = e.result.geometry.coordinates[0]
+            var long = e.result.geometry.coordinates[1]
+            //add waypoint on this
+            console.log(lat, long)
+        });
     }
 
-    function addListeners() {
+    function addWaypoint() {
         var test = [...props.stops]
         var waypoints = document.querySelectorAll('.waypoint-geocoder')
         waypoints.forEach((elem, index) => {
-            var input = elem.querySelector('.mapboxgl-ctrl-geocoder--input')
-            var idx = elem.id.split('-')[2]
-            input.addEventListener("input", () => {
-                test[idx] = input.value
-                props.handleChangeStops(test)
-            });
+            if (index === waypoints.length - 1) {
+                addGeocoder(elem)
+                var input = elem.querySelector('.mapboxgl-ctrl-geocoder--input')
+                var idx = elem.id.split('-')[2] //gets number from element id
+                input.addEventListener("input", () => {
+                    test[idx] = input.value
+                    props.handleChangeStops(test)
+                });
+            }
         })
     }
 
@@ -128,11 +133,7 @@ export default function App(props) {
     }, [props.currentDropoff]);
 
     useEffect(() => {
-        if (props.stops.length >= 1) {
-            console.log(props.stops.length)
-            addGeocoders()
-            addListeners()
-        }
+        if (props.stops.length >= 1) addWaypoint()
         if (props.stops != prevStop && prevStop != undefined) {
             console.log(prevStop)
         }
@@ -151,13 +152,13 @@ export default function App(props) {
     geocoder.on('result', (e) => {
         var lat = e.result.geometry.coordinates[0]
         var long = e.result.geometry.coordinates[1]
-        setPickup(prev => prev = [lat, long])
+        setPickup([lat, long])
     });
 
     geocoder2.on('result', (e) => {
         var lat = e.result.geometry.coordinates[0]
         var long = e.result.geometry.coordinates[1]
-        setDropoff(prev => prev = [lat, long])
+        setDropoff([lat, long])
     });
 
     const testing = () => {
