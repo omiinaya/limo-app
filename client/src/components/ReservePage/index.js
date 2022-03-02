@@ -58,11 +58,9 @@ function ReservePage() {
         array[index] = value.props.value
         setSeats(array)
     }
-    const handleChangeStops = (index) => {
-        console.log(index)
-        //'[id^="waypoint-geocoder-"]'
-        var stopList = document.querySelectorAll('[id^="waypoint-geocoder-"]');
-        console.log(stopList)
+    const handleChangeStops = (value) => { 
+        setStops(value) 
+        console.log(value)
     }
 
     //add

@@ -33,25 +33,28 @@ export default function App(props) {
         return ref.current;
     }
 
-    function updateListeners() {
-        var stopsEl = document.querySelectorAll('.waypoint-geocoder')
-        stopsEl.forEach(el => {
-            var input = el.querySelector('.mapboxgl-ctrl-geocoder--input')
-            input.addEventListener("input", () => console.log(input.value));
-        })
-    }
-
     function addGeocoders() {
         var waypoints = document.querySelectorAll('.waypoint-geocoder')
         waypoints.forEach((elem, index) => {
             if (index === waypoints.length - 1) {
-                var x = new MapboxGeocoder({
+                new MapboxGeocoder({
                     accessToken: mapboxgl.accessToken,
                     mapboxgl: mapboxgl
-                })
-                x.addTo(elem)
-                updateListeners()
+                }).addTo(elem)
             }
+        })
+    }
+
+    function addListeners() {
+        var test = [...props.stops]
+        var waypoints = document.querySelectorAll('.waypoint-geocoder')
+        waypoints.forEach((elem, index) => {
+            var input = elem.querySelector('.mapboxgl-ctrl-geocoder--input')
+            var idx = elem.id.split('-')[2]
+            input.addEventListener("input", () => {
+                test[idx] = input.value
+                props.handleChangeStops(test)
+            });
         })
     }
 
@@ -125,13 +128,15 @@ export default function App(props) {
     }, [props.currentDropoff]);
 
     useEffect(() => {
-        if (props.stops.length >= 1) return addGeocoders()
-        if (props.stops !== prevStop) {
-            //remove stop
-            console.log(prevStop)
-            console.log(props.stops)
+        if (props.stops.length >= 1) {
+            console.log(props.stops.length)
+            addGeocoders()
+            addListeners()
         }
-    }, [props.stops]);
+        if (props.stops != prevStop && prevStop != undefined) {
+            console.log(prevStop)
+        }
+    }, [props.stops.length]);
 
     const geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
@@ -158,7 +163,7 @@ export default function App(props) {
     const testing = () => {
         console.log(pickup)
         console.log(mapObj)
-        updateListeners()
+        console.log(props.stops)
     }
 
     return (
