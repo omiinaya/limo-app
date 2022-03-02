@@ -92,6 +92,9 @@ function ReservePage() {
     const handleRemoveStop = (event, idx) => {
         var x = stops.filter((elem, index) => index !== idx)
         var y = stopQuantity.filter((elem, index) => index !== idx)
+        var z = document.getElementById(`waypoint-geocoder-${idx}`).querySelector(".mapboxgl-ctrl-geocoder--input")
+        console.log(z)
+        //z[0].blur()
         setStops(x)
         setStopQuantity(y)
     }

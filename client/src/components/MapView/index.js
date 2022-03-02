@@ -17,7 +17,7 @@ export default function App(props) {
     const [dirObj, setDirObj] = React.useState(0)
     const [pickup, setPickup] = React.useState([]);
     const [dropoff, setDropoff] = React.useState([]);
-    const [stops, setStops] = React.useState([]);
+    const [geocoders, setGeocoders] = React.useState([]);
     const prevStop = usePrevious(props.stops);
 
     function usePrevious(value) {
@@ -42,6 +42,9 @@ export default function App(props) {
             //add waypoint on this
             console.log(lat, long)
         });
+
+        var y = [...geocoders, x]
+        setGeocoders(y)
     }
 
     function addWaypoint() {
@@ -50,10 +53,12 @@ export default function App(props) {
             if (index === waypoints.length - 1) {
                 addGeocoder(elem)
                 var input = elem.querySelector('.mapboxgl-ctrl-geocoder--input')
-                var idx = elem.id.split('-')[2] //gets number from element id
+                var idx = parseInt(elem.id.split('-')[2]) //gets number from element id
 
                 input.addEventListener("input", () => {
-                    props.stops[idx] = input.value
+                    var stops = props.stops
+                    stops[idx] = input.value
+                    props.handleChangeStops(stops)
                 });
             }
         })
@@ -130,7 +135,7 @@ export default function App(props) {
 
     useEffect(() => {
         console.log(props.stops)
-        props.handleChangeStops(props.stops)
+        //props.handleChangeStops(props.stops)
     }, [props.stops]);
 
     useEffect(() => {
@@ -166,7 +171,8 @@ export default function App(props) {
         console.log(pickup)
         console.log(mapObj)
         console.log(props.stops)
-        console.log(stops)
+        console.log(geocoders)
+        //geocoders[0].clear()
     }
 
     return (
