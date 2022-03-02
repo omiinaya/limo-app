@@ -17,17 +17,14 @@ export default function App(props) {
     const [dirObj, setDirObj] = React.useState(0)
     const [pickup, setPickup] = React.useState([]);
     const [dropoff, setDropoff] = React.useState([]);
+    const [stops, setStops] = React.useState([]);
     const prevStop = usePrevious(props.stops);
 
     function usePrevious(value) {
-        // The ref object is a generic container whose current property is mutable ...
-        // ... and can hold any value, similar to an instance property on a class
         const ref = useRef();
-        // Store current value in ref
         useEffect(() => {
             ref.current = value;
-        }, [value]); // Only re-run if value changes
-        // Return previous value (happens before update in useEffect above)
+        }, [value]);
         return ref.current;
     }
 
@@ -48,16 +45,15 @@ export default function App(props) {
     }
 
     function addWaypoint() {
-        var test = [...props.stops]
         var waypoints = document.querySelectorAll('.waypoint-geocoder')
         waypoints.forEach((elem, index) => {
             if (index === waypoints.length - 1) {
                 addGeocoder(elem)
                 var input = elem.querySelector('.mapboxgl-ctrl-geocoder--input')
                 var idx = elem.id.split('-')[2] //gets number from element id
+
                 input.addEventListener("input", () => {
-                    test[idx] = input.value
-                    props.handleChangeStops(test)
+                    props.stops[idx] = input.value
                 });
             }
         })
@@ -133,6 +129,11 @@ export default function App(props) {
     }, [props.currentDropoff]);
 
     useEffect(() => {
+        console.log(props.stops)
+        props.handleChangeStops(props.stops)
+    }, [props.stops]);
+
+    useEffect(() => {
         if (props.stops.length >= 1) addWaypoint()
         if (props.stops != prevStop && prevStop != undefined) {
             console.log(prevStop)
@@ -165,6 +166,7 @@ export default function App(props) {
         console.log(pickup)
         console.log(mapObj)
         console.log(props.stops)
+        console.log(stops)
     }
 
     return (
