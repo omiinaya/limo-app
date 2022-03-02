@@ -37,9 +37,10 @@ function ReservePage() {
     const [currentD, setCurrentD] = React.useState('');
     const [passengers, setPassengers] = React.useState(1);
     const [luggage, setLuggage] = React.useState(0);
-    const [stops, setStops] = React.useState([]);
     const [seats, setSeats] = React.useState([]);
-    const [quantity, setQuantity] = React.useState([])
+    const [stops, setStops] = React.useState([]);
+    const [seatQuantity, setSeatQuantity] = React.useState([])
+    const [stopQuantity, setStopQuantity] = React.useState([])
 
     //form
     const handleNext = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -52,60 +53,54 @@ function ReservePage() {
     const handleChangeTime = (event) => setTime(event.target.value);
     const handleChangePickup = (value) => setPickup(value);
     const handleChangeDropoff = (value) => setDropoff(value)
-
-    //add
-    const handleAddPassengers = () => setPassengers(passengers + 1)
-    const handleAddLuggage = () => setLuggage(luggage + 1)
-    const handleAddStop = () => setStops([...stops, ...['']])
-
-    //remove
-    const handleRemovePassengers = () => {
-        if (passengers > 1) setPassengers(passengers - 1)
-    };
-
-    const handleRemoveLuggage = () => {
-        if (luggage > 0) setLuggage(luggage - 1)
-    };
-
-    const handleRemoveStop = (event, idx) => {
-        setStops(stops.filter((elem, index) => index !== idx))
-    }
-    /*
-    const handleChangeStop = (event, value, index) => {
-        var array = [...stops]
-        array[index] = value
-        setStops(array)
-        console.log(array)
-    }
-    */
-    const handleAddSeats = () => {
-        setSeats([...seats, ...['']])
-        setQuantity([...quantity, ...[0]])
-    }
-
     const handleChangeSeats = (event, value, index) => {
         var array = [...seats]
         array[index] = value.props.value
         setSeats(array)
     }
-
-    const handleRemoveSeat = (event, idx) => {
-        var x = seats.filter((elem, index) => index !== idx)
-        var y = quantity.filter((elem, index) => index !== idx)
-        setSeats(x)
-        setQuantity(y)
+    const handleChangeStops = (index) => {
+        console.log(index)
+        //'[id^="waypoint-geocoder-"]'
+        var stopList = document.querySelectorAll('[id^="waypoint-geocoder-"]');
+        console.log(stopList)
     }
 
-    const handleAddQuantity = (event, index) => {
-        var array = [...quantity]
+    //add
+    const handleAddPassengers = () => setPassengers(passengers + 1)
+    const handleAddLuggage = () => setLuggage(luggage + 1)
+    const handleAddSeatQuantity = (event, index) => {
+        var array = [...seatQuantity]
         array[index] = array[index] + 1
-        setQuantity(array)
+        setSeatQuantity(array)
     };
+    const handleAddSeats = () => {
+        setSeats([...seats, ...['']])
+        setSeatQuantity([...seatQuantity, ...[0]])
+    }
+    const handleAddStop = () => {
+        setStops([...stops, ...['']])
+        setStopQuantity([...stopQuantity, ...[0]])
+    }
 
-    const handleRemoveQuantity = (event, index) => {
-        var array = [...quantity]
+    //remove
+    const handleRemovePassengers = () => { if (passengers > 1) setPassengers(passengers - 1) };
+    const handleRemoveLuggage = () => { if (luggage > 0) setLuggage(luggage - 1) };
+    const handleRemoveSeat = (event, idx) => {
+        var x = seats.filter((elem, index) => index !== idx)
+        var y = seatQuantity.filter((elem, index) => index !== idx)
+        setSeats(x)
+        setSeatQuantity(y)
+    }
+    const handleRemoveStop = (event, idx) => {
+        var x = stops.filter((elem, index) => index !== idx)
+        var y = stopQuantity.filter((elem, index) => index !== idx)
+        setStops(x)
+        setStopQuantity(y)
+    }
+    const handleRemoveSeatQuantity = (event, index) => {
+        var array = [...seatQuantity]
         if (array[index] > 0) array[index] = array[index] - 1
-        setQuantity(array)
+        setSeatQuantity(array)
     };
 
     const handleTest = () => {
@@ -118,7 +113,7 @@ function ReservePage() {
         console.log(luggage)
         console.log(stops)
         console.log(seats)
-        console.log(quantity)
+        console.log(seatQuantity)
         console.log(currentP)
     }
 
@@ -286,9 +281,9 @@ function ReservePage() {
                                             <Box
                                                 id={`waypoint-geocoder-${index}`}
                                                 className={`waypoint-geocoder`}
-                                                style={{ width: '310px' }}
+                                                style={{ width: '300px' }}
                                                 sx={{ mr: 0.3 }}
-                                            />
+                                            />{index}
                                             <IconButton
                                                 key={index}
                                                 id={index}
@@ -426,7 +421,7 @@ function ReservePage() {
                                                     }}
                                                 >
                                                     <IconButton
-                                                        onClick={(event) => { handleRemoveQuantity(event, index) }}
+                                                        onClick={(event) => { handleRemoveSeatQuantity(event, index) }}
                                                         style={{ borderRight: '1px solid silver' }}
                                                     ><RemoveIcon style={{ width: 20 }} /></IconButton>
                                                     <IconButton
@@ -435,9 +430,9 @@ function ReservePage() {
                                                             fontSize: 17,
                                                             borderRight: '1px solid silver'
                                                         }}
-                                                    > {quantity[index]} </IconButton>
+                                                    > {seatQuantity[index]} </IconButton>
                                                     <IconButton
-                                                        onClick={(event) => { handleAddQuantity(event, index) }}
+                                                        onClick={(event) => { handleAddSeatQuantity(event, index) }}
                                                     ><AddIcon style={{ width: 20 }} /></IconButton>
                                                 </ButtonGroup>
                                                 <IconButton
@@ -456,6 +451,7 @@ function ReservePage() {
                         <MapView
                             handleChangePickup={handleChangePickup}
                             handleChangeDropoff={handleChangeDropoff}
+                            handleChangeStops={handleChangeStops}
                             currentPickup={currentP}
                             currentDropoff={currentD}
                             stops={stops}

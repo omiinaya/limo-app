@@ -13,7 +13,7 @@ mapboxgl.accessToken = process.env.REACT_APP_MAP_KEY;
 
 //use props and ref to attach to another div
 export default function App(props) {
-    console.log(props)
+    //console.log(props)
 
     const [mapObj, setMapObj] = React.useState(0)
     const [dirObj, setDirObj] = React.useState(0)
@@ -27,11 +27,33 @@ export default function App(props) {
         const ref = useRef();
         // Store current value in ref
         useEffect(() => {
-          ref.current = value;
+            ref.current = value;
         }, [value]); // Only re-run if value changes
         // Return previous value (happens before update in useEffect above)
         return ref.current;
-      }
+    }
+
+    function updateListeners() {
+        var stopsEl = document.querySelectorAll('.waypoint-geocoder')
+        stopsEl.forEach(el => {
+            var input = el.querySelector('.mapboxgl-ctrl-geocoder--input')
+            input.addEventListener("input", () => console.log(input.value));
+        })
+    }
+
+    function addGeocoders() {
+        var waypoints = document.querySelectorAll('.waypoint-geocoder')
+        waypoints.forEach((elem, index) => {
+            if (index === waypoints.length - 1) {
+                var x = new MapboxGeocoder({
+                    accessToken: mapboxgl.accessToken,
+                    mapboxgl: mapboxgl
+                })
+                x.addTo(elem)
+                updateListeners()
+            }
+        })
+    }
 
     //executes before anything else is loaded
     useEffect(() => {
@@ -103,19 +125,8 @@ export default function App(props) {
     }, [props.currentDropoff]);
 
     useEffect(() => {
-        if (props.stops.length >= 1) {
-            var waypoints = document.querySelectorAll(".waypoint-geocoder")
-            waypoints.forEach((elem, index) => {
-                if (index === waypoints.length - 1) {
-                    var x = new MapboxGeocoder({
-                        accessToken: mapboxgl.accessToken,
-                        mapboxgl: mapboxgl
-                    })
-                    x.addTo(elem)
-                }
-            })
-        }
-        if (props.stops != prevStop) {
+        if (props.stops.length >= 1) return addGeocoders()
+        if (props.stops !== prevStop) {
             //remove stop
             console.log(prevStop)
             console.log(props.stops)
@@ -147,6 +158,7 @@ export default function App(props) {
     const testing = () => {
         console.log(pickup)
         console.log(mapObj)
+        updateListeners()
     }
 
     return (
